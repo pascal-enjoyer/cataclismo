@@ -3,11 +3,15 @@
   "WorkspaceRootPath": "C:\\Users\\\u0447\u043C\u043E\u043D\u044F\\Documents\\GitHub\\cataclismo\\Cataclismo\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{866476E4-9507-E104-87CE-F2EE296761D7}|Assembly-CSharp.csproj|c:\\users\\\u0447\u043C\u043E\u043D\u044F\\documents\\github\\cataclismo\\cataclismo\\assets\\scripts folder\\enemybars.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{866476E4-9507-E104-87CE-F2EE296761D7}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts folder\\enemybars.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{866476E4-9507-E104-87CE-F2EE296761D7}|Assembly-CSharp.csproj|c:\\users\\\u0447\u043C\u043E\u043D\u044F\\documents\\github\\cataclismo\\cataclismo\\assets\\scripts folder\\click.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{866476E4-9507-E104-87CE-F2EE296761D7}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts folder\\click.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{866476E4-9507-E104-87CE-F2EE296761D7}|Assembly-CSharp.csproj|c:\\users\\\u0447\u043C\u043E\u043D\u044F\\documents\\github\\cataclismo\\cataclismo\\assets\\scripts folder\\temp.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{866476E4-9507-E104-87CE-F2EE296761D7}|Assembly-CSharp.csproj|C:\\Users\\\u0447\u043C\u043E\u043D\u044F\\Documents\\GitHub\\cataclismo\\Cataclismo\\assets\\scripts folder\\temp.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{866476E4-9507-E104-87CE-F2EE296761D7}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts folder\\temp.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
@@ -22,11 +26,24 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
+              "Title": "EnemyBars.cs",
+              "DocumentMoniker": "C:\\Users\\\u0447\u043C\u043E\u043D\u044F\\Documents\\GitHub\\cataclismo\\Cataclismo\\Assets\\Scripts folder\\EnemyBars.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts folder\\EnemyBars.cs",
+              "ToolTip": "C:\\Users\\\u0447\u043C\u043E\u043D\u044F\\Documents\\GitHub\\cataclismo\\Cataclismo\\Assets\\Scripts folder\\EnemyBars.cs",
+              "RelativeToolTip": "Assets\\Scripts folder\\EnemyBars.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA8AAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-30T12:52:04.73Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
               "Title": "temp.cs",
               "DocumentMoniker": "C:\\Users\\\u0447\u043C\u043E\u043D\u044F\\Documents\\GitHub\\cataclismo\\Cataclismo\\Assets\\Scripts folder\\temp.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts folder\\temp.cs",
@@ -34,12 +51,11 @@
               "RelativeToolTip": "Assets\\Scripts folder\\temp.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAUAAAABAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-30T12:03:11.994Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-07-30T12:03:11.994Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "click.cs",
               "DocumentMoniker": "C:\\Users\\\u0447\u043C\u043E\u043D\u044F\\Documents\\GitHub\\cataclismo\\Cataclismo\\Assets\\Scripts folder\\click.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts folder\\click.cs",
@@ -52,7 +68,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "GraphicEditor.cs",
               "DocumentMoniker": "C:\\Users\\\u0447\u043C\u043E\u043D\u044F\\Documents\\GitHub\\cataclismo\\Cataclismo\\Library\\PackageCache\\com.unity.ugui@1.0.0\\Editor\\UI\\GraphicEditor.cs",
               "RelativeDocumentMoniker": "Library\\PackageCache\\com.unity.ugui@1.0.0\\Editor\\UI\\GraphicEditor.cs",
