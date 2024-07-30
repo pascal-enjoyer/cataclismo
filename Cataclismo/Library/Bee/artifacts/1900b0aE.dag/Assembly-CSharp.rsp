@@ -350,9 +350,11 @@
 -r:"Library/Bee/artifacts/1900b0aE.dag/Unity.VSCode.Editor.ref.dll"
 -r:"Library/Bee/artifacts/1900b0aE.dag/UnityEditor.UI.ref.dll"
 -r:"Library/Bee/artifacts/1900b0aE.dag/UnityEngine.UI.ref.dll"
-"Assets/Scripts folder/click.cs"
+"Assets/Scripts folder/ActiveElements.cs"
+"Assets/Scripts folder/Element.cs"
+"Assets/Scripts folder/ElementInBar.cs"
 "Assets/Scripts folder/EnemyBars.cs"
-"Assets/Scripts folder/temp.cs"
+"Assets/Scripts folder/SelectingElement.cs"
 -langversion:9.0
 /deterministic
 /optimize+
