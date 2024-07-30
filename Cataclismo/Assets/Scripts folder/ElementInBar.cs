@@ -16,15 +16,17 @@ public class ElementInBar : MonoBehaviour
 
     public void Start()
     {
-        if (element != null)
-        {
-            RefreshImage();
-        }
+        RefreshImage();
     }
 
     public void RefreshImage()
     {
-        transform.GetComponent<Image>().sprite = element.icon;
+        if (element != null)
+        {
+            transform.GetComponent<Image>().sprite = element.icon;
+        }
+        else
+            transform.GetComponent<Image>().sprite = null;
     }
 
     public Element GetElement()

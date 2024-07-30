@@ -353,8 +353,12 @@
 "Assets/Scripts folder/ActiveElements.cs"
 "Assets/Scripts folder/Element.cs"
 "Assets/Scripts folder/ElementInBar.cs"
+"Assets/Scripts folder/Enemy.cs"
 "Assets/Scripts folder/EnemyBars.cs"
 "Assets/Scripts folder/SelectingElement.cs"
+"Assets/Scripts folder/SpawnEnemy.cs"
+"Assets/Scripts folder/Spell.cs"
+"Assets/Scripts folder/SpellUsing.cs"
 -langversion:9.0
 /deterministic
 /optimize+

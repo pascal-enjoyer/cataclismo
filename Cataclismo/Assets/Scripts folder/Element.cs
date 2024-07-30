@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class Element : ScriptableObject
 {
-    [SerializeField] public string elementName;
-    [SerializeField] public int elementId;
-    [SerializeField] public Sprite icon;
+    public string elementName;
+    public int elementId;
+    public Sprite icon;
 }

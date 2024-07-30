@@ -58,11 +58,15 @@
     <Analyzer Include="C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\Extensions\Microsoft\Visual Studio Tools for Unity\Analyzers\Microsoft.Unity.Analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts folder\ElementInBar.cs" />
     <Compile Include="Assets\Scripts folder\EnemyBars.cs" />
     <Compile Include="Assets\Scripts folder\SelectingElement.cs" />
-    <Compile Include="Assets\Scripts folder\ActiveElements.cs" />
     <Compile Include="Assets\Scripts folder\Element.cs" />
-    <Compile Include="Assets\Scripts folder\ElementInBar.cs" />
+    <Compile Include="Assets\Scripts folder\ActiveElements.cs" />
+    <Compile Include="Assets\Scripts folder\Spell.cs" />
+    <Compile Include="Assets\Scripts folder\SpawnEnemy.cs" />
+    <Compile Include="Assets\Scripts folder\Enemy.cs" />
+    <Compile Include="Assets\Scripts folder\SpellUsing.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
