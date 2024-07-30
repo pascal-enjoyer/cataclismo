@@ -1003,6 +1003,7 @@ GameObject:
   - component: {fileID: 1179740461}
   - component: {fileID: 1179740463}
   - component: {fileID: 1179740462}
+  - component: {fileID: 1179740464}
   m_Layer: 5
   m_Name: water panel
   m_TagString: Untagged
@@ -1068,6 +1069,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1179740460}
   m_CullTransparentMesh: 1
+--- !u!114 &1179740464
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1179740460}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 811632df9116c8040841ed2f6d02bea0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  countOfClicks: 0
 --- !u!1 &1256552132
 GameObject:
   m_ObjectHideFlags: 0
