@@ -23,10 +23,25 @@ public class ElementInBar : MonoBehaviour
     {
         if (element != null)
         {
-            transform.GetComponent<Image>().sprite = element.icon;
+
+            Image tempImg = transform.GetComponent<Image>();
+
+            var tmpClr = tempImg.color;
+            tmpClr.a = 255f;
+            tempImg.color = tmpClr;
+            tempImg.sprite = element.icon;
+
         }
         else
-            transform.GetComponent<Image>().sprite = null;
+        {
+
+            Image tempImg = transform.GetComponent<Image>();
+            tempImg.sprite = null;
+            var tmpClr = tempImg.color;
+            tmpClr.a = 0f;
+            tempImg.color = tmpClr;
+        }
+            
     }
 
     public Element GetElement()
