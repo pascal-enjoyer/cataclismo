@@ -15,4 +15,6 @@ public class Enemy : ScriptableObject
 
     public float currentDamage;
     public float maxDamage;
+
+
 }

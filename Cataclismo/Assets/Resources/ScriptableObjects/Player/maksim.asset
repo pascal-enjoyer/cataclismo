@@ -13,5 +13,4 @@ MonoBehaviour:
   m_Name: maksim
   m_EditorClassIdentifier: 
   playerName: Maksim
-  maxHealth: 1000
-  currentHealth: 0
+  maxHealth: 100

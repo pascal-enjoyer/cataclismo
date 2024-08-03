@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class PlayerInfo : MonoBehaviour
 {
@@ -8,8 +9,9 @@ public class PlayerInfo : MonoBehaviour
     [SerializeField] public Transform currentEnemy;
 
 
-    [SerializeField] private int maxHealth;
-    [SerializeField] private int currentHealth;
+    [SerializeField] private float maxHealth;
+    [SerializeField] private float currentHealth;
+    [SerializeField] public UnityEvent OnPlayerGetDamage;
 
     private void Start()
     {
@@ -17,5 +19,41 @@ public class PlayerInfo : MonoBehaviour
         currentHealth = maxHealth;
     }
 
+    public void takeDamage(float damage)
+    {
 
+        if (currentHealth - damage <= 0)
+        {
+            currentHealth = 0;
+
+        }
+        else
+            currentHealth -= damage;
+        OnPlayerGetDamage.Invoke();
+    }
+
+    public void takeHealth(float heal) 
+    {
+        if (currentHealth + heal >= maxHealth)
+        {
+            currentHealth = maxHealth;
+        }
+        else
+        {   
+            currentHealth += heal; 
+        }
+    }
+
+    public float  GetCurrentHealth()
+    {
+        return currentHealth;
+    }
+
+    public float GetMaxHealth()
+    {
+        return maxHealth;
+    }
+
+
+    
 }

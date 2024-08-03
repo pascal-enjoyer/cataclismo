@@ -15,7 +15,7 @@ MonoBehaviour:
   enemyName: Boss
   currentHealth: 1000
   maxHealth: 1000
-  currentAtackSpeed: 10
+  currentAtackSpeed: 3
   maxAtackSpeed: 100
   currentDamage: 10
   maxDamage: 100

@@ -7,6 +7,6 @@ public class Player : ScriptableObject
 {
     [Header("Required")]
     public string playerName;
-    public int maxHealth;
+    public float maxHealth;
     
 }

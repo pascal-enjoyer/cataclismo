@@ -40,6 +40,7 @@ public class ActiveElements : MonoBehaviour
             {
                 ElementInBar elementInBar = slot.GetComponent<ElementInBar>();
                 elementInBar.SetElement(null);
+                
                 elementInBar.RefreshImage();
             }
             catch

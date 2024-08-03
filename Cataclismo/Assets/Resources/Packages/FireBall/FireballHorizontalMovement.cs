@@ -45,9 +45,5 @@ namespace FireballMovement
             timer = 0;
         }
 
-        private void OnCollisionEnter(Collision collision)
-        {
-            Destroy(gameObject);
-        }
     }
 }
