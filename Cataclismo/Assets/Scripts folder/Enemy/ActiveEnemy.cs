@@ -32,6 +32,7 @@ public class ActiveEnemy : MonoBehaviour
         }
         else
             currentHealth -= damage;
+        transform.GetComponent<PopUpDamage>().PopUp(damage);
         OnEnemyTakedDamage.Invoke();
     }
 
