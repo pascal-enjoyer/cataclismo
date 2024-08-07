@@ -15,6 +15,8 @@ public class ActiveEnemy : MonoBehaviour
     [SerializeField] private float maxDamage;
 
     [SerializeField] public UnityEvent OnEnemyTakedDamage;
+    [SerializeField] public UnityEvent OnEnemyDied;
+
 
     public void Start()
     {
@@ -28,7 +30,7 @@ public class ActiveEnemy : MonoBehaviour
         if (currentHealth - damage <= 0)
         {
             currentHealth = 0;
-
+            OnEnemyDied.Invoke();
         }
         else
             currentHealth -= damage;

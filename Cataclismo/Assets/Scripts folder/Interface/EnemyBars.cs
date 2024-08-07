@@ -7,7 +7,6 @@ using UnityEngine.UI;
 public class EnemyBars : MonoBehaviour
 {
     [SerializeField] private ActiveEnemy enemy;
-    [SerializeField] private Transform EnemyHead;
     [SerializeField] private Transform healthLine;
     [SerializeField] private Transform attackBar;
     [SerializeField] private float attackTime;
@@ -19,7 +18,7 @@ public class EnemyBars : MonoBehaviour
     private void Update()
     {
 
-       transform.position = Camera.main.WorldToScreenPoint(EnemyHead.position + new Vector3(0,0.4f));
+       transform.position = Camera.main.WorldToScreenPoint(enemy.transform.position + new Vector3(0, enemy.transform.localScale.y * 2));
         if (enemy != null)
         {
             Image img = attackBar.GetComponent<Image>();
