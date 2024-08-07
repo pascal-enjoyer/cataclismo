@@ -26,7 +26,10 @@ public class GameLevelManager : MonoBehaviour
         // Получаем текущий уровень из PlayerPrefs
         int currentLevel = PlayerPrefs.GetInt("CurrentLevel", 0);
         // Отмечаем уровень как пройденный
-        GameManager.Instance.CompleteLevel(currentLevel);
+        if (GameManager.Instance != null)
+        {
+            GameManager.Instance.CompleteLevel(currentLevel);
+        }
 
         // Переключаемся обратно на сцену выбора уровня, заменяя текущую сцену
         SceneManager.LoadScene("menu", LoadSceneMode.Single); // Замените на имя вашей сцены выбора уровня

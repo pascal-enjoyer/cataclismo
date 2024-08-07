@@ -11,6 +11,10 @@ public class EnemyBars : MonoBehaviour
     [SerializeField] private Transform attackBar;
     [SerializeField] private float attackTime;
 
+    [SerializeField] private float updateSpeedSeconds = 0.5f; // Скорость обновления полоски здоровья
+
+    private Coroutine updateCoroutine;
+
     private void Start()
     {
         enemy.OnEnemyTakedDamage.AddListener(RefreshHealthLine);
@@ -26,6 +30,7 @@ public class EnemyBars : MonoBehaviour
             {
 
                 attackTime += Time.deltaTime;
+
                 img.fillAmount = attackTime / enemy.GetEnemy().currentAtackSpeed;
                 if (img.fillAmount >= 1)
                 {
@@ -39,13 +44,33 @@ public class EnemyBars : MonoBehaviour
         }
     }
 
-
     public void RefreshHealthLine()
     {
         Image img = healthLine.GetComponent<Image>();
         if (img != null && enemy != null)
         {
-            img.fillAmount = enemy.GetCurrentHealth() / enemy.GetMaxHealth();
+
+            if (updateCoroutine != null)
+            {
+                StopCoroutine(updateCoroutine);
+            }
+            updateCoroutine = StartCoroutine(UpdateHealthBar());
         }
+    }
+
+    private IEnumerator UpdateHealthBar()
+    {
+        Image img = healthLine.GetComponent<Image>();
+        float preChangePercent = img.fillAmount;
+        float targetFillAmount = enemy.GetCurrentHealth() / enemy.GetMaxHealth();
+        float elapsed = 0f;
+
+        while (elapsed < updateSpeedSeconds)
+        {
+            elapsed += Time.deltaTime;
+            img.fillAmount = Mathf.Lerp(preChangePercent, targetFillAmount, elapsed / updateSpeedSeconds);
+            yield return null;
+        }
+        img.fillAmount = targetFillAmount;
     }
 }
