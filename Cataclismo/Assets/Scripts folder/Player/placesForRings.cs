@@ -6,10 +6,23 @@ public class placesForRings : MonoBehaviour
 {
     public Transform placeForRing;
     public GameObject ringPrefab;
-   
+
+    public Transform placeForBracelet;
+    public GameObject braceletPrefab;
+
+    public Transform placeForGlove;
+    public GameObject glovePrefab;
+
+    public void Start()
+    {
+        SpawnRing();
+    }
 
     public void SpawnRing()
     {
         Instantiate(ringPrefab, placeForRing);
+        Instantiate(braceletPrefab, placeForBracelet);
+
+        Instantiate(glovePrefab, placeForGlove);
     }
 }

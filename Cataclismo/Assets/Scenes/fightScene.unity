@@ -942,6 +942,12 @@ MonoBehaviour:
   attackBar: {fileID: 1037060603}
   attackTime: 0
   updateSpeedSeconds: 0.1
+--- !u!4 &670396895 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4208382820342021712, guid: c4cfe14226ec6ff4a91e6c4aad207f01,
+    type: 3}
+  m_PrefabInstance: {fileID: 970027122213022751}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
@@ -2979,6 +2985,12 @@ MonoBehaviour:
   placeForRing: {fileID: 4903344673133322940}
   ringPrefab: {fileID: 8639592650016485329, guid: 5045c33f28416474da8865b24a704479,
     type: 3}
+  placeForBracelet: {fileID: 670396895}
+  braceletPrefab: {fileID: 8132789251519309818, guid: cef4c96afc6726344a6bf2e5bfb8c714,
+    type: 3}
+  placeForGlove: {fileID: 543450652050184409}
+  glovePrefab: {fileID: 258647633459754600, guid: 24c1691b7707d054685e17f3f1a8d06b,
+    type: 3}
 --- !u!1 &2144650191
 GameObject:
   m_ObjectHideFlags: 0
@@ -3134,6 +3146,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7454061740188779238, guid: c4cfe14226ec6ff4a91e6c4aad207f01,
+        type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7454061740188779238, guid: c4cfe14226ec6ff4a91e6c4aad207f01,
+        type: 3}
+      propertyPath: m_ReceiveShadows
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c4cfe14226ec6ff4a91e6c4aad207f01, type: 3}
 --- !u!4 &4903344673133322940 stripped
@@ -3149,6 +3171,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 855071309}
     m_Modifications:
+    - target: {fileID: 2650269870505422429, guid: d8fe07a0d15a3ee48be532bb98f91efe,
+        type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2650269870505422429, guid: d8fe07a0d15a3ee48be532bb98f91efe,
+        type: 3}
+      propertyPath: m_ReceiveShadows
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4677685125513212347, guid: d8fe07a0d15a3ee48be532bb98f91efe,
         type: 3}
       propertyPath: m_RootOrder
@@ -3208,6 +3240,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: right arm
+      objectReference: {fileID: 0}
+    - target: {fileID: 5449823365812955905, guid: d8fe07a0d15a3ee48be532bb98f91efe,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d8fe07a0d15a3ee48be532bb98f91efe, type: 3}
