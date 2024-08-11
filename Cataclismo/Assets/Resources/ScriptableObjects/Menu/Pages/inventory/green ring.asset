@@ -9,13 +9,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d082b8733876caa4ca53799d865e78a9, type: 3}
-  m_Name: Boss
+  m_Script: {fileID: 11500000, guid: 606efed0bb8e52746aaeb1bea7da3633, type: 3}
+  m_Name: green ring
   m_EditorClassIdentifier: 
-  enemyName: Boss
-  currentHealth: 250
-  maxHealth: 250
-  currentAtackSpeed: 3
-  maxAtackSpeed: 100
-  currentDamage: 10
-  maxDamage: 100
+  itemName: Green ring
+  itemType: 0
+  itemRarity: 0
+  bonusType: 0
+  bonusValue: 70
+  itemIcon: {fileID: 21300000, guid: 28c9720ff161e294fbd07dad104ddc73, type: 3}

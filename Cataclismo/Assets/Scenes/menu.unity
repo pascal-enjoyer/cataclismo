@@ -1393,6 +1393,9 @@ GameObject:
   - component: {fileID: 781413544}
   - component: {fileID: 781413546}
   - component: {fileID: 781413545}
+  - component: {fileID: 781413549}
+  - component: {fileID: 781413548}
+  - component: {fileID: 781413547}
   m_Layer: 5
   m_Name: Storage slots
   m_TagString: Untagged
@@ -1458,6 +1461,48 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 781413543}
   m_CullTransparentMesh: 1
+--- !u!114 &781413547
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 781413543}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c349beb339a85e4bb099fe8994e25fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inventory: {fileID: 0}
+  item1: {fileID: 0}
+--- !u!114 &781413548
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 781413543}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 573eccf3f0865d74d83ed5a30d484b35, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inventory: {fileID: 0}
+  itemUIPrefab: {fileID: 0}
+  contentPanel: {fileID: 0}
+--- !u!114 &781413549
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 781413543}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 392f83fd8b1bfac49897615e66d619c4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  items: []
 --- !u!1 &830509737
 GameObject:
   m_ObjectHideFlags: 0
