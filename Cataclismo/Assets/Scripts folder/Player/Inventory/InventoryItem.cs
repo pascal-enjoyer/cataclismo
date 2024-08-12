@@ -10,6 +10,7 @@ public class InventoryItem : ScriptableObject
     public BonusType bonusType;
     public int bonusValue; // Значение бонуса
     public Sprite itemIcon; // Иконка предмета
+    public string itemDescription; // Иконка предмета
 }
 
 public enum ItemType

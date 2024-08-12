@@ -10,11 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 606efed0bb8e52746aaeb1bea7da3633, type: 3}
-  m_Name: blue bracelet
+  m_Name: glove
   m_EditorClassIdentifier: 
-  itemName: Blue bracelet
-  itemType: 1
+  itemName: Glove
+  itemType: 2
   itemRarity: 0
   bonusType: 0
-  bonusValue: 55
-  itemIcon: {fileID: 21300000, guid: 95e494b9f8911d14d997aaa184bc17d9, type: 3}
+  bonusValue: 30
+  itemIcon: {fileID: 21300000, guid: 50c4e82ea18f8c44698e49ed7e3aca1c, type: 3}
+  itemDescription: Glove that has been using for massaging prostata
