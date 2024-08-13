@@ -10,8 +10,13 @@ public class InventoryUI : MonoBehaviour
     public GridLayoutGroup gridLayoutGroup; // Компонент Grid Layout Group
 
     public GameObject ringSlot;
+    public GameObject ringSlotImage;
+
     public GameObject braceletSlot;
+    public GameObject braceletSlotImage;
+
     public GameObject gloveSlot;
+    public GameObject gloveSlotImage;
 
     void Start()
     {
@@ -32,7 +37,7 @@ public class InventoryUI : MonoBehaviour
         {
             GameObject newItem = Instantiate(itemUIPrefab, contentPanel);
             ItemUI itemUI = newItem.GetComponent<ItemUI>();
-            itemUI.inventoryParent = this.transform;
+            itemUI.inventoryParent = transform;
             itemUI.Setup(item);
         }
 
@@ -42,21 +47,85 @@ public class InventoryUI : MonoBehaviour
 
     public void EquipItem(InventoryItem tempItem)
     {
-            switch (tempItem.itemType)
+        GameObject newItem;
+        ItemUI itemUI;
+        switch (tempItem.itemType)
+        {
+            case ItemType.Ring:
+            if (inventory.ring == null)
             {
-                case ItemType.Ring:
-                    inventory.ring = tempItem;
-                    ringSlot.GetComponent<Image>().sprite = tempItem.itemIcon;
-                    break;
-                case ItemType.Bracelet:
-                    inventory.bracelet = tempItem;
-                    braceletSlot.GetComponent<Image>().sprite = tempItem.itemIcon;
-                    break;
-                case ItemType.Glove:
-                    inventory.glove = tempItem;
-                    gloveSlot.GetComponent<Image>().sprite = tempItem.itemIcon;
-                    break;
+                inventory.ring = tempItem;
+                newItem = Instantiate(itemUIPrefab, ringSlot.transform);
+                itemUI = newItem.GetComponent<ItemUI>();
+                itemUI.inventoryParent = transform;
+                itemUI.isEquiped = true;
+                itemUI.Setup(tempItem);
+                inventory.items.Remove(tempItem);
             }
+            break;
+            case ItemType.Bracelet:
+            if (inventory.bracelet == null)
+            {
+                inventory.bracelet = tempItem;
+                newItem = Instantiate(itemUIPrefab, braceletSlot.transform);
+                itemUI = newItem.GetComponent<ItemUI>();
+                itemUI.inventoryParent = transform;
+                itemUI.isEquiped = true;
+                itemUI.Setup(tempItem);
+
+                    inventory.items.Remove(tempItem);
+                }
+            break;
+            case ItemType.Glove:
+            if (inventory.glove == null)
+            {
+                inventory.glove = tempItem;
+                newItem = Instantiate(itemUIPrefab, gloveSlot.transform);
+                itemUI = newItem.GetComponent<ItemUI>();
+                itemUI.inventoryParent = transform;
+                itemUI.isEquiped = true;
+                itemUI.Setup(tempItem);
+                    inventory.items.Remove(tempItem);
+                }
+            break;
+        }
+        RefreshInventoryUI();
+    }
+
+    public void TakeOffItem(ItemUI tempItem)
+    {
+        ItemUI itemUI = tempItem;
+        InventoryItem item = itemUI.item;
+        switch (tempItem.item.itemType)
+        {
+            case ItemType.Ring:
+                if (inventory.ring == item)
+                {
+                    inventory.ring = null;
+                    inventory.items.Add(item);
+                    Destroy(tempItem.gameObject);
+                    
+                }
+                break;
+            case ItemType.Bracelet:
+                if (inventory.bracelet == item)
+                {
+                    inventory.bracelet = null; 
+                    inventory.items.Add(item);
+                    Destroy(tempItem.gameObject);
+                }
+                break;
+            case ItemType.Glove:
+                if (inventory.glove == item)
+                {
+                    inventory.glove = null;
+                    inventory.items.Add(item);
+
+                    Destroy(tempItem.gameObject);
+                }
+                break;
+        }
+        RefreshInventoryUI();
     }
     
 }

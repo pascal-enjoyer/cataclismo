@@ -7,9 +7,10 @@ public class ItemUI : MonoBehaviour
 {
     public Image itemIcon;
     public Text itemName;
-    private InventoryItem item;
+    public InventoryItem item;
     public GameObject itemInfoWindowPrefab;
     public Transform inventoryParent;
+    public bool isEquiped;
 
     public void Setup(InventoryItem tempItem)
     {
@@ -23,8 +24,8 @@ public class ItemUI : MonoBehaviour
     {
         ItemInfoWindow infoWindow = itemInfoWindowPrefab.GetComponent<ItemInfoWindow>();
         if (infoWindow != null)
-        {
-            infoWindow.FillWindow(item);
+        {   
+            infoWindow.FillWindow(transform.GetComponent<ItemUI>());
             Instantiate(itemInfoWindowPrefab, inventoryParent);
         }
     }
