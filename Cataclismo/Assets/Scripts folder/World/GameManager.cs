@@ -1,15 +1,22 @@
+
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
 
+    public static Inventory inventory;
+
+    public static LootManager lootManager;
+
     private int levelsCompleted;
 
     void Awake()
     {
         if (Instance == null)
-        {
+        {   
+            inventory = transform.GetComponent<Inventory>();
+            lootManager = transform.GetComponent<LootManager>();
             Instance = this;
             DontDestroyOnLoad(gameObject);
             InitializeGame();

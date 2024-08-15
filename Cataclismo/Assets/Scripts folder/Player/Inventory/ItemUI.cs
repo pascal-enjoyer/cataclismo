@@ -10,14 +10,14 @@ public class ItemUI : MonoBehaviour
     public InventoryItem item;
     public GameObject itemInfoWindowPrefab;
     public Transform inventoryParent;
-    public bool isEquiped;
+
 
     public void Setup(InventoryItem tempItem)
     {
         transform.GetComponent<Button>().onClick.AddListener(OnButtonClick);
         item = tempItem;
-        itemIcon.sprite = item.itemIcon;
-        itemName.text = item.itemName;
+        itemIcon.sprite = item.ItemIcon;
+        itemName.text = item.bonusValue.ToString();
     }
     
     public void OnButtonClick()
@@ -25,8 +25,9 @@ public class ItemUI : MonoBehaviour
         ItemInfoWindow infoWindow = itemInfoWindowPrefab.GetComponent<ItemInfoWindow>();
         if (infoWindow != null)
         {   
-            infoWindow.FillWindow(transform.GetComponent<ItemUI>());
-            Instantiate(itemInfoWindowPrefab, inventoryParent);
+            //infoWindow.FillWindow(item);
+            GameObject gameObject = Instantiate(itemInfoWindowPrefab, inventoryParent);
+            gameObject.GetComponent<ItemInfoWindow>().FillWindow(item);
         }
     }
 }

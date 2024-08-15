@@ -5,23 +5,21 @@ using UnityEngine.UI;
 
 public class ItemInfoWindow : MonoBehaviour
 {
-    public InventoryItem item;
-    public ItemUI itemUI;
+    private InventoryItem item;
+    private ItemUI itemUi;
     public Text itemName;
     public Text itemDescription;
     public Image itemIcon;
     public Text equipButtonText;
     
 
-    public void FillWindow(ItemUI tempItem)
+    public void FillWindow(InventoryItem tempItem)
     {
-        itemUI = tempItem;
-        item = itemUI.item;
-        itemName.text = item.name;
-        itemDescription.text = item.itemDescription;
-        itemIcon.sprite = item.itemIcon;
-        equipButtonText.text = itemUI.isEquiped ? "Take off" : "Equip"; 
-        
+        item = tempItem;
+        itemName.text = item.ItemName;
+        itemDescription.text = item.ItemDescription;
+        itemIcon.sprite = item.ItemIcon;
+        equipButtonText.text = item.isEquiped ? "Take off" : "Equip"; 
     }
 
     public void CloseInfoWindow()
@@ -31,10 +29,11 @@ public class ItemInfoWindow : MonoBehaviour
 
     public void OnEquipButtonClicked()
     {
-        switch (itemUI.isEquiped)
+
+        switch (item.isEquiped)
         {
             case true:
-                transform.parent.GetComponent<InventoryUI>().TakeOffItem(itemUI);
+                transform.parent.GetComponent<InventoryUI>().TakeOffItem(item);
                 break;
             case false:
                 transform.parent.GetComponent<InventoryUI>().EquipItem(item);

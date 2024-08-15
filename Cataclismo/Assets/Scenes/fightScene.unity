@@ -2967,7 +2967,7 @@ MonoBehaviour:
   - {fileID: 4940828881846107735, guid: 29cb0fec0030ebb469a48625ab42c5c1, type: 3}
   - {fileID: 7873209498210208176, guid: 8cb85d32a3ab12640a4bccd122db51ca, type: 3}
   - {fileID: 4940828881846107735, guid: 29cb0fec0030ebb469a48625ab42c5c1, type: 3}
-  - {fileID: 6458166734845818929, guid: 19b4beec3875ee245a7526d864d9688a, type: 3}
+  - {fileID: 4940828881846107735, guid: 29cb0fec0030ebb469a48625ab42c5c1, type: 3}
   backgroundRenderer: {fileID: 756729052}
   enemyTransform: {fileID: 1571798401}
 --- !u!114 &1988983921

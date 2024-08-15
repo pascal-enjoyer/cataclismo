@@ -28,6 +28,7 @@ public class GameLevelManager : MonoBehaviour
         // Отмечаем уровень как пройденный
         if (GameManager.Instance != null)
         {
+            GameManager.lootManager.DropLoot();
             GameManager.Instance.CompleteLevel(currentLevel);
         }
 

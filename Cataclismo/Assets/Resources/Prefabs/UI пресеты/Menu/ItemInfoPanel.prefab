@@ -622,8 +622,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 98929569b98895e49b8c6bf1651d070f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  item: {fileID: 0}
-  itemUI: {fileID: 0}
   itemName: {fileID: 51767121767340627}
   itemDescription: {fileID: 1830925682269919922}
   itemIcon: {fileID: 5317054135125479826}
@@ -687,7 +685,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.7075472, g: 0.7075472, b: 0.7075472, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -827,7 +825,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 4807974895633527364}
-        m_TargetAssemblyTypeName: ItemInfoWInfow, Assembly-CSharp
+        m_TargetAssemblyTypeName: ItemInfoWindow, Assembly-CSharp
         m_MethodName: CloseInfoWindow
         m_Mode: 1
         m_Arguments:
