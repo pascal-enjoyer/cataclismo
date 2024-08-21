@@ -9,6 +9,8 @@ public class GameManager : MonoBehaviour
 
     public static LootManager lootManager;
 
+    public static PlayerEconomic playerEconomic;
+
     private int levelsCompleted;
 
     void Awake()
@@ -17,6 +19,7 @@ public class GameManager : MonoBehaviour
         {   
             inventory = transform.GetComponent<Inventory>();
             lootManager = transform.GetComponent<LootManager>();
+            playerEconomic = transform.GetComponent<PlayerEconomic>();
             Instance = this;
             DontDestroyOnLoad(gameObject);
             InitializeGame();
