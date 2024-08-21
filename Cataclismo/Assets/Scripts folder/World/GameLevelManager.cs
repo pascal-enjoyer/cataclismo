@@ -7,9 +7,10 @@ public class GameLevelManager : MonoBehaviour
     public GameObject[] enemyPrefabs; // Массив префабов врагов для каждого уровня
     public SpriteRenderer backgroundRenderer; // Спрайт рендерер для фона
     public Transform enemyTransform; // Точка спавна врага
-
+    
     void Start()
     {
+
         // Получаем текущий уровень из PlayerPrefs
         int currentLevel = PlayerPrefs.GetInt("CurrentLevel", 0);
         

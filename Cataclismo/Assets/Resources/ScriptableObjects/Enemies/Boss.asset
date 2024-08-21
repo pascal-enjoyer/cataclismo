@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Boss
   m_EditorClassIdentifier: 
   enemyName: Boss
-  currentHealth: 250
-  maxHealth: 250
+  currentHealth: 1000
+  maxHealth: 1000
   currentAtackSpeed: 3
   maxAtackSpeed: 100
   currentDamage: 10

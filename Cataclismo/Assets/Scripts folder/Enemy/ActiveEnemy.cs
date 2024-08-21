@@ -25,8 +25,9 @@ public class ActiveEnemy : MonoBehaviour
         currentDamage = enemy.currentDamage;
         maxDamage = enemy.maxDamage;
     }
-    public void takeDamage(int damage)
+    public void takeDamage(float damage)
     {
+        float tempDmg = damage += playerInfo.itemAttackBonus;
         if (currentHealth - damage <= 0)
         {
             currentHealth = 0;
@@ -34,7 +35,7 @@ public class ActiveEnemy : MonoBehaviour
         }
         else
             currentHealth -= damage;
-        transform.GetComponent<PopUpDamage>().PopUp(damage);
+        transform.GetComponent<PopUpDamage>().PopUp(tempDmg);
         OnEnemyTakedDamage.Invoke();
     }
 
