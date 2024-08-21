@@ -15,7 +15,7 @@ MonoBehaviour:
   itemID: 2
   itemName: Water Attack Glove
   itemIcon: {fileID: 21300000, guid: 92f24dc994c39064a9627cfda8dee9fb, type: 3}
-  itemDescription: Thanos anus glove
+  itemDescription: 
   itemType: 2
   bonusType: 0
   item3dPrefab: {fileID: 258647633459754600, guid: 24c1691b7707d054685e17f3f1a8d06b,

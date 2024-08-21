@@ -10,14 +10,17 @@ public class ItemUI : MonoBehaviour
     public InventoryItem item;
     public GameObject itemInfoWindowPrefab;
     public Transform inventoryParent;
+    public Image itemRarityBackground;
 
 
     public void Setup(InventoryItem tempItem)
     {
         transform.GetComponent<Button>().onClick.AddListener(OnButtonClick);
         item = tempItem;
+
         itemIcon.sprite = item.ItemIcon;
         itemName.text = item.bonusValue.ToString();
+        itemRarityBackground.sprite = item.rarityBackgroundSprite;
     }
     
     public void OnButtonClick()

@@ -12,14 +12,20 @@ public class InventoryUI : MonoBehaviour
     public Transform ringSlot;
     public Transform ringSlotImage;
     private GameObject ringUIObject;
+    public Transform ringOnHandSlot;
+
 
     public Transform braceletSlot;
     public Transform braceletSlotImage;
     private GameObject braceletUIObject;
+    public Transform braceletOnHandSlot;
+
 
     public Transform gloveSlot;
     public Transform gloveSlotImage;
     private GameObject gloveUIObject;
+    public Transform gloveOnHandSlot;
+
 
     void Start()
     {
@@ -42,6 +48,16 @@ public class InventoryUI : MonoBehaviour
         Destroy(braceletUIObject);
         Destroy(gloveUIObject);
 
+        ringOnHandSlot.gameObject.SetActive(false);
+        ringOnHandSlot.GetComponent<Image>().sprite = null;
+
+        braceletOnHandSlot.gameObject.SetActive(false);
+
+        braceletOnHandSlot.GetComponent<Image>().sprite = null;
+        gloveOnHandSlot.gameObject.SetActive(false);
+
+        gloveOnHandSlot.GetComponent<Image>().sprite = null;
+
         // Добавьте новые элементы
         foreach (InventoryItem item in inventory.items)
         {
@@ -54,9 +70,13 @@ public class InventoryUI : MonoBehaviour
         if (inventory.ring != null)
         {
             ringUIObject = Instantiate(itemUIPrefab, ringSlot);
+            
             ItemUI itemUI = ringUIObject.GetComponent<ItemUI>();
             itemUI.inventoryParent = transform;
             itemUI.Setup(inventory.ring);
+            ringOnHandSlot.gameObject.SetActive(true);
+            ringOnHandSlot.GetComponent<Image>().sprite = inventory.ring.item.itemOnHandSprite;
+            
         }
 
         if (inventory.bracelet != null)
@@ -65,6 +85,9 @@ public class InventoryUI : MonoBehaviour
             ItemUI itemUI = braceletUIObject.GetComponent<ItemUI>();
             itemUI.inventoryParent = transform;
             itemUI.Setup(inventory.bracelet);
+
+            braceletOnHandSlot.gameObject.SetActive(true);
+            braceletOnHandSlot.GetComponent<Image>().sprite = inventory.bracelet.item.itemOnHandSprite;
         }
 
 
@@ -73,7 +96,9 @@ public class InventoryUI : MonoBehaviour
             gloveUIObject = Instantiate(itemUIPrefab, gloveSlot);
             ItemUI itemUI = gloveUIObject.GetComponent<ItemUI>();
             itemUI.inventoryParent = transform;
-            itemUI.Setup(inventory.glove);
+            itemUI.Setup(inventory.glove); 
+            gloveOnHandSlot.gameObject.SetActive(true);
+            gloveOnHandSlot.GetComponent<Image>().sprite = inventory.glove.item.itemOnHandSprite;
         }
         // Обновите размер Content, чтобы подстроиться под количество элементов
         LayoutRebuilder.ForceRebuildLayoutImmediate(contentPanel.GetComponent<RectTransform>());
@@ -90,7 +115,7 @@ public class InventoryUI : MonoBehaviour
 
                 inventory.ring = tempItem;
                 inventory.ring.isEquiped = true;
-                inventory.items.Remove(tempItem);
+                inventory.RemoveItem(tempItem);
 
                 if (wasInSlot != null)
                 {
@@ -104,7 +129,7 @@ public class InventoryUI : MonoBehaviour
 
                 inventory.bracelet = tempItem;
                 inventory.bracelet.isEquiped = true;
-                inventory.items.Remove(tempItem);
+                inventory.RemoveItem(tempItem);
 
 
                 if (wasInSlot != null)
@@ -118,7 +143,7 @@ public class InventoryUI : MonoBehaviour
 
                 inventory.glove = tempItem;
                 inventory.glove.isEquiped = true;
-                inventory.items.Remove(tempItem);
+                inventory.RemoveItem(tempItem);
 
 
                 if (wasInSlot != null)

@@ -15,7 +15,7 @@ MonoBehaviour:
   itemID: 1
   itemName: Water Attack Bracelet
   itemIcon: {fileID: 21300000, guid: d1705db71b15e4c448da9544ce360254, type: 3}
-  itemDescription: Water bracelet that can expand your ass
+  itemDescription: 
   itemType: 1
   bonusType: 0
   item3dPrefab: {fileID: 8132789251519309818, guid: cef4c96afc6726344a6bf2e5bfb8c714,

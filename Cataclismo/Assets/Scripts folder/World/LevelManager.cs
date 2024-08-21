@@ -7,6 +7,7 @@ using UnityEngine.UI;
 public class LevelManager : MonoBehaviour
 
 {
+    public GameObject uncompletedLevelPrefab, completedLevelPrefab, currentLevelPrefab;
     public GameObject[] levelButtons; // Массив кнопок уровней
 
     void Start()
@@ -19,13 +20,29 @@ public class LevelManager : MonoBehaviour
 
     public void UpdateLevelButtons()
     {
+        foreach (GameObject level in levelButtons)
+        {
+            foreach (Transform child in level.transform) 
+            {
+                Destroy(child.gameObject);
+            }
+        }
         int levelsCompleted = GameManager.Instance.GetLevelsCompleted();
         for (int i = 0; i < levelButtons.Length; i++)
         {
             Button tmpBtn = levelButtons[i].GetComponent<Button>();
-            if (i <= levelsCompleted)
+            if (i < levelsCompleted)
             {
-                
+                GameObject tempLevelPrefab = Instantiate(completedLevelPrefab, levelButtons[i].transform);
+                tempLevelPrefab.GetComponent<LevelButton>().Setup((i+1).ToString());
+                tmpBtn.interactable = true;
+                int levelIndex = i; // Локальная копия для использования в лямбда-функции
+                tmpBtn.onClick.AddListener(() => LoadLevel(levelIndex));
+                levelButtons[i].SetActive(true);
+            }
+            else if (i == levelsCompleted)
+            {
+                Instantiate(currentLevelPrefab, levelButtons[i].transform);
                 tmpBtn.interactable = true;
                 int levelIndex = i; // Локальная копия для использования в лямбда-функции
                 tmpBtn.onClick.AddListener(() => LoadLevel(levelIndex));
@@ -33,8 +50,8 @@ public class LevelManager : MonoBehaviour
             }
             else
             {
+                Instantiate(uncompletedLevelPrefab, levelButtons[i].transform);
                 tmpBtn.interactable = false;
-                levelButtons[i].SetActive(false);
                 
             }
         }

@@ -17,6 +17,8 @@ public class ActiveElements : MonoBehaviour
     [SerializeField] private bool isInvokeActive = false;
     [SerializeField] private Transform player;
 
+    public HandsAnimationController controller;
+
     private void Start()
     {
         
@@ -60,6 +62,7 @@ public class ActiveElements : MonoBehaviour
                 elementInBar.SetElement(element);
 
                 elementInBar.RefreshImage();
+
                 break;
             }
         }
@@ -69,6 +72,15 @@ public class ActiveElements : MonoBehaviour
     {
         if (activeElements.Count < 3)
         {
+            if (activeElements.Count == 0)
+            {
+
+                controller.TakeFirstElement();
+            }
+            else
+            {
+                controller.TakeSecondElement();
+            }
             activeElements.Add(element.GetElement());
             AddElementInBar(element.GetElement());
         }
@@ -79,8 +91,13 @@ public class ActiveElements : MonoBehaviour
                 Spell spell = spellPrefab.GetComponent<SpellInHand>().spell;
                 if (AreElementsMatching(spell.requiredElements, activeElements))
                 {
+                    controller.CastSpell();
                     UseSpell(spellPrefab);
-                    
+                }
+                else
+                {
+                    controller.DropElementFromLeftHand();
+                    controller.DropElementFromRightHand();
                 }
             }
             Invoke(nameof(RefreshActiveElements), 1);

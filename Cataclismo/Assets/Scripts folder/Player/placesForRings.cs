@@ -11,6 +11,7 @@ public class placesForRings : MonoBehaviour
     public GameObject braceletPrefab;
 
     public Transform placeForGlove;
+    public HandsAnimationController controller;
     public GameObject glovePrefab;
 
     public void Start()
@@ -23,6 +24,7 @@ public class placesForRings : MonoBehaviour
         Instantiate(ringPrefab, placeForRing);
         Instantiate(braceletPrefab, placeForBracelet);
 
-        Instantiate(glovePrefab, placeForGlove);
+        controller.SetRightHandGlove(Instantiate(glovePrefab, placeForGlove));
+        
     }
 }

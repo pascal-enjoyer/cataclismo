@@ -21,6 +21,7 @@ public class InventoryItem
     public int bonusValue; // Значение бонуса
     public ItemRarity itemRarity;
     public bool isEquiped = false;
+    public Sprite rarityBackgroundSprite;
 
 
     public Sprite ItemIcon => item.itemIcon;
@@ -29,6 +30,8 @@ public class InventoryItem
     public ItemType ItemType => item.itemType;
     public BonusType BonusType => item.bonusType;
     public string ItemDescription => item.itemDescription;
+
+
 }
 
 
@@ -43,6 +46,37 @@ public enum ItemRarity
 
 
 
+
+[System.Serializable]
+public class SerializableInventoryItem
+{
+    public int templateItemID;
+    public int bonusValue;
+    public ItemRarity itemRarity;
+    public bool isEquiped;
+
+    public SerializableInventoryItem(InventoryItem item)
+    {
+        templateItemID = item.ItemID;
+        bonusValue = item.bonusValue;
+        itemRarity = item.itemRarity;
+        isEquiped = item.isEquiped;
+    }
+
+    public InventoryItem ToInventoryItem(List<TemplateItem> templates)
+    {
+        TemplateItem template = templates.FirstOrDefault(t => t.itemID == templateItemID);
+        if (template == null)
+        {
+            
+            return null;
+        }
+
+        InventoryItem item = new InventoryItem(template, bonusValue, itemRarity, isEquiped);
+        return item;
+    }
+}
+
 public class Inventory : MonoBehaviour
 {
     public List<InventoryItem> items = new List<InventoryItem>();
@@ -50,33 +84,72 @@ public class Inventory : MonoBehaviour
 
     public InventoryItem ring, bracelet, glove;
 
+    public Sprite commonSprite, uncommonSprite, rareSprite, epicSprite, legendarySprite;
+
     public UnityEvent OnItemAdded;
 
     private void Start()
     {
         LoadInventory();
+        // временно
+
+
     }
+
+    
 
     public void AddItem(TemplateItem template, ItemRarity itemRarity, int bonusValue)
     {
         InventoryItem item = new InventoryItem(template, bonusValue, itemRarity);
-
+        ChooseItemBackGroundImage(item);
         items.Add(item);
+        SortByRarityFromHighest();
         SaveInventory();
-
         OnItemAdded.Invoke();
     }
 
     public void AddItem(InventoryItem item)
     {
+        ChooseItemBackGroundImage(item);
         items.Add(item);
+        SortByRarityFromHighest();
         SaveInventory();
+
         OnItemAdded.Invoke();
     }
 
+    public void RemoveItem(InventoryItem item)
+    {
+        items.Remove(item);
+        SortByRarityFromHighest();
+        SaveInventory();
+
+        OnItemAdded.Invoke();
+    }
+
+    public void ClearSave()
+    {
+        items.Clear();
+        ring = null;
+        bracelet = null;
+        glove = null;
+
+        PlayerPrefs.DeleteKey("Inventory");
+        OnItemAdded.Invoke();
+    }
     public void SaveInventory()
     {
-        string json = JsonUtility.ToJson(new Serialization<InventoryItem>(items));
+        List<SerializableInventoryItem> serializableItems = items.Select(i => new SerializableInventoryItem(i)).ToList();
+
+        InventoryData inventoryData = new InventoryData
+        {
+            items = serializableItems,
+            ring = ring != null ? new SerializableInventoryItem(ring) : null,
+            bracelet = bracelet != null ? new SerializableInventoryItem(bracelet) : null,
+            glove = glove != null ? new SerializableInventoryItem(glove) : null
+        };
+
+        string json = JsonUtility.ToJson(inventoryData);
         PlayerPrefs.SetString("Inventory", json);
         PlayerPrefs.Save();
     }
@@ -86,11 +159,84 @@ public class Inventory : MonoBehaviour
         if (PlayerPrefs.HasKey("Inventory"))
         {
             string json = PlayerPrefs.GetString("Inventory");
-            items = JsonUtility.FromJson<Serialization<InventoryItem>>(json).items.ToList();
+            InventoryData inventoryData = JsonUtility.FromJson<InventoryData>(json);
+
+            items = inventoryData.items
+                .Select(s => s.ToInventoryItem(templates))
+                .Where(item => item != null)
+                .ToList();
+
+            foreach (var item in items)
+            {
+                ChooseItemBackGroundImage(item);
+            }
+
+            ring = inventoryData.ring?.ToInventoryItem(templates);
+            bracelet = inventoryData.bracelet?.ToInventoryItem(templates);
+            glove = inventoryData.glove?.ToInventoryItem(templates);
+
+            if (ring != null) ChooseItemBackGroundImage(ring);
+            if (bracelet != null) ChooseItemBackGroundImage(bracelet);
+            if (glove != null) ChooseItemBackGroundImage(glove);
+
+            OnItemAdded.Invoke();
+        }
+    }
+
+
+    public void SortByRarityFromHighest()
+    {
+        items = items.OrderByDescending(item => item.itemRarity)
+                     .ThenBy(item => item.ItemID)
+                     .ToList();
+
+        SaveInventory();
+        OnItemAdded.Invoke();
+    }
+
+    public void SortByRarityFromLowest()
+    {
+        items = items.OrderBy(item => item.itemRarity)
+                     .ThenBy(item => item.ItemID)
+                     .ToList();
+
+        SaveInventory();
+        OnItemAdded.Invoke();
+    }
+
+
+    private void ChooseItemBackGroundImage(InventoryItem item)
+    {
+        switch (item.itemRarity)
+        {
+            case ItemRarity.Common:
+                item.rarityBackgroundSprite = commonSprite;
+                break;
+            case ItemRarity.Uncommon:
+                item.rarityBackgroundSprite = uncommonSprite;
+                break;
+            case ItemRarity.Rare:
+                item.rarityBackgroundSprite = rareSprite;
+                break;
+            case ItemRarity.Epic:
+                item.rarityBackgroundSprite = epicSprite;
+                break;
+            case ItemRarity.Legendary:
+                item.rarityBackgroundSprite = legendarySprite;
+                break;
         }
     }
 
     [System.Serializable]
+    private class InventoryData
+    {
+        public List<SerializableInventoryItem> items;
+        public SerializableInventoryItem ring;
+        public SerializableInventoryItem bracelet;
+        public SerializableInventoryItem glove;
+    }
+
+[System.Serializable]
     private class Serialization<T>
     {
         public List<T> items;
