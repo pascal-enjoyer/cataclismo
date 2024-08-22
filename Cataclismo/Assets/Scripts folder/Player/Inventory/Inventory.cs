@@ -6,14 +6,13 @@ using UnityEngine.Events;
 
 public class InventoryItem
 {
-    public InventoryItem() { }
-
-    public InventoryItem(TemplateItem templateItem, int bonusValue, ItemRarity itemRarity, bool isEquiped = false)
+    public InventoryItem(TemplateItem templateItem, int bonusValue, ItemRarity itemRarity, bool isEquiped = false, int itemLevel = 1)
     {
         item = templateItem;
         this.bonusValue = bonusValue;
         this.itemRarity = itemRarity;
         this.isEquiped = isEquiped;
+        this.itemLevel = itemLevel;
     }
 
 
@@ -22,7 +21,10 @@ public class InventoryItem
     public ItemRarity itemRarity;
     public bool isEquiped = false;
     public Sprite rarityBackgroundSprite;
-
+    public int itemLevel = 1;
+    public int maxItemLevel = 50;
+    public int itemLevelUpgradeCost = 500;
+    public int addedCostOfUpgradePerLevel = 100;
 
     public Sprite ItemIcon => item.itemIcon;
     public string ItemName => item.itemName;
@@ -30,6 +32,7 @@ public class InventoryItem
     public ItemType ItemType => item.itemType;
     public BonusType BonusType => item.bonusType;
     public string ItemDescription => item.itemDescription;
+
 
 
 }
@@ -54,6 +57,7 @@ public class SerializableInventoryItem
     public int bonusValue;
     public ItemRarity itemRarity;
     public bool isEquiped;
+    public int itemLevel;
 
     public SerializableInventoryItem(InventoryItem item)
     {
@@ -61,6 +65,8 @@ public class SerializableInventoryItem
         bonusValue = item.bonusValue;
         itemRarity = item.itemRarity;
         isEquiped = item.isEquiped;
+        itemLevel = item.itemLevel;
+
     }
 
     public InventoryItem ToInventoryItem(List<TemplateItem> templates)
@@ -72,7 +78,7 @@ public class SerializableInventoryItem
             return null;
         }
 
-        InventoryItem item = new InventoryItem(template, bonusValue, itemRarity, isEquiped);
+        InventoryItem item = new InventoryItem(template, bonusValue, itemRarity, isEquiped, itemLevel);
         return item;
     }
 }
@@ -96,11 +102,23 @@ public class Inventory : MonoBehaviour
 
     }
 
-    
 
-    public void AddItem(TemplateItem template, ItemRarity itemRarity, int bonusValue)
+    public void UpgradeItemLevel(InventoryItem item)
     {
-        InventoryItem item = new InventoryItem(template, bonusValue, itemRarity);
+        if (item.itemLevel + 1 <= item.maxItemLevel)
+        {
+            item.itemLevel++;
+            item.bonusValue += 10;
+
+            SaveInventory();
+
+            OnItemAdded.Invoke();
+        }
+    }
+
+    public void AddItem(TemplateItem template, ItemRarity itemRarity, int bonusValue, int itemLevel = 1)
+    {
+        InventoryItem item = new InventoryItem(template, bonusValue, itemRarity, false, itemLevel);
         ChooseItemBackGroundImage(item);
         items.Add(item);
         SortByRarityFromHighest();
@@ -126,6 +144,7 @@ public class Inventory : MonoBehaviour
 
         OnItemAdded.Invoke();
     }
+
 
     public void ClearSave()
     {
@@ -188,6 +207,7 @@ public class Inventory : MonoBehaviour
     {
         items = items.OrderByDescending(item => item.itemRarity)
                      .ThenBy(item => item.ItemID)
+                     .ThenBy(item => item.itemLevel)
                      .ToList();
 
         SaveInventory();
@@ -198,6 +218,7 @@ public class Inventory : MonoBehaviour
     {
         items = items.OrderBy(item => item.itemRarity)
                      .ThenBy(item => item.ItemID)
+                     .ThenBy(item => item.itemLevel)
                      .ToList();
 
         SaveInventory();

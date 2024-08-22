@@ -19,7 +19,7 @@ public class ItemUI : MonoBehaviour
         item = tempItem;
 
         itemIcon.sprite = item.ItemIcon;
-        itemName.text = item.bonusValue.ToString();
+        itemName.text = "Lv." + item.itemLevel.ToString();
         itemRarityBackground.sprite = item.rarityBackgroundSprite;
     }
     
@@ -33,4 +33,5 @@ public class ItemUI : MonoBehaviour
             gameObject.GetComponent<ItemInfoWindow>().FillWindow(item);
         }
     }
+
 }

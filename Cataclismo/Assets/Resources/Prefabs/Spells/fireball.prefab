@@ -252,7 +252,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _startingPos: {x: 0, y: 0, z: 0}
-  _moveSpeed: 0.5
+  _moveSpeed: 3
   target: {fileID: 0}
   delay: 10
   timer: 0

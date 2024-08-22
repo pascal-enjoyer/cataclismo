@@ -33,6 +33,7 @@ public class LootManager : MonoBehaviour
 
     private InventoryItem GenerateRandomLoot()
     {
+        int levelNumber = 5; //временно, чтобы лут крутой не падал
         int randomIndex = r.Next(0, possibleLoot.Count);
         TemplateItem templateItem = possibleLoot[randomIndex];
         int bonusValue = r.Next(50, 100);
@@ -56,7 +57,7 @@ public class LootManager : MonoBehaviour
             bonusValue = (int)((bonusValue + 25) * 1.5f);
         }
 
-        else if (randItemRarity > Math.Abs(uncommonProbability) + Math.Abs(commonProbability) + Math.Abs(rareProbability)
+        else if (levelNumber > 10 && randItemRarity > Math.Abs(uncommonProbability) + Math.Abs(commonProbability) + Math.Abs(rareProbability)
             && randItemRarity < Math.Abs(uncommonProbability) + Math.Abs(commonProbability) + Math.Abs(rareProbability) + Math.Abs(epicProbability))
         {
             itemRarity = ItemRarity.Epic;
@@ -64,7 +65,7 @@ public class LootManager : MonoBehaviour
             bonusValue = (int)((bonusValue + 50) * 1.75f);
         }
 
-        else if (randItemRarity > Math.Abs(uncommonProbability) + Math.Abs(commonProbability) + Math.Abs(rareProbability) + Math.Abs(epicProbability)
+        else if (levelNumber > 10 && randItemRarity > Math.Abs(uncommonProbability) + Math.Abs(commonProbability) + Math.Abs(rareProbability) + Math.Abs(epicProbability)
             && randItemRarity < Math.Abs(uncommonProbability) + Math.Abs(commonProbability) + Math.Abs(rareProbability) + Math.Abs(epicProbability) + Math.Abs(legendaryProbability))
         {
             itemRarity = ItemRarity.Legendary;
