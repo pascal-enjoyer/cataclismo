@@ -21,7 +21,7 @@ namespace FireballMovement
             target = transform.parent.GetComponent<PlayerInfo>().currentEnemy;
         }
 
-        void Update()
+        void FixedUpdate()
         {
             if (timer < delay)
             {
