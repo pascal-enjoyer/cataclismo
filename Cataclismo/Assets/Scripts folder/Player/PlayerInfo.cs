@@ -7,23 +7,28 @@ using UnityEngine.Events;
 public class PlayerInfo : MonoBehaviour
 {
     public Player player;
-    [SerializeField] public Transform currentEnemy;
+    public Transform currentEnemy;
 
     [SerializeField] private Inventory inventory;
 
     [SerializeField] private float maxHealth;
     [SerializeField] private float currentHealth;
-    [SerializeField] public UnityEvent OnPlayerGetDamage;
-    [SerializeField] public float itemHealthBonus;
-    [SerializeField] public float itemAttackBonus;
+
+    public UnityEvent OnPlayerGetDamage;
+    public float itemHealthBonus;
+    public float itemAttackBonus;
     
+
+    public GameObject currentShield;
+    public GameObject currentElementalStormBoost;
 
     private void Start()
     {
         maxHealth = player.maxHealth;
         currentHealth = maxHealth;
         inventory = GameManager.inventory;
-        AddItemBonus();
+        if (inventory != null)
+            AddItemBonus();
         
     }
 
@@ -74,16 +79,25 @@ public class PlayerInfo : MonoBehaviour
         }
     }
 
+
+
     public void takeDamage(float damage)
     {
-
-        if (currentHealth - damage <= 0)
+        if (currentShield != null)
         {
-            currentHealth = 0;
-
+            Destroy(currentShield);
         }
         else
-            currentHealth -= damage;
+        {
+            if (currentHealth - damage <= 0)
+            {
+                currentHealth = 0;
+
+            }
+            else
+                currentHealth -= damage;
+        }
+
         OnPlayerGetDamage.Invoke();
     }
 

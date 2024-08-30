@@ -88,7 +88,7 @@ public class Inventory : MonoBehaviour
     public List<InventoryItem> items = new List<InventoryItem>();
     public List<TemplateItem> templates = new List<TemplateItem>();
 
-    public InventoryItem ring, bracelet, glove;
+    // public InventoryItem ring, bracelet, glove;
 
     public Sprite commonSprite, uncommonSprite, rareSprite, epicSprite, legendarySprite;
 
@@ -97,7 +97,6 @@ public class Inventory : MonoBehaviour
     private void Start()
     {
         LoadInventory();
-        // временно
 
 
     }
@@ -139,7 +138,6 @@ public class Inventory : MonoBehaviour
     public void RemoveItem(InventoryItem item)
     {
         items.Remove(item);
-        SortByRarityFromHighest();
         SaveInventory();
 
         OnItemAdded.Invoke();
@@ -149,9 +147,6 @@ public class Inventory : MonoBehaviour
     public void ClearSave()
     {
         items.Clear();
-        ring = null;
-        bracelet = null;
-        glove = null;
 
         PlayerPrefs.DeleteKey("Inventory");
         OnItemAdded.Invoke();
@@ -162,10 +157,7 @@ public class Inventory : MonoBehaviour
 
         InventoryData inventoryData = new InventoryData
         {
-            items = serializableItems,
-            ring = ring != null ? new SerializableInventoryItem(ring) : null,
-            bracelet = bracelet != null ? new SerializableInventoryItem(bracelet) : null,
-            glove = glove != null ? new SerializableInventoryItem(glove) : null
+            items = serializableItems
         };
 
         string json = JsonUtility.ToJson(inventoryData);
@@ -189,14 +181,6 @@ public class Inventory : MonoBehaviour
             {
                 ChooseItemBackGroundImage(item);
             }
-
-            ring = inventoryData.ring?.ToInventoryItem(templates);
-            bracelet = inventoryData.bracelet?.ToInventoryItem(templates);
-            glove = inventoryData.glove?.ToInventoryItem(templates);
-
-            if (ring != null) ChooseItemBackGroundImage(ring);
-            if (bracelet != null) ChooseItemBackGroundImage(bracelet);
-            if (glove != null) ChooseItemBackGroundImage(glove);
 
             OnItemAdded.Invoke();
         }

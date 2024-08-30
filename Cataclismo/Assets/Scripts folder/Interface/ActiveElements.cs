@@ -5,6 +5,7 @@ using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.UIElements;
 
 public class ActiveElements : MonoBehaviour
 {
@@ -16,6 +17,7 @@ public class ActiveElements : MonoBehaviour
 
     [SerializeField] private bool isInvokeActive = false;
     [SerializeField] private Transform player;
+    [SerializeField] private PlayerInfo playerInfo;
 
     public HandsAnimationController controller;
 
@@ -24,6 +26,7 @@ public class ActiveElements : MonoBehaviour
         
         RefreshSlots();
         RefreshSpells();
+        playerInfo = player.GetComponent<PlayerInfo>();
     }
 
     private void RefreshSpells()
@@ -36,18 +39,11 @@ public class ActiveElements : MonoBehaviour
         activeSlots.Clear();
         foreach (Transform slot in transform)
         {
-
-            activeSlots.Add(slot);
-            try
-            {
+            if (slot.GetComponent<ElementInBar>() != null) {
+                activeSlots.Add(slot);
                 ElementInBar elementInBar = slot.GetComponent<ElementInBar>();
                 elementInBar.SetElement(null);
-                
                 elementInBar.RefreshImage();
-            }
-            catch
-            {
-                Debug.Log("На элементах нету компоненты ElementInBar");
             }
         }
     }
@@ -124,10 +120,32 @@ public class ActiveElements : MonoBehaviour
 
     public void UseSpell(GameObject spellPrefab)
     {
-        Spell spell = spellPrefab.GetComponent<SpellInHand>().spell;   
-        Debug.Log($"Было использовано {spell.spellName} закинание, тип атаки заклинания {spell.spellType},\nурон заклинания {spell.spellDamage}.");
+        Debug.Log("asd");
+        GameObject usedSpell;
+        Spell spell = spellPrefab.GetComponent<SpellInHand>().spell;
+        if (spell.spellType == SpellType.unique)
+        {
+            if (playerInfo.currentElementalStormBoost == null)
+            {
+                usedSpell = Instantiate(spellPrefab, transform);
+                usedSpell.GetComponent<SpellInHand>().playerInfo = playerInfo;
+                playerInfo.currentElementalStormBoost = usedSpell;
+                
+            }
+        }
+        else
+        {
+            Debug.Log($"Было использовано {spell.spellName} закинание, тип атаки заклинания {spell.spellType},\nурон заклинания {spell.spellDamage}.");
+
+            usedSpell = Instantiate(spellPrefab, player);
+            usedSpell.GetComponent<SpellInHand>().playerInfo = playerInfo;
+            if (spell.isShield)
+            {
+                Destroy(playerInfo.currentShield);
+                playerInfo.currentShield = usedSpell;
+            }
+        }
         
-        Instantiate(spellPrefab, player);
     }
 
     public void RefreshActiveElements()

@@ -19,4 +19,8 @@ public class ClearPlayerData : MonoBehaviour
         levelManager.UpdateLevelButtons();
     }
 
+    public void InfinityMoney(int amount)
+    {
+        GameManager.playerEconomic.GainMoney(amount);
+    }
 }

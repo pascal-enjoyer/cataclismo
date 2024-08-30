@@ -1,3 +1,4 @@
+
 using UnityEngine;
 using UnityEngine.VFX;
 
@@ -43,6 +44,16 @@ namespace FireballMovement
             _fireball.velocity = Vector3.zero;
             _fireball.transform.localPosition = _startingPos;
             timer = 0;
+        }
+
+        private void OnCollisionEnter(Collision collision)
+        {
+            ActiveEnemy enemy = collision.transform.GetComponent<ActiveEnemy>();
+            if (enemy != null)
+            {
+                enemy.takeDamage(transform.GetComponent<SpellInHand>().sumAttackDamage);
+            }
+            Destroy(gameObject);
         }
 
     }

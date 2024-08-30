@@ -13,6 +13,7 @@ public class MenuSwitchController : MonoBehaviour
     public float transitionDuration = 0.5f; // длительность перехода
     private int currentPanelIndex = 2;
 
+
     void Start()
     {
         // Назначаем слушатели для каждой кнопки
@@ -83,4 +84,5 @@ public class MenuSwitchController : MonoBehaviour
         // Перемещаем рамку к позиции кнопки
         buttonFrame.position = button.transform.position;
     }
+
 }

@@ -57,7 +57,7 @@ public class LootManager : MonoBehaviour
             bonusValue = (int)((bonusValue + 25) * 1.5f);
         }
 
-        else if (levelNumber > 10 && randItemRarity > Math.Abs(uncommonProbability) + Math.Abs(commonProbability) + Math.Abs(rareProbability)
+        else if (levelNumber > 3 && randItemRarity > Math.Abs(uncommonProbability) + Math.Abs(commonProbability) + Math.Abs(rareProbability)
             && randItemRarity < Math.Abs(uncommonProbability) + Math.Abs(commonProbability) + Math.Abs(rareProbability) + Math.Abs(epicProbability))
         {
             itemRarity = ItemRarity.Epic;
@@ -65,7 +65,7 @@ public class LootManager : MonoBehaviour
             bonusValue = (int)((bonusValue + 50) * 1.75f);
         }
 
-        else if (levelNumber > 10 && randItemRarity > Math.Abs(uncommonProbability) + Math.Abs(commonProbability) + Math.Abs(rareProbability) + Math.Abs(epicProbability)
+        else if (levelNumber > 3 && randItemRarity > Math.Abs(uncommonProbability) + Math.Abs(commonProbability) + Math.Abs(rareProbability) + Math.Abs(epicProbability)
             && randItemRarity < Math.Abs(uncommonProbability) + Math.Abs(commonProbability) + Math.Abs(rareProbability) + Math.Abs(epicProbability) + Math.Abs(legendaryProbability))
         {
             itemRarity = ItemRarity.Legendary;

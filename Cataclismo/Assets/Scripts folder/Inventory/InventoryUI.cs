@@ -9,6 +9,9 @@ public class InventoryUI : MonoBehaviour
     public Transform contentPanel; // Панель для добавления элементов
     public GridLayoutGroup gridLayoutGroup; // Компонент Grid Layout Group
 
+    public GameObject blacksmith;
+
+
     public Transform ringSlot;
     public Transform ringSlotImage;
     private GameObject ringUIObject;
@@ -65,6 +68,7 @@ public class InventoryUI : MonoBehaviour
             ItemUI itemUI = newItem.GetComponent<ItemUI>();
             itemUI.inventoryParent = transform;
             itemUI.Setup(item);
+            itemUI.InventoryUI = this;
         }
 
         if (inventory.ring != null)
@@ -76,7 +80,8 @@ public class InventoryUI : MonoBehaviour
             itemUI.Setup(inventory.ring);
             ringOnHandSlot.gameObject.SetActive(true);
             ringOnHandSlot.GetComponent<Image>().sprite = inventory.ring.item.itemOnHandSprite;
-            
+            itemUI.InventoryUI = this;
+
         }
 
         if (inventory.bracelet != null)
@@ -88,6 +93,7 @@ public class InventoryUI : MonoBehaviour
 
             braceletOnHandSlot.gameObject.SetActive(true);
             braceletOnHandSlot.GetComponent<Image>().sprite = inventory.bracelet.item.itemOnHandSprite;
+            itemUI.InventoryUI = this;
         }
 
 
@@ -99,6 +105,7 @@ public class InventoryUI : MonoBehaviour
             itemUI.Setup(inventory.glove); 
             gloveOnHandSlot.gameObject.SetActive(true);
             gloveOnHandSlot.GetComponent<Image>().sprite = inventory.glove.item.itemOnHandSprite;
+            itemUI.InventoryUI = this;
         }
         // Обновите размер Content, чтобы подстроиться под количество элементов
         LayoutRebuilder.ForceRebuildLayoutImmediate(contentPanel.GetComponent<RectTransform>());
@@ -106,7 +113,6 @@ public class InventoryUI : MonoBehaviour
 
     public void EquipItem(InventoryItem tempItem)
     {
-        // ошибка в том что instanciate два а destroy один
         InventoryItem wasInSlot;
         switch (tempItem.ItemType)
         {
@@ -192,6 +198,18 @@ public class InventoryUI : MonoBehaviour
                 break;
         }
         RefreshInventoryUI();
+    }
+
+    public void EnableBlackSmith()
+    {
+        if (blacksmith.activeSelf == true)
+        {
+            blacksmith.SetActive(false);
+        }
+        else
+
+            blacksmith.SetActive(true);
+
     }
     
 }

@@ -27,7 +27,7 @@ public class ActiveEnemy : MonoBehaviour
     }
     public void takeDamage(float damage)
     {
-        float tempDmg = damage += playerInfo.itemAttackBonus;
+        float tempDmg = damage;
         if (currentHealth - damage <= 0)
         {
             currentHealth = 0;

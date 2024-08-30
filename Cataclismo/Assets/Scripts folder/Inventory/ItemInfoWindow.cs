@@ -17,7 +17,11 @@ public class ItemInfoWindow : MonoBehaviour
     public Image itemIcon;
     public Text equipButtonText;
     public Transform upgradeButton;
-    
+
+    public InventoryUI inventoryUI;
+        
+
+
 
     public void FillWindow(InventoryItem tempItem)
     {
@@ -29,7 +33,7 @@ public class ItemInfoWindow : MonoBehaviour
         itemBonus.text = item.BonusType.ToString() + " + " + item.bonusValue.ToString();
         itemLevel.text = "Item level " + item.itemLevel.ToString();
         upgradePrice.text = (item.itemLevelUpgradeCost + item.addedCostOfUpgradePerLevel * item.itemLevel).ToString() + " coins"; 
-        if (GameManager.playerEconomic.coins < (item.itemLevelUpgradeCost + item.addedCostOfUpgradePerLevel * item.itemLevel))
+        if (GameManager.playerEconomic.coins < (item.itemLevelUpgradeCost + item.addedCostOfUpgradePerLevel * item.itemLevel) || item.itemLevel >= item.maxItemLevel)
         {
             upgradeButton.GetComponent<Button>().interactable = false;
             upgradeButton.GetComponent<Image>().color = Color.gray;
@@ -45,7 +49,7 @@ public class ItemInfoWindow : MonoBehaviour
         itemBonus.text = item.BonusType.ToString() + " + " + item.bonusValue.ToString();
         itemLevel.text = "Item level " + item.itemLevel.ToString();
         upgradePrice.text = (item.itemLevelUpgradeCost + item.addedCostOfUpgradePerLevel * item.itemLevel).ToString() + " coins";
-        if (GameManager.playerEconomic.coins < (item.itemLevelUpgradeCost + item.addedCostOfUpgradePerLevel * item.itemLevel))
+        if (GameManager.playerEconomic.coins < (item.itemLevelUpgradeCost + item.addedCostOfUpgradePerLevel * item.itemLevel) || item.itemLevel >= item.maxItemLevel)
         {
             upgradeButton.GetComponent<Button>().interactable = false;
             upgradeButton.GetComponent<Image>().color = Color.gray;
@@ -63,10 +67,10 @@ public class ItemInfoWindow : MonoBehaviour
         switch (item.isEquiped)
         {
             case true:
-                transform.parent.GetComponent<InventoryUI>().TakeOffItem(item);
+                inventoryUI.TakeOffItem(item);
                 break;
             case false:
-                transform.parent.GetComponent<InventoryUI>().EquipItem(item);
+                inventoryUI.EquipItem(item);
                 break;
         }
         CloseInfoWindow();
@@ -75,13 +79,13 @@ public class ItemInfoWindow : MonoBehaviour
 
     public void OnUpgradeButtonClicked()
     {// тут какая то хуйня
-        if (GameManager.playerEconomic.coins >= item.itemLevelUpgradeCost + item.addedCostOfUpgradePerLevel * item.itemLevel - 1)
+        if (GameManager.playerEconomic.coins >= item.itemLevelUpgradeCost + item.addedCostOfUpgradePerLevel * item.itemLevel - 1 && (item.itemLevel < item.maxItemLevel))
         {
             GameManager.playerEconomic.coins -= item.itemLevelUpgradeCost + item.addedCostOfUpgradePerLevel * item.itemLevel;
             GameManager.playerEconomic.OnPlayerEconomicLoaded.Invoke();
-
+            GameManager.playerEconomic.OnPlayerLevelChanged.Invoke();
             GameManager.inventory.UpgradeItemLevel(item);
-            transform.parent.GetComponent<InventoryUI>().RefreshInventoryUI();
+            inventoryUI.RefreshInventoryUI();
             RefreshUI();
         }
     }

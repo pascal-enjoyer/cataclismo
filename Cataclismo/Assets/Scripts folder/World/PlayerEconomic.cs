@@ -93,4 +93,11 @@ public class PlayerEconomic : MonoBehaviour
         // ѕосле очистки загрузите значени€ по умолчанию
         LoadPlayerEconomy();
     }
+
+    public void GainMoney(int count)
+    {
+        coins += count;
+        OnPlayerLevelChanged.Invoke();
+        LoadPlayerEconomy();
+    }
 }

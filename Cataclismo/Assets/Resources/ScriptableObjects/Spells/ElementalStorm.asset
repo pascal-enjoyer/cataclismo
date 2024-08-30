@@ -21,3 +21,4 @@ MonoBehaviour:
   spellType: 3
   isShield: 0
   spellDamage: 0
+  elementalStormBoost: 1.25

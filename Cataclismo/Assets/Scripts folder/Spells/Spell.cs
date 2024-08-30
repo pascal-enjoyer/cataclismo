@@ -13,6 +13,8 @@ public class Spell : ScriptableObject
     public bool isShield;
     public int spellDamage;
 
+    public float elementalStormBoost;
+
 }
 public enum SpellType
 {

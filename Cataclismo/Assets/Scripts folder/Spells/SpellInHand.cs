@@ -5,15 +5,22 @@ using UnityEngine;
 public class SpellInHand : MonoBehaviour
 {
     public Spell spell;
+    public PlayerInfo playerInfo;
+    public float sumAttackDamage;
+    public float boostMultiplier;
 
-
-    private void OnCollisionEnter(Collision collision)
+    public void Start()
     {
-        ActiveEnemy enemy = collision.transform.GetComponent<ActiveEnemy>();
-        if (enemy != null)
+        sumAttackDamage = spell.spellDamage + playerInfo.itemAttackBonus;
+        if (playerInfo.currentElementalStormBoost != null && playerInfo.currentElementalStormBoost!= gameObject)
         {
-            enemy.takeDamage(spell.spellDamage);
+            sumAttackDamage *= playerInfo.currentElementalStormBoost.GetComponent<SpellInHand>().spell.elementalStormBoost;
+            playerInfo.currentElementalStormBoost.GetComponent<ElementalStorm>().DestroyElementalStorm();
         }
-        Destroy(gameObject);
+    }
+
+    public void BoostSpell(float multiplier)
+    {
+        boostMultiplier *= multiplier;
     }
 }
