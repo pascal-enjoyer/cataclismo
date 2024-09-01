@@ -40,6 +40,7 @@ public class MergeInventory : MonoBehaviour
             itemUI.inventoryParent = transform;
             itemUI.Setup(item);
             itemUI.isInMerge = true;
+            itemUI.isTaked = false;
         }
 
         // Обновите размер Content, чтобы подстроиться под количество элементов

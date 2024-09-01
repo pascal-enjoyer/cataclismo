@@ -35,48 +35,24 @@ public class PlayerInfo : MonoBehaviour
 
     public void AddItemBonus()
     {
-        if (inventory.ring != null)
+        foreach (InventoryItem item in inventory.items)
         {
-            switch (inventory.ring.BonusType)
+            if (item.isEquiped == true)
             {
-                case BonusType.Defense:
+                switch (item.BonusType)
+                {
+                    case BonusType.Defense:
 
-                    maxHealth += inventory.ring.bonusValue;
-                    currentHealth = maxHealth;
-                    break;
-                case BonusType.Attack:
-                    itemAttackBonus += inventory.ring.bonusValue;
-                    break;
+                        maxHealth += item.bonusValue;
+                        currentHealth = maxHealth;
+                        break;
+                    case BonusType.Attack:
+                        itemAttackBonus += item.bonusValue;
+                        break;
+                }
             }
         }
-        if (inventory.bracelet != null)
-        {
-            switch (inventory.bracelet.BonusType)
-            {
-                case BonusType.Defense:
-
-                    maxHealth += inventory.bracelet.bonusValue;
-                    currentHealth = maxHealth;
-                    break;
-                case BonusType.Attack:
-                    itemAttackBonus += inventory.bracelet.bonusValue;
-                    break;
-            }
-        }
-        if (inventory.glove != null)
-        {
-            switch (inventory.glove.BonusType)
-            {
-                case BonusType.Defense:
-
-                    maxHealth += inventory.glove.bonusValue;
-                    currentHealth = maxHealth;
-                    break;
-                case BonusType.Attack:
-                    itemAttackBonus += inventory.glove.bonusValue;
-                    break;
-            }
-        }
+        
     }
 
 

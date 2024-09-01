@@ -1,32 +1,25 @@
 using UnityEngine;
 using UnityEngine.UI;
 using System.Collections.Generic;
+using UnityEngine.UIElements;
 
 public class InventoryUI : MonoBehaviour
 {
     public Inventory inventory;
     public GameObject itemUIPrefab; // Префаб ячейки предмета
+
+    public GameObject itemInfoWindowPrefab;
     public Transform contentPanel; // Панель для добавления элементов
     public GridLayoutGroup gridLayoutGroup; // Компонент Grid Layout Group
 
     public GameObject blacksmith;
 
+    public List<EquipSlot> equipSlots;
 
-    public Transform ringSlot;
-    public Transform ringSlotImage;
-    private GameObject ringUIObject;
-    public Transform ringOnHandSlot;
+    
 
-
-    public Transform braceletSlot;
-    public Transform braceletSlotImage;
-    private GameObject braceletUIObject;
     public Transform braceletOnHandSlot;
-
-
-    public Transform gloveSlot;
-    public Transform gloveSlotImage;
-    private GameObject gloveUIObject;
+    public Transform ringOnHandSlot;
     public Transform gloveOnHandSlot;
 
 
@@ -46,157 +39,67 @@ public class InventoryUI : MonoBehaviour
         {
             Destroy(child.gameObject);
         }
-
-        Destroy(ringUIObject);
-        Destroy(braceletUIObject);
-        Destroy(gloveUIObject);
-
-        ringOnHandSlot.gameObject.SetActive(false);
-        ringOnHandSlot.GetComponent<Image>().sprite = null;
-
-        braceletOnHandSlot.gameObject.SetActive(false);
-
-        braceletOnHandSlot.GetComponent<Image>().sprite = null;
-        gloveOnHandSlot.gameObject.SetActive(false);
-
-        gloveOnHandSlot.GetComponent<Image>().sprite = null;
+        foreach (EquipSlot eqSlot in equipSlots)
+        {
+            if (eqSlot.equipedItem != null)
+            {
+                Destroy(eqSlot.equipedItem);
+            }    
+        }
 
         // Добавьте новые элементы
         foreach (InventoryItem item in inventory.items)
         {
-            GameObject newItem = Instantiate(itemUIPrefab, contentPanel);
-            ItemUI itemUI = newItem.GetComponent<ItemUI>();
-            itemUI.inventoryParent = transform;
-            itemUI.Setup(item);
-            itemUI.InventoryUI = this;
-        }
+            if (item.isEquiped)
+            {
+                foreach (EquipSlot eqSlot in equipSlots)
+                {
+                    if (eqSlot.ItemType == item.ItemType)
+                    {
+                        GameObject eqSlotObject = Instantiate(itemUIPrefab, eqSlot.transform);
+                        ItemUI itemUi = eqSlotObject.GetComponent<ItemUI>();
+                        itemUi.inventoryParent = transform;
+                        itemUi.Setup(item);
+                        itemUi.InventoryUI = this;
+                        eqSlot.equipedItem = eqSlotObject;
+                    }
+                }
+            }
+            else
+            {
+                GameObject newItem = Instantiate(itemUIPrefab, contentPanel);
+                ItemUI itemUI = newItem.GetComponent<ItemUI>();
+                itemUI.inventoryParent = transform;
+                itemUI.Setup(item);
+                itemUI.InventoryUI = this;
+            }
 
-        if (inventory.ring != null)
-        {
-            ringUIObject = Instantiate(itemUIPrefab, ringSlot);
-            
-            ItemUI itemUI = ringUIObject.GetComponent<ItemUI>();
-            itemUI.inventoryParent = transform;
-            itemUI.Setup(inventory.ring);
-            ringOnHandSlot.gameObject.SetActive(true);
-            ringOnHandSlot.GetComponent<Image>().sprite = inventory.ring.item.itemOnHandSprite;
-            itemUI.InventoryUI = this;
-
-        }
-
-        if (inventory.bracelet != null)
-        {
-            braceletUIObject = Instantiate(itemUIPrefab, braceletSlot);
-            ItemUI itemUI = braceletUIObject.GetComponent<ItemUI>();
-            itemUI.inventoryParent = transform;
-            itemUI.Setup(inventory.bracelet);
-
-            braceletOnHandSlot.gameObject.SetActive(true);
-            braceletOnHandSlot.GetComponent<Image>().sprite = inventory.bracelet.item.itemOnHandSprite;
-            itemUI.InventoryUI = this;
         }
 
 
-        if (inventory.glove != null)
-        {
-            gloveUIObject = Instantiate(itemUIPrefab, gloveSlot);
-            ItemUI itemUI = gloveUIObject.GetComponent<ItemUI>();
-            itemUI.inventoryParent = transform;
-            itemUI.Setup(inventory.glove); 
-            gloveOnHandSlot.gameObject.SetActive(true);
-            gloveOnHandSlot.GetComponent<Image>().sprite = inventory.glove.item.itemOnHandSprite;
-            itemUI.InventoryUI = this;
-        }
-        // Обновите размер Content, чтобы подстроиться под количество элементов
         LayoutRebuilder.ForceRebuildLayoutImmediate(contentPanel.GetComponent<RectTransform>());
     }
 
     public void EquipItem(InventoryItem tempItem)
     {
-        InventoryItem wasInSlot;
-        switch (tempItem.ItemType)
+        foreach (EquipSlot slot in equipSlots)
         {
-            case ItemType.Ring:
-                wasInSlot = inventory.ring;
-
-                inventory.ring = tempItem;
-                inventory.ring.isEquiped = true;
-                inventory.RemoveItem(tempItem);
-
-                if (wasInSlot != null)
+            if (slot.ItemType == tempItem.ItemType)
+            {
+                if (slot.equipedItem != null)
                 {
-                    wasInSlot.isEquiped = false;
-                    inventory.AddItem(wasInSlot);
+                    slot.equipedItem.GetComponent<ItemUI>().item.isEquiped = false;
+
                 }
-
-                break;
-            case ItemType.Bracelet:
-                wasInSlot = inventory.bracelet;
-
-                inventory.bracelet = tempItem;
-                inventory.bracelet.isEquiped = true;
-                inventory.RemoveItem(tempItem);
-
-
-                if (wasInSlot != null)
-                {
-                    wasInSlot.isEquiped = false;
-                    inventory.AddItem(wasInSlot);
-                }
-            break;
-            case ItemType.Glove:
-                wasInSlot = inventory.glove;
-
-                inventory.glove = tempItem;
-                inventory.glove.isEquiped = true;
-                inventory.RemoveItem(tempItem);
-
-
-                if (wasInSlot != null)
-                {
-                    wasInSlot.isEquiped = false;
-                    inventory.AddItem(wasInSlot);
-                }
-            break;
+                tempItem.isEquiped = true;
+            }
         }
         RefreshInventoryUI();
     }
 
     public void TakeOffItem(InventoryItem tempItem)
     {
-        InventoryItem item = tempItem;
-        
-        switch (item.ItemType)
-        {
-            case ItemType.Ring:
-                if (inventory.ring == item)
-                {
-                    inventory.ring = null;
-                    item.isEquiped = false;
-                    inventory.AddItem(item);
-                }
-                break;
-            case ItemType.Bracelet:
-                if (inventory.bracelet == item)
-                {
-                    inventory.bracelet = null;
-
-                    item.isEquiped = false;
-                    inventory.AddItem(item);
-
-
-                }
-                break;
-            case ItemType.Glove:
-                if (inventory.glove == item)
-                {
-                    inventory.glove = null;
-
-                    item.isEquiped = false;
-                    inventory.AddItem(item);
-                }
-                break;
-        }
+        tempItem.isEquiped = false;
         RefreshInventoryUI();
     }
 
@@ -207,7 +110,6 @@ public class InventoryUI : MonoBehaviour
             blacksmith.SetActive(false);
         }
         else
-
             blacksmith.SetActive(true);
 
     }

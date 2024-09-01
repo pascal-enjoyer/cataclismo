@@ -8,7 +8,6 @@ public class ItemUI : MonoBehaviour
     public Image itemIcon;
     public Text itemName;
     public InventoryItem item;
-    public GameObject itemInfoWindowPrefab;
     public Transform inventoryParent;
     public Image itemRarityBackground;
     public InventoryUI InventoryUI;
@@ -48,10 +47,10 @@ public class ItemUI : MonoBehaviour
         }
         else
         {
-            ItemInfoWindow infoWindow = itemInfoWindowPrefab.GetComponent<ItemInfoWindow>();
+            ItemInfoWindow infoWindow = InventoryUI.itemInfoWindowPrefab.GetComponent<ItemInfoWindow>();
             if (infoWindow != null)
             {
-                GameObject gameObject = Instantiate(itemInfoWindowPrefab, inventoryParent);
+                GameObject gameObject = Instantiate(InventoryUI.itemInfoWindowPrefab, inventoryParent);
                 ItemInfoWindow itemInfoWindow = gameObject.GetComponent<ItemInfoWindow>();
                 itemInfoWindow.FillWindow(item);
                 itemInfoWindow.inventoryUI = InventoryUI;

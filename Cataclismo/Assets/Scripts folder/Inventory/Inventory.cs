@@ -88,7 +88,6 @@ public class Inventory : MonoBehaviour
     public List<InventoryItem> items = new List<InventoryItem>();
     public List<TemplateItem> templates = new List<TemplateItem>();
 
-    // public InventoryItem ring, bracelet, glove;
 
     public Sprite commonSprite, uncommonSprite, rareSprite, epicSprite, legendarySprite;
 
