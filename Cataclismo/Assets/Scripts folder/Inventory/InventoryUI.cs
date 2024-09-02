@@ -105,12 +105,8 @@ public class InventoryUI : MonoBehaviour
 
     public void EnableBlackSmith()
     {
-        if (blacksmith.activeSelf == true)
-        {
-            blacksmith.SetActive(false);
-        }
-        else
-            blacksmith.SetActive(true);
+
+        Instantiate(blacksmith, transform);
 
     }
     

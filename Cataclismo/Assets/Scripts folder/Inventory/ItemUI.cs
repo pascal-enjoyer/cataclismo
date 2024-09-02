@@ -38,6 +38,7 @@ public class ItemUI : MonoBehaviour
             }
             else
             {
+                inventoryParent.GetComponent<MergeInventory>().ExecuteItemFromMergeSlots(item);
                 itemIcon.color = Color.white;
                 itemRarityBackground.color = Color.white;
                 itemName.color = Color.white;
