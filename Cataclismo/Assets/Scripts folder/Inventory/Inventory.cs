@@ -209,7 +209,7 @@ public class Inventory : MonoBehaviour
     }
 
 
-    private void ChooseItemBackGroundImage(InventoryItem item)
+    public void ChooseItemBackGroundImage(InventoryItem item)
     {
         switch (item.itemRarity)
         {

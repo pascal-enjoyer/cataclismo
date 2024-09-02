@@ -7,7 +7,6 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.Rendering;
 using UnityEngine.UI;
-using static UnityEditor.Progress;
 
 public class MergeInventory : MonoBehaviour
 {
@@ -49,19 +48,38 @@ public class MergeInventory : MonoBehaviour
         {
             Destroy(child.gameObject);
         }
-
         // Добавьте новые элементы
         foreach (InventoryItem item in inventory.items)
         {
-            GameObject newItem = Instantiate(itemUIPrefab, contentPanel);
-            ItemUI itemUI = newItem.GetComponent<ItemUI>();
-            itemUI.inventoryParent = transform;
-            itemUI.Setup(item);
-            itemUI.isInMerge = true;
-            itemUI.isTaked = false;
+            
+            if (item.itemRarity != ItemRarity.Legendary)
+            {
+                    GameObject newItem = Instantiate(itemUIPrefab, contentPanel);
+                    ItemUI itemUI = newItem.GetComponent<ItemUI>();
+                    itemUI.inventoryParent = transform;
+                    itemUI.Setup(item);
+                    itemUI.isInMerge = true;
+                    itemUI.isTaked = false;
+            }
         }
 
         // Обновите размер Content, чтобы подстроиться под количество элементов
+        LayoutRebuilder.ForceRebuildLayoutImmediate(contentPanel.GetComponent<RectTransform>());
+    }
+
+    public void BlockElementsByRarity()
+    {
+        ItemRarity rarityBlock;
+        rarityBlock = mergeItems[0].itemRarity;
+
+        foreach (Transform child in contentPanel)
+        {
+            if (child.GetComponent<ItemUI>().item.itemRarity != rarityBlock)
+            {
+                Destroy(child.gameObject);
+            }
+        }
+        
         LayoutRebuilder.ForceRebuildLayoutImmediate(contentPanel.GetComponent<RectTransform>());
     }
 
@@ -85,6 +103,7 @@ public class MergeInventory : MonoBehaviour
 
     public void MoveItemToMergeSlots(InventoryItem item)
     {
+
         if (mergeItems.Count < 3)
         {
             mergeItems.Add(item);
@@ -94,7 +113,12 @@ public class MergeInventory : MonoBehaviour
             GenerateMergeResult(mergeItems);
         }
 
+        if (mergeItems.Count == 1)
+        {
+            BlockElementsByRarity();
+        }
         OnMergeItemsChanged.Invoke();
+
     }
 
 
@@ -131,7 +155,6 @@ public class MergeInventory : MonoBehaviour
             }
         }
         if (allRaritiesSuccess) {
-            InventoryItem mergeResult;
             Dictionary<ItemType, int> itemType = new Dictionary<ItemType, int>();
             Dictionary<BonusType, int> bonusType = new Dictionary<BonusType, int>();
 
@@ -160,18 +183,19 @@ public class MergeInventory : MonoBehaviour
                 }
             }
 
-            double randValue = ((((bonusValueSum * 3123 + 1234) / 12) % 159) * 3) % 100; // случайное число от 0.0 до 1.0
+            double randValue = (((bonusValueSum * 3123 + 1234) / 12) * 3) % 100; // случайное число от 0 до 100
 
             double cumulative = 0.0;
 
             foreach (var kvp in itemType)
             {
                 cumulative += kvp.Value * 33;
-
                 if (randValue < cumulative)
                 {
                     itemTypeResult = kvp.Key;
                     Debug.Log("itemTypeSuccess");
+
+                    break;
                 }
             }
             cumulative = 0.0;
@@ -183,6 +207,7 @@ public class MergeInventory : MonoBehaviour
                 {
                     bonusTypeResult = kvp.Key;
                     Debug.Log("BonusTypeSuccess");
+                    break;
                 }
             }
             bonusValueSum /= items.Count;
@@ -199,13 +224,15 @@ public class MergeInventory : MonoBehaviour
 
             if (templateItem != null)
             {
-                InventoryItem inventoryItem = new InventoryItem(templateItem, (int)bonusValueSum, temp);
+                InventoryItem inventoryItem = new InventoryItem(templateItem, (int)bonusValueSum, (ItemRarity)(((int)temp) + 1));
+                inventory.ChooseItemBackGroundImage(inventoryItem);
                 GameObject newItem = Instantiate(itemUIPrefab, mergeResultSlot);
                 ItemUI itemUI = newItem.GetComponent<ItemUI>();
                 itemUI.inventoryParent = transform;
                 itemUI.Setup(inventoryItem);
-                itemUI.isInMerge = true;
-                itemUI.isTaked = true;
+                itemUI.isInMerge = false;
+                itemUI.isTaked = false;
+                
             }
         }
 
