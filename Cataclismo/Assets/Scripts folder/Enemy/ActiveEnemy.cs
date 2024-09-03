@@ -5,7 +5,7 @@ using UnityEngine.Events;
 
 public class ActiveEnemy : MonoBehaviour
 {
-    [SerializeField] private Enemy enemy;
+    public Enemy enemy;
     public PlayerInfo playerInfo;
 
     [SerializeField] private float currentHealth;
@@ -19,6 +19,14 @@ public class ActiveEnemy : MonoBehaviour
 
 
     public void Start()
+    {
+        currentHealth = enemy.currentHealth;
+        maxHealth = enemy.maxHealth;
+        currentDamage = enemy.currentDamage;
+        maxDamage = enemy.maxDamage;
+    }
+
+    public void RefreshEnemyStats()
     {
         currentHealth = enemy.currentHealth;
         maxHealth = enemy.maxHealth;

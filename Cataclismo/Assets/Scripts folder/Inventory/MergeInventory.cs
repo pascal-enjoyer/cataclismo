@@ -17,6 +17,8 @@ public class MergeInventory : MonoBehaviour
     public Transform contentPanel; // Панель для добавления элементов
     public GridLayoutGroup gridLayoutGroup; // Компонент Grid Layout Group
 
+    public InventoryUI inventoryUI;
+
     public Transform mergeSlotsContentPanel;
     public GridLayoutGroup mergeSlots;
 
@@ -26,10 +28,12 @@ public class MergeInventory : MonoBehaviour
 
     public List<InventoryItem> mergeItems;
     public Dictionary<InventoryItem, List<InventoryItem>> mergeResults; //до того как соберутся 3 элемента в один список,
-                                                                        //потом этот список по получившемуся айтему в другой список
+    public InventoryItem mergeResult;                              //потом этот список по получившемуся айтему в другой список
 
     public UnityEvent OnMergeItemsChanged;
+    
 
+    public Transform mergeButton;
     
 
     public void Start()
@@ -37,8 +41,10 @@ public class MergeInventory : MonoBehaviour
         inventory = GameManager.inventory;
         mergeItems = new List<InventoryItem>();
         RefreshInventoryUI();
-
+        mergeButton.GetComponent<Button>().onClick.AddListener(OnMergeButtonClicked);
+        
         OnMergeItemsChanged.AddListener(RefreshMergeSlots);
+        
     }
 
     public void RefreshInventoryUI()
@@ -62,7 +68,6 @@ public class MergeInventory : MonoBehaviour
                     itemUI.isTaked = false;
             }
         }
-
         // Обновите размер Content, чтобы подстроиться под количество элементов
         LayoutRebuilder.ForceRebuildLayoutImmediate(contentPanel.GetComponent<RectTransform>());
     }
@@ -89,6 +94,7 @@ public class MergeInventory : MonoBehaviour
         {
             Destroy(child.gameObject);
         }
+        
         foreach (InventoryItem item in mergeItems)
         {
             GameObject newItem = Instantiate(itemUIPrefab, mergeSlotsContentPanel);
@@ -98,8 +104,10 @@ public class MergeInventory : MonoBehaviour
             itemUI.isInMerge = true;
             itemUI.isTaked = true;
         }
+
         LayoutRebuilder.ForceRebuildLayoutImmediate(mergeSlotsContentPanel.GetComponent<RectTransform>());
     }
+
 
     public void MoveItemToMergeSlots(InventoryItem item)
     {
@@ -128,14 +136,33 @@ public class MergeInventory : MonoBehaviour
         OnMergeItemsChanged.Invoke();
     }
 
-    public void SpawnResultItem(List<InventoryItem> mergeItems)
-    {
 
+    public void OnMergeButtonClicked()
+    {
+        if (mergeItems.Count == 0)
+        {
+
+        }
+        else if (mergeResult != null)
+        {
+            inventory.AddItem(mergeResult);
+
+            mergeResult =null;
+            foreach (InventoryItem item in mergeItems)
+            {
+                inventory.RemoveItem(item);
+            }
+            mergeItems.Clear();
+
+            OnResultItemAddedToInventory();
+        }
     }
 
-    public void MergeItems(InventoryItem mergeResult)
+    public void OnResultItemAddedToInventory()
     {
-
+        Destroy(mergeResultSlot.GetChild(0).gameObject);
+        RefreshInventoryUI();
+        RefreshMergeSlots();
     }
 
     public void BlackSmithDestroy()
@@ -211,6 +238,7 @@ public class MergeInventory : MonoBehaviour
                 }
             }
             bonusValueSum /= items.Count;
+            randValue = (((bonusValueSum * 3123 + 1234) / 12) * 3) % 51 + 50;
 
             TemplateItem templateItem = null;
 
@@ -224,15 +252,17 @@ public class MergeInventory : MonoBehaviour
 
             if (templateItem != null)
             {
-                InventoryItem inventoryItem = new InventoryItem(templateItem, (int)bonusValueSum, (ItemRarity)(((int)temp) + 1));
+                InventoryItem inventoryItem = new InventoryItem(templateItem, LootManager.GenerateBonusValueByRarity((ItemRarity)(((int)temp) + 1), (int)randValue), (ItemRarity)(((int)temp) + 1));
                 inventory.ChooseItemBackGroundImage(inventoryItem);
                 GameObject newItem = Instantiate(itemUIPrefab, mergeResultSlot);
                 ItemUI itemUI = newItem.GetComponent<ItemUI>();
                 itemUI.inventoryParent = transform;
                 itemUI.Setup(inventoryItem);
-                itemUI.isInMerge = false;
+                itemUI.isInMerge = true;
                 itemUI.isTaked = false;
-                
+                itemUI.isResult = true;
+                itemUI.InventoryUI = inventoryUI;
+                mergeResult = inventoryItem;
             }
         }
 

@@ -2782,6 +2782,12 @@ MonoBehaviour:
   - {fileID: 4940828881846107735, guid: 29cb0fec0030ebb469a48625ab42c5c1, type: 3}
   - {fileID: 4940828881846107735, guid: 29cb0fec0030ebb469a48625ab42c5c1, type: 3}
   - {fileID: 7873209498210208176, guid: 8cb85d32a3ab12640a4bccd122db51ca, type: 3}
+  enemies:
+  - {fileID: 11400000, guid: 61e4a3237f9996545a9a7bc797a7dca0, type: 2}
+  - {fileID: 11400000, guid: abd9df1c646e8394ea1edaab1ab67c83, type: 2}
+  - {fileID: 11400000, guid: 3f724bd0941885649866fecd29e387ca, type: 2}
+  - {fileID: 11400000, guid: 3f724bd0941885649866fecd29e387ca, type: 2}
+  - {fileID: 11400000, guid: 3f724bd0941885649866fecd29e387ca, type: 2}
   backgroundRenderer: {fileID: 756729052}
   enemyTransform: {fileID: 1571798401}
 --- !u!114 &1988983921

@@ -9,6 +9,8 @@ public class ItemInfoWindow : MonoBehaviour
     public Text itemName;
     public Text itemDescription;
 
+    public ItemUI itemUI;
+
     public Text itemBonus;
     public BonusType itemBonusType;
     public Text upgradePrice;
@@ -17,6 +19,8 @@ public class ItemInfoWindow : MonoBehaviour
     public Image itemIcon;
     public Text equipButtonText;
     public Transform upgradeButton;
+
+    public Transform equipButton;
 
     public InventoryUI inventoryUI;
         
@@ -29,22 +33,33 @@ public class ItemInfoWindow : MonoBehaviour
         itemName.text = item.ItemName;
         itemDescription.text = item.ItemDescription;
         itemIcon.sprite = item.ItemIcon;
-        equipButtonText.text = item.isEquiped ? "Take off" : "Equip"; 
+        if (itemUI != null && itemUI.isResult)
+        {
+            upgradeButton.gameObject.SetActive(false);
+            equipButton.gameObject.SetActive(false);
+        }
+        equipButtonText.text = item.isEquiped ? "Take off" : "Equip";
         itemBonus.text = item.BonusType.ToString() + " + " + item.bonusValue.ToString();
         itemLevel.text = "Item level " + item.itemLevel.ToString();
-        upgradePrice.text = (item.itemLevelUpgradeCost + item.addedCostOfUpgradePerLevel * item.itemLevel).ToString() + " coins"; 
+        upgradePrice.text = (item.itemLevelUpgradeCost + item.addedCostOfUpgradePerLevel * item.itemLevel).ToString() + " coins";
         if (GameManager.playerEconomic.coins < (item.itemLevelUpgradeCost + item.addedCostOfUpgradePerLevel * item.itemLevel) || item.itemLevel >= item.maxItemLevel)
         {
             upgradeButton.GetComponent<Button>().interactable = false;
             upgradeButton.GetComponent<Image>().color = Color.gray;
         }
+        
     }
 
     public void RefreshUI()
     {
         itemName.text = item.ItemName;
         itemDescription.text = item.ItemDescription;
-        itemIcon.sprite = item.ItemIcon;
+        itemIcon.sprite = item.ItemIcon; 
+        if (itemUI != null && itemUI.isResult)
+        {
+            upgradeButton.gameObject.SetActive(false);
+            equipButton.gameObject.SetActive(false);
+        }
         equipButtonText.text = item.isEquiped ? "Take off" : "Equip";
         itemBonus.text = item.BonusType.ToString() + " + " + item.bonusValue.ToString();
         itemLevel.text = "Item level " + item.itemLevel.ToString();

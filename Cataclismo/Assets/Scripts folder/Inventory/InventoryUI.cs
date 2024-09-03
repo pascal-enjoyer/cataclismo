@@ -105,8 +105,8 @@ public class InventoryUI : MonoBehaviour
 
     public void EnableBlackSmith()
     {
-
-        Instantiate(blacksmith, transform);
+        GameObject curBSmith = Instantiate(blacksmith, transform);
+        curBSmith.GetComponent<MergeInventory>().inventoryUI = this;
 
     }
     

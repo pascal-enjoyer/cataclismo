@@ -8,15 +8,17 @@ public class GameLevelManager : MonoBehaviour
 
     public Sprite[] levelBackgrounds; // Массив изображений фонов для каждого уровня
     public GameObject[] enemyPrefabs; // Массив префабов врагов для каждого уровня
+    public Enemy[] enemies;
     public SpriteRenderer backgroundRenderer; // Спрайт рендерер для фона
     public Transform enemyTransform; // Точка спавна врага
     
     void Start()
     {
-
         // Получаем текущий уровень из PlayerPrefs
         int currentLevel = PlayerPrefs.GetInt("CurrentLevel", 0);
-        
+
+        enemyTransform.GetComponent<ActiveEnemy>().enemy = enemies[currentLevel];
+        enemyTransform.GetComponent<ActiveEnemy>().RefreshEnemyStats();
         // Устанавливаем фон для текущего уровня
         backgroundRenderer.sprite = levelBackgrounds[currentLevel];
 

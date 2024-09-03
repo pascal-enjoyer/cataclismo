@@ -13,6 +13,15 @@ public class ItemUI : MonoBehaviour
     public InventoryUI InventoryUI;
     public bool isInMerge = false;
     public bool isTaked = false;
+    public bool isResult = false;
+
+    public enum ItemUIStage
+    {
+        none,
+        IsInMerge,
+        IsTaked,
+        Result
+    };
 
     public void Setup(InventoryItem tempItem)
     {
@@ -28,7 +37,22 @@ public class ItemUI : MonoBehaviour
     {
         if (isInMerge)
         {
-            if (!isTaked)
+            if (isResult)
+            {
+                
+                ItemInfoWindow infoWindow = InventoryUI.itemInfoWindowPrefab.GetComponent<ItemInfoWindow>();
+                if (infoWindow != null)
+                {
+                    GameObject gameObject = Instantiate(InventoryUI.itemInfoWindowPrefab, inventoryParent);
+                    ItemInfoWindow itemInfoWindow = gameObject.GetComponent<ItemInfoWindow>();
+                    
+                    itemInfoWindow.itemUI = this;
+                    itemInfoWindow.FillWindow(item);
+                    itemInfoWindow.inventoryUI = InventoryUI;
+
+                }
+            }
+            else if (!isTaked)
             {
                 inventoryParent.GetComponent<MergeInventory>().MoveItemToMergeSlots(item);
                 itemIcon.color = Color.gray;
@@ -36,7 +60,7 @@ public class ItemUI : MonoBehaviour
                 itemName.color = Color.gray;
                 isTaked = true;
             }
-            else
+            else 
             {
                 inventoryParent.GetComponent<MergeInventory>().ExecuteItemFromMergeSlots(item);
                 itemIcon.color = Color.white;

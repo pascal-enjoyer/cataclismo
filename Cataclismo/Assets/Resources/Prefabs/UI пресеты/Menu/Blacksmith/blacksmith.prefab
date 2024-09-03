@@ -233,12 +233,14 @@ MonoBehaviour:
     type: 3}
   contentPanel: {fileID: 1604724719634092720}
   gridLayoutGroup: {fileID: 1604724720214317693}
+  inventoryUI: {fileID: 0}
   mergeSlotsContentPanel: {fileID: 1604724720214317695}
   mergeSlots: {fileID: 1604724720214317693}
   mergeResultSlot: {fileID: 1604724719479980324}
   OnMergeItemsChanged:
     m_PersistentCalls:
       m_Calls: []
+  mergeButton: {fileID: 1604724719632909249}
 --- !u!1 &1604724718424442601
 GameObject:
   m_ObjectHideFlags: 0
