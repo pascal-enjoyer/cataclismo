@@ -7,6 +7,7 @@ public class ActiveEnemy : MonoBehaviour
 {
     public Enemy enemy;
     public PlayerInfo playerInfo;
+    public GameObject EnemyGameobject;
 
     [SerializeField] private float currentHealth;
     [SerializeField] private float maxHealth;
@@ -16,8 +17,8 @@ public class ActiveEnemy : MonoBehaviour
 
     [SerializeField] public UnityEvent OnEnemyTakedDamage;
     [SerializeField] public UnityEvent OnEnemyDied;
-
-
+     
+    [SerializeField] public bool isDead;
     public void Start()
     {
         currentHealth = enemy.currentHealth;
@@ -39,6 +40,8 @@ public class ActiveEnemy : MonoBehaviour
         if (currentHealth - damage <= 0)
         {
             currentHealth = 0;
+            isDead = true;
+            DestroyEnemy();
             OnEnemyDied.Invoke();
         }
         else
@@ -79,7 +82,10 @@ public class ActiveEnemy : MonoBehaviour
         return enemy;
     }
 
-
+    public void DestroyEnemy()
+    {
+        Destroy(EnemyGameobject);
+    }
 
 
 }

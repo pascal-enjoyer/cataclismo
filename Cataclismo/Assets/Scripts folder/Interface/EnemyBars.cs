@@ -21,28 +21,32 @@ public class EnemyBars : MonoBehaviour
     }
     private void Update()
     {
-
-       transform.position = Camera.main.WorldToScreenPoint(enemy.transform.position + new Vector3(0, enemy.transform.localScale.y * 2));
-        if (enemy != null)
+        if (!enemy.isDead)
         {
-            Image img = attackBar.GetComponent<Image>();
-            if (img != null)
+            transform.position = Camera.main.WorldToScreenPoint(enemy.transform.position + new Vector3(0, enemy.transform.localScale.y * 2));
+            if (enemy != null)
             {
-
-                attackTime += Time.deltaTime;
-
-                img.fillAmount = attackTime / enemy.GetEnemy().currentAtackSpeed;
-                if (img.fillAmount >= 1)
+                Image img = attackBar.GetComponent<Image>();
+                if (img != null)
                 {
-                    img.fillAmount = 0;
-                    attackTime = 0;
-                    //тут атака
-                    enemy.attackPlayer();
+
+                    attackTime += Time.deltaTime;
+
+                    img.fillAmount = attackTime / enemy.GetEnemy().currentAtackSpeed;
+                    if (img.fillAmount >= 1)
+                    {
+                        img.fillAmount = 0;
+                        attackTime = 0;
+                        //тут атака
+                        enemy.attackPlayer();
+                    }
                 }
+
             }
-            
         }
     }
+
+    
 
     public void RefreshHealthLine()
     {

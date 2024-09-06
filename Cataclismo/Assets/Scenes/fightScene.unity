@@ -1126,6 +1126,7 @@ GameObject:
   - component: {fileID: 964889207}
   - component: {fileID: 964889206}
   - component: {fileID: 964889205}
+  - component: {fileID: 964889209}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -1219,6 +1220,22 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &964889209
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 964889204}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86ccda941f0e5594ead93bdbada10e0d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  levelEndingUI: {fileID: 6921118161219328802, guid: b75dfa61373b13247b1bb41d4b6fc3e8,
+    type: 3}
+  gameLevelManager: {fileID: 1988983920}
+  levelEndindSpawned: {fileID: 0}
 --- !u!1 &978270277
 GameObject:
   m_ObjectHideFlags: 0
@@ -1942,6 +1959,9 @@ MonoBehaviour:
   itemAttackBonus: 0
   currentShield: {fileID: 0}
   currentElementalStormBoost: {fileID: 0}
+  OnPlayerDied:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &1285838675
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2790,6 +2810,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 3f724bd0941885649866fecd29e387ca, type: 2}
   backgroundRenderer: {fileID: 756729052}
   enemyTransform: {fileID: 1571798401}
+  playerInfo: {fileID: 1285838674}
+  canvas: {fileID: 964889208}
 --- !u!114 &1988983921
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -22,6 +22,8 @@ public class PlayerInfo : MonoBehaviour
     public GameObject currentShield;
     public GameObject currentElementalStormBoost;
 
+    public UnityEvent OnPlayerDied;
+
     private void Start()
     {
         maxHealth = player.maxHealth;
@@ -68,7 +70,7 @@ public class PlayerInfo : MonoBehaviour
             if (currentHealth - damage <= 0)
             {
                 currentHealth = 0;
-
+                OnPlayerDied.Invoke();
             }
             else
                 currentHealth -= damage;

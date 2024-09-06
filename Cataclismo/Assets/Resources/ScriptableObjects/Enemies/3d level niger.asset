@@ -15,7 +15,7 @@ MonoBehaviour:
   enemyName: niger
   currentHealth: 4000
   maxHealth: 4000
-  currentAtackSpeed: 2
+  currentAtackSpeed: 3
   maxAtackSpeed: 5
   currentDamage: 40
   maxDamage: 100

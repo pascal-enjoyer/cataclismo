@@ -1,3 +1,4 @@
+
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -11,7 +12,9 @@ public class GameLevelManager : MonoBehaviour
     public Enemy[] enemies;
     public SpriteRenderer backgroundRenderer; // Спрайт рендерер для фона
     public Transform enemyTransform; // Точка спавна врага
-    
+    public PlayerInfo playerInfo;
+    public Transform canvas;
+
     void Start()
     {
         // Получаем текущий уровень из PlayerPrefs
@@ -23,9 +26,14 @@ public class GameLevelManager : MonoBehaviour
         backgroundRenderer.sprite = levelBackgrounds[currentLevel];
 
         // Спавним врага для текущего уровня
-        Instantiate(enemyPrefabs[currentLevel], enemyTransform);
+        GameObject enemyGO = Instantiate(enemyPrefabs[currentLevel], enemyTransform);
         enemyTransform.GetComponent<ActiveEnemy>().OnEnemyDied.AddListener(CompleteCurrentLevel);
+        enemyTransform.GetComponent <ActiveEnemy>().EnemyGameobject = enemyGO;
+        enemyTransform.GetComponent<ActiveEnemy>().OnEnemyDied.AddListener(canvas.GetComponent<FightCanvasManager>().WinLevelSpawn);
+        playerInfo.OnPlayerDied.AddListener(canvas.GetComponent<FightCanvasManager>().LoseLevelSpawn);
     }
+
+
 
     public void CompleteCurrentLevel()
     {
@@ -38,6 +46,16 @@ public class GameLevelManager : MonoBehaviour
             GameManager.Instance.CompleteLevel(currentLevel);
             GameManager.playerEconomic.GetExpFromLevel(currentLevel+1);
         }
+
+    }
+
+    public void ReloadScene()
+    {
+        SceneManager.LoadScene("fightScene", LoadSceneMode.Single);
+    }
+
+    public void LoadMainMenu()
+    {
 
         // Переключаемся обратно на сцену выбора уровня, заменяя текущую сцену
         SceneManager.LoadScene("menu", LoadSceneMode.Single); // Замените на имя вашей сцены выбора уровня
