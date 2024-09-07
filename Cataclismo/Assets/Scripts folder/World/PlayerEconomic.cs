@@ -12,8 +12,9 @@ public class PlayerEconomic : MonoBehaviour
     public int diamonds = 100;
     public int maxPlayerLevel = 30;
     public float nextLevelExpMultiplier = 1.1f;
-    public UnityEvent OnPlayerLevelChanged;
+    public UnityEvent OnPlayerEconomicChanged;
     public UnityEvent OnPlayerEconomicLoaded;
+    public UnityEvent OnPlayerLevelChanged;
 
     private const string PlayerLevelKey = "PlayerLevel";
     private const string ExperienceToNextLevelKey = "ExperienceToNextLevel";
@@ -23,7 +24,7 @@ public class PlayerEconomic : MonoBehaviour
 
     private void Start()
     {
-        OnPlayerLevelChanged.AddListener(SavePlayerEconomy);
+        OnPlayerEconomicChanged.AddListener(SavePlayerEconomy);
 
         LoadPlayerEconomy();
         Debug.Log($"Player Level {PlayerLevel}, exp {currentExperience}/{experienceToNextPlayerLevel}, {coins} coins, {diamonds} diamonds");
@@ -38,6 +39,8 @@ public class PlayerEconomic : MonoBehaviour
                 PlayerLevel++;
                 currentExperience = (exp + currentExperience) - experienceToNextPlayerLevel;
                 experienceToNextPlayerLevel = (int)(experienceToNextPlayerLevel * nextLevelExpMultiplier);
+                GainDiamonds(PlayerLevel * 10);
+                OnPlayerLevelChanged.Invoke();
             }
             else
             {
@@ -49,7 +52,7 @@ public class PlayerEconomic : MonoBehaviour
             coins += exp / 100;
         }
 
-        OnPlayerLevelChanged.Invoke();
+        OnPlayerEconomicChanged.Invoke();
     }
 
     //можно добавить зависимость от сложности уровня
@@ -58,7 +61,7 @@ public class PlayerEconomic : MonoBehaviour
         GainExperience(new System.Random().Next(50, 500) * level);
         coins += new System.Random().Next(50, 100) * level;
 
-        OnPlayerLevelChanged.Invoke();
+        OnPlayerEconomicChanged.Invoke();
     }
 
     public void SavePlayerEconomy()
@@ -97,7 +100,14 @@ public class PlayerEconomic : MonoBehaviour
     public void GainMoney(int count)
     {
         coins += count;
-        OnPlayerLevelChanged.Invoke();
+        OnPlayerEconomicChanged.Invoke();
+        LoadPlayerEconomy();
+    }
+
+    public void GainDiamonds(int diamnondCount)
+    {
+        diamonds += diamnondCount;
+        OnPlayerEconomicChanged.Invoke();
         LoadPlayerEconomy();
     }
 }

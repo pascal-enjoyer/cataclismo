@@ -98,7 +98,7 @@ public class ItemInfoWindow : MonoBehaviour
         {
             GameManager.playerEconomic.coins -= item.itemLevelUpgradeCost + item.addedCostOfUpgradePerLevel * item.itemLevel;
             GameManager.playerEconomic.OnPlayerEconomicLoaded.Invoke();
-            GameManager.playerEconomic.OnPlayerLevelChanged.Invoke();
+            GameManager.playerEconomic.OnPlayerEconomicChanged.Invoke();
             GameManager.inventory.UpgradeItemLevel(item);
             inventoryUI.RefreshInventoryUI();
             RefreshUI();
