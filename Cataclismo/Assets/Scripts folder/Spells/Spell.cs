@@ -12,6 +12,8 @@ public class Spell : ScriptableObject
     public SpellType spellType;
     public bool isShield;
     public int spellDamage;
+    public int duration;
+    public int slowingDownPercentage;
 
     public float elementalStormBoost;
 

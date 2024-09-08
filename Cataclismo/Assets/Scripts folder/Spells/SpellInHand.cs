@@ -8,6 +8,7 @@ public class SpellInHand : MonoBehaviour
     public PlayerInfo playerInfo;
     public float sumAttackDamage;
     public float boostMultiplier;
+    public ActiveEnemy enemy;
 
     public void Start()
     {

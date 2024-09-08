@@ -32,7 +32,7 @@ public class EnemyBars : MonoBehaviour
 
                     attackTime += Time.deltaTime;
 
-                    img.fillAmount = attackTime / enemy.GetEnemy().currentAtackSpeed;
+                    img.fillAmount = attackTime / enemy.currentAttackSpeed;
                     if (img.fillAmount >= 1)
                     {
                         img.fillAmount = 0;

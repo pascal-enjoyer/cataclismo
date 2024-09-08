@@ -15,6 +15,10 @@ public class ActiveEnemy : MonoBehaviour
     [SerializeField] private float currentDamage;
     [SerializeField] private float maxDamage;
 
+
+    public float currentAttackSpeed;
+    public float maxAttackSpeed;
+
     [SerializeField] public UnityEvent OnEnemyTakedDamage;
     [SerializeField] public UnityEvent OnEnemyDied;
      
@@ -25,6 +29,8 @@ public class ActiveEnemy : MonoBehaviour
         maxHealth = enemy.maxHealth;
         currentDamage = enemy.currentDamage;
         maxDamage = enemy.maxDamage;
+        currentAttackSpeed = enemy.currentAtackSpeed;
+        maxAttackSpeed = enemy.maxAtackSpeed;
     }
 
     public void RefreshEnemyStats()
@@ -87,5 +93,16 @@ public class ActiveEnemy : MonoBehaviour
         Destroy(EnemyGameobject);
     }
 
+    public void SlowDownEnemy(float attackDebuff)
+    {
+        if (currentAttackSpeed - attackDebuff <= 0)
+            currentAttackSpeed = 0;
+        currentAttackSpeed -= attackDebuff;
+    }
+
+    public void BoostUpEnemy()
+    {
+
+    }
 
 }

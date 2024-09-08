@@ -4,6 +4,7 @@ using System.Linq;
 using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 using UnityEngine.UIElements;
 
@@ -20,6 +21,11 @@ public class ActiveElements : MonoBehaviour
     [SerializeField] private PlayerInfo playerInfo;
 
     public HandsAnimationController controller;
+
+
+    public List<GameObject> currentSpells;
+
+    public UnityEvent OnEnemyStatsChanged;
 
     private void Start()
     {
@@ -156,5 +162,7 @@ public class ActiveElements : MonoBehaviour
         isInvokeActive= false;
 
     }
+
+
 
 }
