@@ -21,8 +21,8 @@ public class PlayerInfo : MonoBehaviour
 
     public GameObject currentShield;
     public GameObject currentElementalStormBoost;
-
-    public List<GameObject> currentSpells; //сделать механику использованных заклинаний через список
+    public GameObject currentSoftGround;
+    public GameObject currentSwampFog;
 
     public UnityEvent OnPlayerDied;
 

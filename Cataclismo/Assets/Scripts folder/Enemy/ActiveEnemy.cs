@@ -19,6 +19,13 @@ public class ActiveEnemy : MonoBehaviour
     public float currentAttackSpeed;
     public float maxAttackSpeed;
 
+    public float currentAttackSpeedMultiplier = 1f;
+    public List<float> attackSpeedMultipliers;
+
+    public bool isAttackLineRefresh = false;
+
+    public bool isSwampFogged = false;
+
     [SerializeField] public UnityEvent OnEnemyTakedDamage;
     [SerializeField] public UnityEvent OnEnemyDied;
      
@@ -70,7 +77,17 @@ public class ActiveEnemy : MonoBehaviour
 
     public void attackPlayer()
     {
-        playerInfo.takeDamage(currentDamage);
+
+        System.Random r = new System.Random();
+        bool isHit = true;
+        if (isSwampFogged)
+        {
+            isHit = r.Next(0, 2) == 0;
+        }
+        if (isHit) 
+        {
+            playerInfo.takeDamage(currentDamage);
+        }
     }
 
     public float GetCurrentHealth()
@@ -95,14 +112,30 @@ public class ActiveEnemy : MonoBehaviour
 
     public void SlowDownEnemy(float attackDebuff)
     {
-        if (currentAttackSpeed - attackDebuff <= 0)
-            currentAttackSpeed = 0;
-        currentAttackSpeed -= attackDebuff;
+        attackSpeedMultipliers.Add(attackDebuff);
+        RefreshEnemyMultiplier();
+
+
     }
 
-    public void BoostUpEnemy()
+    public void BoostUpEnemy(float attackDebuff)
     {
-
+        attackSpeedMultipliers.Remove(attackDebuff);
+        RefreshEnemyMultiplier();
     }
 
+    public void RefreshEnemyMultiplier()
+    {
+        currentAttackSpeedMultiplier = 1f;
+        foreach (float temp in attackSpeedMultipliers)
+        {
+            if (currentAttackSpeedMultiplier - temp >= 0)
+                if (temp >= 1)
+                {
+                    currentAttackSpeedMultiplier -= temp/100;
+                }
+                else
+                    currentAttackSpeedMultiplier -= temp;
+        }
+    }
 }

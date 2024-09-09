@@ -22,3 +22,6 @@ MonoBehaviour:
   spellType: 2
   isShield: 0
   spellDamage: 0
+  duration: 5
+  slowingDownPercentage: 0.7
+  elementalStormBoost: 0

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 public class SpellInHand : MonoBehaviour
 {
@@ -12,11 +13,16 @@ public class SpellInHand : MonoBehaviour
 
     public void Start()
     {
+        enemy = playerInfo.currentEnemy.GetComponent<ActiveEnemy>();
         sumAttackDamage = spell.spellDamage + playerInfo.itemAttackBonus;
         if (playerInfo.currentElementalStormBoost != null && playerInfo.currentElementalStormBoost!= gameObject)
         {
             sumAttackDamage *= playerInfo.currentElementalStormBoost.GetComponent<SpellInHand>().spell.elementalStormBoost;
             playerInfo.currentElementalStormBoost.GetComponent<ElementalStorm>().DestroyElementalStorm();
+        }
+        if (transform.GetComponent<SoftGround>() != null)
+        {
+            transform.GetComponent<SoftGround>().StartSpell();
         }
     }
 

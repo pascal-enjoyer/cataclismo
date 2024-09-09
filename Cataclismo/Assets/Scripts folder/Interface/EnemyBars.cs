@@ -29,8 +29,13 @@ public class EnemyBars : MonoBehaviour
                 Image img = attackBar.GetComponent<Image>();
                 if (img != null)
                 {
-
-                    attackTime += Time.deltaTime;
+                    if (enemy.isAttackLineRefresh)
+                    {
+                        attackTime = 0;
+                        enemy.isAttackLineRefresh = false;
+                    }
+                    else
+                        attackTime += Time.deltaTime * enemy.currentAttackSpeedMultiplier;
 
                     img.fillAmount = attackTime / enemy.currentAttackSpeed;
                     if (img.fillAmount >= 1)

@@ -8,14 +8,20 @@ public class SoftGround : MonoBehaviour
     public float scaleDuration = 1f; // Время на увеличение/уменьшение масштаба
     public float stayDuration = 2f; // Время, в течение которого объект остается на месте перед уменьшением
 
-    public void StartSoftGround()
+
+    
+    public void StartSpell()
     {
+
         // При спавне объект увеличивается до targetScale, затем ждёт и уменьшается
-        StartCoroutine(ScaleUpAndWait());
-        if (transform.GetComponent<SpellInHand>() && transform.GetComponent<SpellInHand>().enemy != null) 
+        stayDuration = transform.GetComponent<SpellInHand>().spell.duration;
+
+        
+        if (transform.GetComponent<SpellInHand>() != null && transform.GetComponent<SpellInHand>().enemy != null)
         {
             transform.GetComponent<SpellInHand>().enemy.SlowDownEnemy(transform.GetComponent<SpellInHand>().spell.slowingDownPercentage);
         }
+        StartCoroutine(ScaleUpAndWait());
     }
 
 
@@ -29,6 +35,7 @@ public class SoftGround : MonoBehaviour
 
         // Уменьшение объекта и его уничтожение
         yield return StartCoroutine(ScaleDown(Vector3.zero, scaleDuration));
+        BuffEnemyAttackSpeedBack();
         Destroy(gameObject); // Уничтожить объект после уменьшения
     }
 
@@ -62,5 +69,11 @@ public class SoftGround : MonoBehaviour
         }
 
         transform.localScale = finalScale; // Установить финальный размер (0)
+
+    }
+
+    public void BuffEnemyAttackSpeedBack()
+    {
+        transform.GetComponent<SpellInHand>().enemy.BoostUpEnemy(transform.GetComponent<SpellInHand>().spell.slowingDownPercentage);
     }
 }

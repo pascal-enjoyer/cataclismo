@@ -136,7 +136,7 @@ public class ActiveElements : MonoBehaviour
                 usedSpell = Instantiate(spellPrefab, transform);
                 usedSpell.GetComponent<SpellInHand>().playerInfo = playerInfo;
                 playerInfo.currentElementalStormBoost = usedSpell;
-                
+
             }
         }
         else
@@ -149,6 +149,35 @@ public class ActiveElements : MonoBehaviour
             {
                 Destroy(playerInfo.currentShield);
                 playerInfo.currentShield = usedSpell;
+            }
+            if (usedSpell.GetComponent<SoftGround>() != null)
+            {
+                if (playerInfo.currentSoftGround != null)
+                {
+                    playerInfo.currentSoftGround.GetComponent<SoftGround>().BuffEnemyAttackSpeedBack();
+                    Destroy(playerInfo.currentSoftGround);
+                    playerInfo.currentSoftGround = usedSpell;
+                }
+                else
+                {
+                    playerInfo.currentSoftGround = usedSpell;
+                }
+            }
+
+            if (usedSpell.GetComponent<SwampFog>() != null)
+            {
+                if (playerInfo.currentSwampFog != null)
+                {
+                    playerInfo.currentSwampFog.GetComponent<SwampFog>().DestroyFog();
+
+                    playerInfo.currentSwampFog = usedSpell;
+                }
+                else
+                {
+                    playerInfo.currentSwampFog = usedSpell;
+                }
+
+                usedSpell.GetComponent<SwampFog>().StartFog();
             }
         }
         

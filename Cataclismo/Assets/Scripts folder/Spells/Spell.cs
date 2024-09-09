@@ -13,7 +13,7 @@ public class Spell : ScriptableObject
     public bool isShield;
     public int spellDamage;
     public int duration;
-    public int slowingDownPercentage;
+    public float slowingDownPercentage;
 
     public float elementalStormBoost;
 
