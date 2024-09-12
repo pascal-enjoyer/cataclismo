@@ -37,7 +37,7 @@ public class LootManager : MonoBehaviour
         int randomIndex = r.Next(0, possibleLoot.Count);
         TemplateItem templateItem = possibleLoot[randomIndex];
         int bonusValue = r.Next(50, 100);
-        float randItemRarity = r.Next(1, 10000)/100;
+        float randItemRarity = r.Next(1, 10000) / 100;
         ItemRarity itemRarity = ItemRarity.Common;
         if (randItemRarity > 0 && randItemRarity < Math.Abs(commonProbability))
             itemRarity = ItemRarity.Common;
@@ -78,7 +78,7 @@ public class LootManager : MonoBehaviour
     {
         int result = 0;
 
-        int bonusValue = ifNotRandom == -1 ? r.Next(50, 101) : ifNotRandom; 
+        int bonusValue = ifNotRandom == -1 ? r.Next(50, 101) : ifNotRandom;
         switch (rarity)
         {
             case ItemRarity.Legendary:
@@ -92,7 +92,7 @@ public class LootManager : MonoBehaviour
                 break;
             case ItemRarity.Uncommon:
                 result = (int)(bonusValue * 1.25f);
-                break;            
+                break;
             case ItemRarity.Common:
                 result = (bonusValue);
                 break;
