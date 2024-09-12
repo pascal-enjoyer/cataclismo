@@ -10,6 +10,7 @@ public class PlayerEconomyUI : MonoBehaviour
     public Text diamondCount;
     public Text levelCount;
     public PlayerEconomic playerEconomic;
+    public Text levelAmountText;
 
     public void Start()
     {
@@ -24,5 +25,6 @@ public class PlayerEconomyUI : MonoBehaviour
         coinsCount.text = playerEconomic.coins.ToString();
         diamondCount.text = playerEconomic.diamonds.ToString();
         levelCount.text = playerEconomic.PlayerLevel.ToString();
+        levelAmountText.text = $"{(float)playerEconomic.currentExperience} / {(float)playerEconomic.experienceToNextPlayerLevel}";
     }
 }

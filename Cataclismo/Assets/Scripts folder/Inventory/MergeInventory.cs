@@ -7,6 +7,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.Rendering;
 using UnityEngine.UI;
+using static UnityEditor.Progress;
 
 public class MergeInventory : MonoBehaviour
 {
@@ -94,7 +95,22 @@ public class MergeInventory : MonoBehaviour
         {
             Destroy(child.gameObject);
         }
-        
+
+        if (mergeResultSlot.childCount >0)
+        {
+            Destroy(mergeResultSlot.GetChild(0).gameObject);
+        }
+        if (mergeResult != null)
+        {
+            GameObject newItem = Instantiate(itemUIPrefab, mergeResultSlot);
+            ItemUI itemUI = newItem.GetComponent<ItemUI>();
+            itemUI.inventoryParent = transform;
+            itemUI.Setup(mergeResult);
+            itemUI.isInMerge = true;
+            itemUI.isTaked = false;
+            itemUI.isResult = true;
+            itemUI.InventoryUI = inventoryUI;
+        }
         foreach (InventoryItem item in mergeItems)
         {
             GameObject newItem = Instantiate(itemUIPrefab, mergeSlotsContentPanel);
@@ -104,6 +120,7 @@ public class MergeInventory : MonoBehaviour
             itemUI.isInMerge = true;
             itemUI.isTaked = true;
         }
+        
 
         LayoutRebuilder.ForceRebuildLayoutImmediate(mergeSlotsContentPanel.GetComponent<RectTransform>());
     }
@@ -129,10 +146,42 @@ public class MergeInventory : MonoBehaviour
 
     }
 
-
-    public void ExecuteItemFromMergeSlots(InventoryItem item)
+    public void SoftRefresh()
     {
+        foreach (Transform child in contentPanel)
+        {
+            if (child.GetComponent<ItemUI>() != null) 
+            {
+                
+            }
+        }
+    }
+    
+        public void ExecuteItemFromMergeSlots(InventoryItem item)
+    {
+        foreach (Transform itemUI in contentPanel)
+        {
+            if (itemUI.GetComponent<ItemUI>().item == item)
+            {
+                ItemUI temp = itemUI.GetComponent<ItemUI>();
+                
+                temp.itemIcon.color = Color.white;
+                temp.itemRarityBackground.color = Color.white;
+                temp.itemName.color = Color.white;
+                break;
+            }
+        }
         mergeItems.Remove(item);
+
+        if (mergeItems.Count == 0)
+        {
+            RefreshInventoryUI();
+        }
+        if (mergeItems.Count == 2)
+        {
+            mergeResult = null;
+            RefreshMergeSlots();
+        }
         OnMergeItemsChanged.Invoke();
     }
 
