@@ -44,7 +44,7 @@ public class MenuSwitchController : MonoBehaviour
         for (int i = 0; i < panels.Length; i++)
         {
             // Панели размещены слева или справа от экрана
-            panels[i].anchoredPosition = new Vector2((i - currentPanelIndex) * Screen.width, 0);
+            panels[i].anchoredPosition = new Vector2((i - currentPanelIndex) * 1080, 0);
         }
     }
 
@@ -57,7 +57,7 @@ public class MenuSwitchController : MonoBehaviour
         for (int i = 0; i < panels.Length; i++)
         {
             startPositions[i] = panels[i].anchoredPosition;
-            targetPositions[i] = new Vector2((i - targetIndex) * Screen.width, 0);
+            targetPositions[i] = new Vector2((i - targetIndex) * 1080, 0);
         }
 
         while (elapsedTime < transitionDuration)

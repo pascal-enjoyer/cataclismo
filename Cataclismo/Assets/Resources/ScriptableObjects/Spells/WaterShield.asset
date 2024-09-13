@@ -12,12 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b499d7a469cb1884593a609e7cb39ab3, type: 3}
   m_Name: WaterShield
   m_EditorClassIdentifier: 
-  spellName: WaterShield
+  spellName: Water Shield
   requiredElements:
   - {fileID: 11400000, guid: be2bf915be7996a4484814fdb92c6e14, type: 2}
   - {fileID: 11400000, guid: be2bf915be7996a4484814fdb92c6e14, type: 2}
   - {fileID: 11400000, guid: be2bf915be7996a4484814fdb92c6e14, type: 2}
-  spellDescription: Creates a water shield that completely reduces water damage
+  spellDescription: Creates a water shield that completely reduces water damage.
   spellType: 0
   isShield: 1
   spellDamage: 0
+  duration: 0
+  slowingDownPercentage: 0
+  elementalStormBoost: 0

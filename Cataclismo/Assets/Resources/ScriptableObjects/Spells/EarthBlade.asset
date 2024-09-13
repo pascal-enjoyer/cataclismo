@@ -12,12 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b499d7a469cb1884593a609e7cb39ab3, type: 3}
   m_Name: EarthBlade
   m_EditorClassIdentifier: 
-  spellName: EarthBlade
+  spellName: Earth Blade
   requiredElements:
   - {fileID: 11400000, guid: 265b1282695ad664eb397b1c30d907ab, type: 2}
   - {fileID: 11400000, guid: c4ffc855e68f66843a055838ca877d13, type: 2}
   - {fileID: 11400000, guid: c4ffc855e68f66843a055838ca877d13, type: 2}
-  spellDescription: Turns earth into a blade and throw at enemy
+  spellDescription: Turns earth into a blade and throw at enemy.
   spellType: 2
   isShield: 0
   spellDamage: 100
+  duration: 0
+  slowingDownPercentage: 0
+  elementalStormBoost: 0

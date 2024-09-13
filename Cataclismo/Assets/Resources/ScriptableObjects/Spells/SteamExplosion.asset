@@ -12,13 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b499d7a469cb1884593a609e7cb39ab3, type: 3}
   m_Name: SteamExplosion
   m_EditorClassIdentifier: 
-  spellName: SteamExplosion
+  spellName: Steam Explosion
   requiredElements:
   - {fileID: 11400000, guid: be2bf915be7996a4484814fdb92c6e14, type: 2}
   - {fileID: 11400000, guid: 265b1282695ad664eb397b1c30d907ab, type: 2}
   - {fileID: 11400000, guid: 265b1282695ad664eb397b1c30d907ab, type: 2}
   spellDescription: he combination of water and fire leads to an explosion of steam,
-    stunning an enemy and resetting their attack
+    stunning an enemy and resetting their attack.
   spellType: 1
   isShield: 0
   spellDamage: 100
+  duration: 0
+  slowingDownPercentage: 0
+  elementalStormBoost: 0

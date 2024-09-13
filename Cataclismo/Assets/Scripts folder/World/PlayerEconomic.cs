@@ -110,4 +110,5 @@ public class PlayerEconomic : MonoBehaviour
         OnPlayerEconomicChanged.Invoke();
         LoadPlayerEconomy();
     }
+
 }

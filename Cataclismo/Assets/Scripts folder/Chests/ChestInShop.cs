@@ -96,23 +96,28 @@ public class ChestInShop : MonoBehaviour
     }
     public void OpenChest()
     {
-        if (currentChestLootVariants == null || currentChestLootVariants.Count == 0)
+        if (GameManager.playerEconomic.diamonds - ChestCost >= 0)
         {
-            Debug.LogWarning("Нет доступных вариантов лута в этом сундуке.");
-            return;
+            GameManager.playerEconomic.GainDiamonds(-ChestCost);
+            if (currentChestLootVariants == null || currentChestLootVariants.Count == 0)
+            {
+                Debug.LogWarning("Нет доступных вариантов лута в этом сундуке.");
+                return;
+            }
+
+            // Генерация случайного предмета
+            System.Random random = new System.Random();
+            int randomIndex = random.Next(0, currentChestLootVariants.Count);
+            TemplateItem randomItem = currentChestLootVariants[randomIndex];
+
+            ItemRarity itemRarity = GetRandomRarity();
+
+            // Добавляем предмет в инвентарь игрока с выбранной редкостью
+            GameManager.inventory.AddItem(new InventoryItem(randomItem, LootManager.GenerateBonusValueByRarity(itemRarity), itemRarity));
+
+            Debug.Log($"Вы открыли сундук и получили: {randomItem.itemName} с редкостью {itemRarity}");
         }
-
-        // Генерация случайного предмета
-        System.Random random = new System.Random();
-        int randomIndex = random.Next(0, currentChestLootVariants.Count);
-        TemplateItem randomItem = currentChestLootVariants[randomIndex];
-
-        ItemRarity itemRarity = GetRandomRarity();
-
-        // Добавляем предмет в инвентарь игрока с выбранной редкостью
-        GameManager.inventory.AddItem(new InventoryItem(randomItem, LootManager.GenerateBonusValueByRarity(itemRarity), itemRarity));
-
-        Debug.Log($"Вы открыли сундук и получили: {randomItem.itemName} с редкостью {itemRarity}");
+        
     }
 
     // Устанавливаем стандартные вероятности для редкостей

@@ -12,12 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b499d7a469cb1884593a609e7cb39ab3, type: 3}
   m_Name: FireShield
   m_EditorClassIdentifier: 
-  spellName: FireShield
+  spellName: Fire Shield
   requiredElements:
   - {fileID: 11400000, guid: 265b1282695ad664eb397b1c30d907ab, type: 2}
   - {fileID: 11400000, guid: 265b1282695ad664eb397b1c30d907ab, type: 2}
   - {fileID: 11400000, guid: 265b1282695ad664eb397b1c30d907ab, type: 2}
-  spellDescription: Creates a fire shield that completely reduces water damage
+  spellDescription: Creates a fire shield that completely reduces water damage.
   spellType: 1
   isShield: 1
   spellDamage: 0
+  duration: 0
+  slowingDownPercentage: 0
+  elementalStormBoost: 0
