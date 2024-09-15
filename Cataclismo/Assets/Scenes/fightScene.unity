@@ -1046,7 +1046,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: ba86dac56dd5f4d4d95f479108b311e3, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 294773eabda47aa4882353ad0ee3d46d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -1065,8 +1065,8 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 756729047}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 15.56}
-  m_LocalScale: {x: 3, y: 3, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 11.8}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1988983919}
@@ -1074,8 +1074,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 7.12}
-  m_SizeDelta: {x: 11.52, y: 8.96}
+  m_AnchoredPosition: {x: 0, y: 6.9}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &855071308
 GameObject:
@@ -1207,6 +1207,7 @@ GameObject:
   - component: {fileID: 964889206}
   - component: {fileID: 964889205}
   - component: {fileID: 964889209}
+  - component: {fileID: 964889210}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -1317,6 +1318,18 @@ MonoBehaviour:
     type: 3}
   gameLevelManager: {fileID: 1988983920}
   levelEndindSpawned: {fileID: 0}
+--- !u!114 &964889210
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 964889204}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 71a2bd9b6a7f2b646b93bb28879c7f41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &978270277
 GameObject:
   m_ObjectHideFlags: 0
@@ -3020,11 +3033,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   levelBackgrounds:
-  - {fileID: 21300000, guid: bb2576e6ac3880f4782c41ef23cab988, type: 3}
+  - {fileID: 21300000, guid: 0f7da4a28abe15146a69ef228993e7e3, type: 3}
+  - {fileID: 21300000, guid: 294773eabda47aa4882353ad0ee3d46d, type: 3}
+  - {fileID: 21300000, guid: 98db58ab13e34804d9cc0898a8117c3e, type: 3}
   - {fileID: 21300000, guid: ba86dac56dd5f4d4d95f479108b311e3, type: 3}
-  - {fileID: 21300000, guid: 15ca66f4e85e5ef4fb764834d5761eaf, type: 3}
-  - {fileID: 21300000, guid: a65bc4f031b9c2c4cb44c3592464ec8c, type: 3}
-  - {fileID: 21300000, guid: 2099e4f0b781fd349a1d1f8ab0b4801c, type: 3}
+  - {fileID: 21300000, guid: f8b0b208b90d8a24980f8add7dd06b52, type: 3}
   enemyPrefabs:
   - {fileID: 4940828881846107735, guid: 29cb0fec0030ebb469a48625ab42c5c1, type: 3}
   - {fileID: 7873209498210208176, guid: 8cb85d32a3ab12640a4bccd122db51ca, type: 3}

@@ -12,12 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b499d7a469cb1884593a609e7cb39ab3, type: 3}
   m_Name: ElementalStorm
   m_EditorClassIdentifier: 
-  spellName: Elemental Storm
+  spellName: "\u041F\u0440\u0438\u0440\u043E\u0434\u043D\u044B\u0439 \u0428\u0442\u043E\u0440\u043C "
   requiredElements:
   - {fileID: 11400000, guid: be2bf915be7996a4484814fdb92c6e14, type: 2}
   - {fileID: 11400000, guid: 265b1282695ad664eb397b1c30d907ab, type: 2}
   - {fileID: 11400000, guid: c4ffc855e68f66843a055838ca877d13, type: 2}
-  spellDescription: Use all elements to improve next spell.
+  spellDescription: "\u0418\u0441\u043F\u043E\u043B\u044C\u0437\u0443\u0435\u0442
+    \u0432\u0441\u0435 \u0441\u0442\u0438\u0445\u0438\u0438 \u0447\u0442\u043E\u0431\u044B
+    \u0443\u0447\u0438\u043B\u0438\u0442\u044C \u0441\u043B\u0435\u0434\u0443\u044E\u0449\u0435\u0435
+    \u0437\u0430\u043A\u043B\u0438\u043D\u0430\u043D\u0438\u0435."
   spellType: 3
   isShield: 0
   spellDamage: 0

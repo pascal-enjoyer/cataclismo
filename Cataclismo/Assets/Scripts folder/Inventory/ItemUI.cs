@@ -54,11 +54,14 @@ public class ItemUI : MonoBehaviour
             }
             else if (!isTaked)
             {
-                inventoryParent.GetComponent<MergeInventory>().MoveItemToMergeSlots(item);
-                itemIcon.color = Color.gray;
-                itemRarityBackground.color = Color.gray;
-                itemName.color = Color.gray;
-                isTaked = true;
+                if (inventoryParent.GetComponent<MergeInventory>().mergeItems.Count < 3)
+                {
+                    inventoryParent.GetComponent<MergeInventory>().MoveItemToMergeSlots(item);
+                    itemIcon.color = Color.gray;
+                    itemRarityBackground.color = Color.gray;
+                    itemName.color = Color.gray;
+                    isTaked = true;
+                }
             }
             else 
             {

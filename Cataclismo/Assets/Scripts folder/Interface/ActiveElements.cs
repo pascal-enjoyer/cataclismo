@@ -133,7 +133,7 @@ public class ActiveElements : MonoBehaviour
         {
             if (playerInfo.currentElementalStormBoost == null)
             {
-                usedSpell = Instantiate(spellPrefab, transform);
+                usedSpell = Instantiate(spellPrefab, transform.parent);
                 usedSpell.GetComponent<SpellInHand>().playerInfo = playerInfo;
                 playerInfo.currentElementalStormBoost = usedSpell;
 

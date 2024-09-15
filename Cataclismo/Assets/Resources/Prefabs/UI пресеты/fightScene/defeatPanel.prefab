@@ -540,9 +540,9 @@ MonoBehaviour:
     type: 3}
   winBackground: {fileID: 8988445426992811036, guid: fca1c00af07d7524e91d6bd58c2179d3,
     type: 3}
-  defeatText: {fileID: 6575217247914483996, guid: 199b2d4a4b759bf47aa04d333e735b2d,
+  defeatText: {fileID: 991779911121284925, guid: 199b2d4a4b759bf47aa04d333e735b2d,
     type: 3}
-  winText: {fileID: 991623277547412177, guid: 428491fef39248d4d9e1d6657be463e7, type: 3}
+  winText: {fileID: 1638281685031658400, guid: 428491fef39248d4d9e1d6657be463e7, type: 3}
   backToMenuButton: {fileID: 6921118161116199080}
   retryButton: {fileID: 6921118160325600586}
   isFightWon: 0

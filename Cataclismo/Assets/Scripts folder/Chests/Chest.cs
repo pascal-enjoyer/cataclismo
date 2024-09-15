@@ -11,4 +11,16 @@ public class Chest : ScriptableObject
     public string chestDescription;
     public int chestCost;
 
+
+    public List<RarityProbability> rarityProbabilitiesList;
+    public Dictionary<float, ItemRarity> itemRarityVariants;
+
 }
+
+[System.Serializable]
+public class RarityProbability
+{
+    public float probability;
+    public ItemRarity rarity;
+}
+

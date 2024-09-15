@@ -156,7 +156,7 @@ public class MergeInventory : MonoBehaviour
         }
     }
     
-        public void ExecuteItemFromMergeSlots(InventoryItem item)
+    public void ExecuteItemFromMergeSlots(InventoryItem item)
     {
         foreach (Transform itemUI in contentPanel)
         {

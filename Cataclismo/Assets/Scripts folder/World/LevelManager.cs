@@ -30,11 +30,12 @@ public class LevelManager : MonoBehaviour
         int levelsCompleted = GameManager.Instance.GetLevelsCompleted();
         for (int i = 0; i < levelButtons.Length; i++)
         {
+            GameObject levelIcon;
             Button tmpBtn = levelButtons[i].GetComponent<Button>();
             if (i < levelsCompleted)
             {
-                GameObject tempLevelPrefab = Instantiate(completedLevelPrefab, levelButtons[i].transform);
-                tempLevelPrefab.GetComponent<LevelButton>().Setup((i+1).ToString());
+                levelIcon = Instantiate(completedLevelPrefab, levelButtons[i].transform);
+                levelIcon.GetComponent<LevelButton>().Setup((i+1).ToString());
                 tmpBtn.interactable = true;
                 int levelIndex = i; // Локальная копия для использования в лямбда-функции
                 tmpBtn.onClick.AddListener(() => LoadLevel(levelIndex));
@@ -42,7 +43,7 @@ public class LevelManager : MonoBehaviour
             }
             else if (i == levelsCompleted)
             {
-                Instantiate(currentLevelPrefab, levelButtons[i].transform);
+                levelIcon = Instantiate(currentLevelPrefab, levelButtons[i].transform);
                 tmpBtn.interactable = true;
                 int levelIndex = i; // Локальная копия для использования в лямбда-функции
                 tmpBtn.onClick.AddListener(() => LoadLevel(levelIndex));
@@ -50,7 +51,7 @@ public class LevelManager : MonoBehaviour
             }
             else
             {
-                Instantiate(uncompletedLevelPrefab, levelButtons[i].transform);
+                levelIcon = Instantiate(uncompletedLevelPrefab, levelButtons[i].transform);
                 tmpBtn.interactable = false;
                 
             }

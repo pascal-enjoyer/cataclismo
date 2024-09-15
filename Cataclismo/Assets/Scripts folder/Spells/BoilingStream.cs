@@ -5,7 +5,6 @@ using UnityEngine;
 public class BoilingStream : MonoBehaviour
 {
 
-    [SerializeField] private float _moveSpeed = 0.1f;
     [SerializeField] private Transform target;
     [SerializeField] private float delay = 2f;
     [SerializeField] private float timer = 0f;

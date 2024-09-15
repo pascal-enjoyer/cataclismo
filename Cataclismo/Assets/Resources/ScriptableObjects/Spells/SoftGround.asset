@@ -12,13 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b499d7a469cb1884593a609e7cb39ab3, type: 3}
   m_Name: SoftGround
   m_EditorClassIdentifier: 
-  spellName: Soft Ground
+  spellName: "\u041C\u044F\u0433\u043A\u0430\u044F \u0417\u0435\u043C\u043B\u044F"
   requiredElements:
   - {fileID: 11400000, guid: be2bf915be7996a4484814fdb92c6e14, type: 2}
   - {fileID: 11400000, guid: c4ffc855e68f66843a055838ca877d13, type: 2}
   - {fileID: 11400000, guid: c4ffc855e68f66843a055838ca877d13, type: 2}
-  spellDescription: The opponent's feet sink into the waterlogged ground, slowing
-    down their melee attack.
+  spellDescription: "\u041D\u043E\u0433\u0438 \u043F\u0440\u043E\u0442\u0438\u0432\u043D\u0438\u043A\u0430
+    \u0443\u0432\u044F\u0437\u0430\u044E\u0442 \u0432 \u0437\u0430\u0431\u043E\u043B\u043E\u0447\u0435\u043D\u043D\u043E\u0439
+    \u0437\u0435\u043C\u043B\u0435, \u0437\u0430\u043C\u0435\u0434\u043B\u044F\u044F
+    \u0435\u0433\u043E \u0430\u0442\u0430\u043A\u0443 \u0432 \u0431\u043B\u0438\u0436\u043D\u0435\u043C
+    \u0431\u043E\u044E."
   spellType: 2
   isShield: 0
   spellDamage: 0

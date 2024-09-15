@@ -13,6 +13,16 @@ MonoBehaviour:
   m_Name: EpicChest
   m_EditorClassIdentifier: 
   chestIcon: {fileID: 21300000, guid: f5e1e458c37720e428981ca79e16b2df, type: 3}
-  chestName: Epic Chest
-  chestDescription: Chest that contains uncommon, rare and epic loot!
+  chestName: "\u042D\u043F\u0438\u0447\u0435\u0441\u043A\u0438\u0439 \u0421\u0443\u043D\u0434\u0443\u043A"
+  chestDescription: "\u0421\u0443\u043D\u0434\u0443\u043A, \u0445\u0440\u0430\u043D\u044F\u0449\u0438\u0439
+    \u0432 \u0441\u0435\u0431\u0435 \u043D\u0435\u043E\u0431\u044B\u0447\u043D\u044B\u0439,
+    \u0440\u0435\u0434\u043A\u0438\u0439 \u0438 \u044D\u043F\u0438\u0447\u0435\u0441\u043A\u0438\u0439
+    \u043B\u0443\u0442!"
   chestCost: 100
+  rarityProbabilitiesList:
+  - probability: 80
+    rarity: 1
+  - probability: 15
+    rarity: 2
+  - probability: 5
+    rarity: 3

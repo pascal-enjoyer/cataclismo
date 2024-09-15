@@ -41,3 +41,9 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: steam explosion
+    uniqueID: 2099037861
+    locked: 0
+  - name: swamp fog
+    uniqueID: 3755352571
+    locked: 0

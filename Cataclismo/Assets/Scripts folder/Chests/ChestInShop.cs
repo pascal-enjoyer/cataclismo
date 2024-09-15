@@ -1,14 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
-[System.Serializable]
-public class RarityProbability
-{
-    public float probability;
-    public ItemRarity rarity;
-}
 
 public class ChestInShop : MonoBehaviour
 {
@@ -17,11 +12,6 @@ public class ChestInShop : MonoBehaviour
 
     public Chest chest;
 
-
-    public string ChestDescription => chest.chestDescription;
-    public string ChestName => chest.chestName;
-    public int ChestCost => chest.chestCost;
-    public Sprite ChestIcon => chest.chestIcon;
 
     public Image chestIconImage;
     public Text chestNameText;
@@ -40,24 +30,7 @@ public class ChestInShop : MonoBehaviour
 
     public InventoryItem droppedItem;
 
-
-    public void Start()
-    {
-        allVariants = GameManager.inventory.templates;
-
-        itemRarityVariants = new Dictionary<float, ItemRarity>();
-        foreach (RarityProbability rp in rarityProbabilitiesList)
-        {
-            itemRarityVariants.Add(rp.probability, rp.rarity);
-        }
-        if (itemRarityVariants == null || itemRarityVariants.Count == 0)
-        {
-            SetDefaultRarityProbabilities();
-        }
-        FilterLootVariants();
-        SetupChests();
-        buyChestButton.onClick.AddListener(OpenChest);
-    }
+    public UnityEvent<InventoryItem> OnItemDropped;
 
     public void FilterLootVariants()
     {
@@ -87,18 +60,34 @@ public class ChestInShop : MonoBehaviour
         }
     }
 
-    public void SetupChests()
+    public void SetupChests(Chest chest)
     {
-        chestIconImage.sprite = ChestIcon;
-        chestNameText.text = ChestName;
-        chestCostText.text = ChestCost.ToString();
-        chestDescriptionText.text = ChestDescription;
+        this.chest = chest;
+        chestIconImage.sprite = chest.chestIcon;
+        chestNameText.text = chest.chestName;
+        chestCostText.text = chest.chestCost.ToString();
+        chestDescriptionText.text = chest.chestDescription;
+
+        allVariants = GameManager.inventory.templates;
+        itemRarityVariants = new Dictionary<float, ItemRarity>();
+        rarityProbabilitiesList = chest.rarityProbabilitiesList;
+
+        foreach (RarityProbability rp in rarityProbabilitiesList)
+        {
+            itemRarityVariants.Add(rp.probability, rp.rarity);
+        }
+        if (itemRarityVariants == null || itemRarityVariants.Count == 0)
+        {
+            SetDefaultRarityProbabilities();
+        }
+        FilterLootVariants();
+        buyChestButton.onClick.AddListener(OpenChest);
     }
     public void OpenChest()
     {
-        if (GameManager.playerEconomic.diamonds - ChestCost >= 0)
+        if (GameManager.playerEconomic.diamonds - chest.chestCost >= 0)
         {
-            GameManager.playerEconomic.GainDiamonds(-ChestCost);
+            GameManager.playerEconomic.GainDiamonds(-chest.chestCost);
             if (currentChestLootVariants == null || currentChestLootVariants.Count == 0)
             {
                 Debug.LogWarning("Ќет доступных вариантов лута в этом сундуке.");
@@ -113,8 +102,10 @@ public class ChestInShop : MonoBehaviour
             ItemRarity itemRarity = GetRandomRarity();
 
             // ƒобавл€ем предмет в инвентарь игрока с выбранной редкостью
-            GameManager.inventory.AddItem(new InventoryItem(randomItem, LootManager.GenerateBonusValueByRarity(itemRarity), itemRarity));
+            droppedItem = new InventoryItem(randomItem, LootManager.GenerateBonusValueByRarity(itemRarity), itemRarity);
+            GameManager.inventory.AddItem(droppedItem);
 
+            OnItemDropped.Invoke(droppedItem);
             Debug.Log($"¬ы открыли сундук и получили: {randomItem.itemName} с редкостью {itemRarity}");
         }
         
@@ -151,4 +142,5 @@ public class ChestInShop : MonoBehaviour
         // ≈сли ничего не выбралось (пограничный случай), возвращаем наименьшую редкость
         return ItemRarity.Common;
     }
+
 }

@@ -22,5 +22,6 @@ public class ClearPlayerData : MonoBehaviour
     public void InfinityMoney(int amount)
     {
         GameManager.playerEconomic.GainMoney(amount);
+        GameManager.playerEconomic.GainDiamonds(amount);
     }
 }
