@@ -79,7 +79,7 @@ public class ItemUI : MonoBehaviour
             ItemInfoWindow infoWindow = InventoryUI.itemInfoWindowPrefab.GetComponent<ItemInfoWindow>();
             if (infoWindow != null)
             {
-                GameObject gameObject = Instantiate(InventoryUI.itemInfoWindowPrefab, inventoryParent);
+                GameObject gameObject = Instantiate(InventoryUI.itemInfoWindowPrefab, inventoryParent.GetComponent<InventoryUI>().canvas);
                 ItemInfoWindow itemInfoWindow = gameObject.GetComponent<ItemInfoWindow>();
                 itemInfoWindow.FillWindow(item);
                 itemInfoWindow.inventoryUI = InventoryUI;

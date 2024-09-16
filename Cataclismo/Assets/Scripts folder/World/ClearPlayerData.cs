@@ -24,4 +24,10 @@ public class ClearPlayerData : MonoBehaviour
         GameManager.playerEconomic.GainMoney(amount);
         GameManager.playerEconomic.GainDiamonds(amount);
     }
+
+    public void InfinityExp(int amount )
+    {
+
+        GameManager.playerEconomic.GainExperience(amount);
+    }
 }

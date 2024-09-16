@@ -33,8 +33,8 @@ RectTransform:
   m_Father: {fileID: 8024215988363665501}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.65, y: 0.1}
-  m_AnchorMax: {x: 1, y: 0.9}
+  m_AnchorMin: {x: 0.65, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -68,7 +68,7 @@ MonoBehaviour:
       m_Calls: []
   m_Sprite: {fileID: 21300000, guid: bd8f2971d2fc01446a882be9c1df2047, type: 3}
   m_Type: 0
-  m_PreserveAspect: 0
+  m_PreserveAspect: 1
   m_FillCenter: 1
   m_FillMethod: 4
   m_FillAmount: 1
@@ -257,6 +257,9 @@ MonoBehaviour:
   rarityProbabilitiesList: []
   itemTypeVariants: 
   itemBonusTypeVariants: 
+  OnItemDropped:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &8024215987255767783
 GameObject:
   m_ObjectHideFlags: 0
@@ -529,8 +532,8 @@ RectTransform:
   m_Father: {fileID: 8024215986968204842}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.4, y: 0.05}
-  m_AnchorMax: {x: 0.6, y: 0.25}
+  m_AnchorMin: {x: 0.4, y: 0.05052083}
+  m_AnchorMax: {x: 0.70443213, y: 0.2812084}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}

@@ -7,7 +7,7 @@ public class InventoryUI : MonoBehaviour
 {
     public Inventory inventory;
     public GameObject itemUIPrefab; // Префаб ячейки предмета
-
+    public Transform canvas;
     public GameObject itemInfoWindowPrefab;
     public Transform contentPanel; // Панель для добавления элементов
     public GridLayoutGroup gridLayoutGroup; // Компонент Grid Layout Group

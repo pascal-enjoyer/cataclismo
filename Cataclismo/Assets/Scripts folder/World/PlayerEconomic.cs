@@ -25,6 +25,7 @@ public class PlayerEconomic : MonoBehaviour
     private void Start()
     {
         OnPlayerEconomicChanged.AddListener(SavePlayerEconomy);
+        
 
         LoadPlayerEconomy();
         Debug.Log($"Player Level {PlayerLevel}, exp {currentExperience}/{experienceToNextPlayerLevel}, {coins} coins, {diamonds} diamonds");
@@ -34,18 +35,19 @@ public class PlayerEconomic : MonoBehaviour
     {
         if (PlayerLevel < maxPlayerLevel)
         {
-            if (currentExperience + exp >= experienceToNextPlayerLevel)
+            currentExperience += exp;
+            while (currentExperience >= experienceToNextPlayerLevel)
             {
                 PlayerLevel++;
-                currentExperience = (exp + currentExperience) - experienceToNextPlayerLevel;
+                currentExperience -= experienceToNextPlayerLevel;
                 experienceToNextPlayerLevel = (int)(experienceToNextPlayerLevel * nextLevelExpMultiplier);
+
                 GainDiamonds(PlayerLevel * 10);
+
                 OnPlayerLevelChanged.Invoke();
+
             }
-            else
-            {
-                currentExperience += exp;
-            }
+
         }
         else
         {
@@ -73,6 +75,7 @@ public class PlayerEconomic : MonoBehaviour
         PlayerPrefs.SetInt(DiamondsKey, diamonds);
 
         PlayerPrefs.Save();
+        LoadPlayerEconomy();
     }
 
     public void LoadPlayerEconomy()
