@@ -75,9 +75,8 @@ public class InventoryUI : MonoBehaviour
             }
 
         }
-
-
         LayoutRebuilder.ForceRebuildLayoutImmediate(contentPanel.GetComponent<RectTransform>());
+
     }
 
     public void EquipItem(InventoryItem tempItem)
@@ -88,19 +87,18 @@ public class InventoryUI : MonoBehaviour
             {
                 if (slot.equipedItem != null)
                 {
-                    slot.equipedItem.GetComponent<ItemUI>().item.isEquiped = false;
+                    inventory.TakeOffItem(slot.equipedItem.GetComponent<ItemUI>().item);
 
                 }
-                tempItem.isEquiped = true;
+                inventory.EquipItem(tempItem);  
             }
         }
-        RefreshInventoryUI();
+
     }
 
     public void TakeOffItem(InventoryItem tempItem)
     {
-        tempItem.isEquiped = false;
-        RefreshInventoryUI();
+        inventory.TakeOffItem(tempItem);
     }
 
     public void EnableBlackSmith()

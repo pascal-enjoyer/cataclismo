@@ -19,14 +19,13 @@ public class GameLevelManager : MonoBehaviour
     {
         // Получаем текущий уровень из PlayerPrefs
         int currentLevel = PlayerPrefs.GetInt("CurrentLevel", 0);
-
-        enemyTransform.GetComponent<ActiveEnemy>().enemy = enemies[currentLevel];
+            enemyTransform.GetComponent<ActiveEnemy>().enemy = enemies[currentLevel % enemies.Length];
         enemyTransform.GetComponent<ActiveEnemy>().RefreshEnemyStats();
         // Устанавливаем фон для текущего уровня
-        backgroundRenderer.sprite = levelBackgrounds[currentLevel];
-
+            backgroundRenderer.sprite = levelBackgrounds[currentLevel % levelBackgrounds.Length];
         // Спавним врага для текущего уровня
-        GameObject enemyGO = Instantiate(enemyPrefabs[currentLevel], enemyTransform);
+        GameObject enemyGO;
+            enemyGO = Instantiate(enemyPrefabs[currentLevel % enemyPrefabs.Length], enemyTransform);
         enemyTransform.GetComponent<ActiveEnemy>().OnEnemyDied.AddListener(CompleteCurrentLevel);
         enemyTransform.GetComponent <ActiveEnemy>().EnemyGameobject = enemyGO;
         enemyTransform.GetComponent<ActiveEnemy>().OnEnemyDied.AddListener(canvas.GetComponent<FightCanvasManager>().WinLevelSpawn);

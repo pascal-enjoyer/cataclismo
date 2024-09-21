@@ -142,7 +142,22 @@ public class Inventory : MonoBehaviour
         OnItemAdded.Invoke();
     }
 
+    public void TakeOffItem(InventoryItem item)
+    {
+        item.isEquiped = false;
+        SaveInventory();
 
+        OnItemAdded.Invoke();
+    }
+
+    public void EquipItem(InventoryItem item)
+    {
+
+        item.isEquiped = true;
+        SaveInventory();
+
+        OnItemAdded.Invoke();
+    }
     public void ClearSave()
     {
         items.Clear();

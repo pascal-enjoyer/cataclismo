@@ -24,13 +24,8 @@ public class SnapToElement : MonoBehaviour, IBeginDragHandler, IEndDragHandler
         // Привязываем событие изменения позиции ScrollRect
         scrollRect.onValueChanged.AddListener(OnScrollValueChanged);
 
-        // Создаем панели наложения для каждого элемента и добавляем их в массив
+        // Массив для хранения созданных панелей (null, если панель удалена)
         overlays = new GameObject[content.childCount];
-        for (int i = 0; i < content.childCount; i++)
-        {
-            GameObject overlay = Instantiate(overlayPrefab, content.GetChild(i));  // Создаем панель как дочерний элемент
-            overlays[i] = overlay;
-        }
 
         // При старте нужно затенить все элементы, кроме первого
         SetOverlayVisibility(0);
@@ -115,11 +110,24 @@ public class SnapToElement : MonoBehaviour, IBeginDragHandler, IEndDragHandler
         {
             if (i == activeIndex)
             {
+                // Если панель была удалена, создаем ее заново
+                if (overlays[i] == null)
+                {
+                    overlays[i] = Instantiate(overlayPrefab, content.GetChild(i));
+                }
                 StartCoroutine(FadeOutOverlay(overlays[i])); // Для текущего элемента панель исчезает
             }
             else
             {
-                StartCoroutine(FadeInOverlay(overlays[i])); // Для остальных элементов панель видна
+                if (overlays[i] != null) // Если панель существует, она будет затемнена
+                {
+                    StartCoroutine(FadeInOverlay(overlays[i]));
+                }
+                else // Если панель была удалена, создаем заново и затемняем
+                {
+                    overlays[i] = Instantiate(overlayPrefab, content.GetChild(i));
+                    StartCoroutine(FadeInOverlay(overlays[i]));
+                }
             }
         }
     }
@@ -141,6 +149,9 @@ public class SnapToElement : MonoBehaviour, IBeginDragHandler, IEndDragHandler
 
         color.a = 0f;
         overlayImage.color = color;  // Обновляем прозрачность до конца
+
+        // Удаляем панель после завершения анимации
+        Destroy(overlay);
     }
 
     // Плавное появление панели
