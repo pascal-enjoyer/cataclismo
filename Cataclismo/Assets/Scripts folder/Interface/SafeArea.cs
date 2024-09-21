@@ -4,9 +4,13 @@ using UnityEngine;
 
 public class SafeArea : MonoBehaviour
 {
+    public RectTransform screenFinalSize;
+    public float safeAreaHeight;
+    public float safeAreaWidth;
+
     private void Start()
     {
-        var rectTransform = GetComponent<RectTransform>();
+        screenFinalSize = GetComponent<RectTransform>();
         var safeArea = Screen.safeArea;
         var anchorMin = safeArea.position;
         var anchorMax = anchorMin + safeArea.size;
@@ -14,8 +18,8 @@ public class SafeArea : MonoBehaviour
         anchorMin.y /= Screen.height;
         anchorMax.x /= Screen.width;
         anchorMax.y /= Screen.height;
-        rectTransform.anchorMin = anchorMin;
-        rectTransform.anchorMax = anchorMax;
+        screenFinalSize.anchorMin = anchorMin;
+        screenFinalSize.anchorMax = anchorMax;
     }
 
 }

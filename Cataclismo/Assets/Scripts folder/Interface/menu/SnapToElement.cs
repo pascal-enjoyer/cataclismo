@@ -1,6 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -9,25 +7,40 @@ public class SnapToElement : MonoBehaviour, IBeginDragHandler, IEndDragHandler
 {
     public ScrollRect scrollRect;       // Сам ScrollRect
     public RectTransform content;       // Контейнер с элементами
+    public GameObject overlayPrefab;    // Префаб панели наложения
     public float snapSpeed = 5f;        // Скорость привязки
     public float snapThreshold = 0.2f;  // Порог для начала привязки
     public float smoothTime = 0.3f;     // Время для плавного перехода
+    public float fadeDuration = 0.5f;   // Время исчезновения панели
 
     private bool isSnapping = false;
     private Vector2 targetNormalizedPosition;
     private Vector2 velocity = Vector2.zero;  // Переменная для скорости сглаживания
+    private GameObject[] overlays;  // Массив объектов панелей наложения
+    private int previousIndex = -1;  // Переменная для хранения предыдущего выбранного индекса
 
     void Start()
     {
         // Привязываем событие изменения позиции ScrollRect
         scrollRect.onValueChanged.AddListener(OnScrollValueChanged);
+
+        // Создаем панели наложения для каждого элемента и добавляем их в массив
+        overlays = new GameObject[content.childCount];
+        for (int i = 0; i < content.childCount; i++)
+        {
+            GameObject overlay = Instantiate(overlayPrefab, content.GetChild(i));  // Создаем панель как дочерний элемент
+            overlays[i] = overlay;
+        }
+
+        // При старте нужно затенить все элементы, кроме первого
+        SetOverlayVisibility(0);
     }
 
     public void OnBeginDrag(PointerEventData eventData)
     {
         if (isSnapping)
         {
-            StopAllCoroutines(); // Остановим любое текущее с snapping
+            StopAllCoroutines(); // Остановим любое текущее snapping
             isSnapping = false;
         }
     }
@@ -86,5 +99,66 @@ public class SnapToElement : MonoBehaviour, IBeginDragHandler, IEndDragHandler
         // Устанавливаем точную позицию, когда привязка завершена
         scrollRect.normalizedPosition = targetPosition;
         isSnapping = false;
+
+        // Только если элемент действительно изменился, обновляем панели наложения
+        if (closestIndex != previousIndex)
+        {
+            SetOverlayVisibility(closestIndex);
+            previousIndex = closestIndex;  // Сохраняем текущий индекс как предыдущий
+        }
+    }
+
+    // Метод для управления панелями наложения
+    private void SetOverlayVisibility(int activeIndex)
+    {
+        for (int i = 0; i < overlays.Length; i++)
+        {
+            if (i == activeIndex)
+            {
+                StartCoroutine(FadeOutOverlay(overlays[i])); // Для текущего элемента панель исчезает
+            }
+            else
+            {
+                StartCoroutine(FadeInOverlay(overlays[i])); // Для остальных элементов панель видна
+            }
+        }
+    }
+
+    // Плавное исчезновение панели
+    private IEnumerator FadeOutOverlay(GameObject overlay)
+    {
+        float elapsedTime = 0f;
+        Image overlayImage = overlay.GetComponent<Image>();
+        Color color = overlayImage.color;
+
+        while (elapsedTime < fadeDuration)
+        {
+            elapsedTime += Time.deltaTime;
+            color.a = Mathf.Lerp(1f, 0f, elapsedTime / fadeDuration);  // Прозрачность от 1 до 0
+            overlayImage.color = color;
+            yield return null;
+        }
+
+        color.a = 0f;
+        overlayImage.color = color;  // Обновляем прозрачность до конца
+    }
+
+    // Плавное появление панели
+    private IEnumerator FadeInOverlay(GameObject overlay)
+    {
+        float elapsedTime = 0f;
+        Image overlayImage = overlay.GetComponent<Image>();
+        Color color = overlayImage.color;
+
+        while (elapsedTime < fadeDuration)
+        {
+            elapsedTime += Time.deltaTime;
+            color.a = Mathf.Lerp(0f, 1f, elapsedTime / fadeDuration);  // Прозрачность от 0 до 1
+            overlayImage.color = color;
+            yield return null;
+        }
+
+        color.a = 1f;
+        overlayImage.color = color;  // Обновляем прозрачность до конца
     }
 }
