@@ -27,3 +27,5 @@ MonoBehaviour:
   duration: 0
   slowingDownPercentage: 0
   elementalStormBoost: 0
+  isReplaceable: 1
+  isUIObject: 0

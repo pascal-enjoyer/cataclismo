@@ -17,6 +17,9 @@ public class Spell : ScriptableObject
 
     public float elementalStormBoost;
 
+    public bool isReplaceable;
+    public bool isUIObject;
+
 }
 public enum SpellType
 {

@@ -5490,9 +5490,9 @@ MonoBehaviour:
   overlayPrefab: {fileID: 3660229804868842468, guid: bc291f9dfdd93c74382dc80a3b5e4dd0,
     type: 3}
   snapSpeed: 15
-  snapThreshold: 1
   smoothTime: 0.3
   fadeDuration: 0.5
+  swipeThreshold: 0.15
 --- !u!1 &1250366490
 GameObject:
   m_ObjectHideFlags: 0

@@ -9,15 +9,16 @@ public class SnapToElement : MonoBehaviour, IBeginDragHandler, IEndDragHandler
     public RectTransform content;       // Контейнер с элементами
     public GameObject overlayPrefab;    // Префаб панели наложения
     public float snapSpeed = 5f;        // Скорость привязки
-    public float snapThreshold = 0.2f;  // Порог для начала привязки
     public float smoothTime = 0.3f;     // Время для плавного перехода
     public float fadeDuration = 0.5f;   // Время исчезновения панели
+    public float swipeThreshold = 0.5f; // Процент, который нужно пролистать для смены страницы (0.5 = 50%)
 
     private bool isSnapping = false;
     private Vector2 targetNormalizedPosition;
     private Vector2 velocity = Vector2.zero;  // Переменная для скорости сглаживания
     private GameObject[] overlays;  // Массив объектов панелей наложения
     private int previousIndex = -1;  // Переменная для хранения предыдущего выбранного индекса
+    private Vector2 startDragPosition;
 
     void Start()
     {
@@ -27,8 +28,14 @@ public class SnapToElement : MonoBehaviour, IBeginDragHandler, IEndDragHandler
         // Массив для хранения созданных панелей (null, если панель удалена)
         overlays = new GameObject[content.childCount];
 
-        // При старте нужно затенить все элементы, кроме первого
-        SetOverlayVisibility(0);
+        scrollRect.normalizedPosition = new Vector2(0, 0);  // Начальная позиция
+
+        // При старте затеняем панели для всех элементов, кроме активного
+        SetOverlayVisibility(0, true);  // true - пропускаем затухание для активной страницы
+
+        // Устанавливаем плавное приведение к первой позиции после старта без вызова затухания для активной страницы
+        previousIndex = 0;  // Устанавливаем первый элемент как активный
+        StartCoroutine(SnapToClosestElement(false));  // false - пропуск проверки перелистывания
     }
 
     public void OnBeginDrag(PointerEventData eventData)
@@ -38,13 +45,14 @@ public class SnapToElement : MonoBehaviour, IBeginDragHandler, IEndDragHandler
             StopAllCoroutines(); // Остановим любое текущее snapping
             isSnapping = false;
         }
+        startDragPosition = scrollRect.normalizedPosition;  // Запоминаем начальную позицию при начале свайпа
     }
 
     public void OnEndDrag(PointerEventData eventData)
     {
         if (!isSnapping)
         {
-            StartCoroutine(SnapToClosestElement());
+            StartCoroutine(SnapToClosestElement(true));  // true - проверка перелистывания после драга
         }
     }
 
@@ -54,37 +62,38 @@ public class SnapToElement : MonoBehaviour, IBeginDragHandler, IEndDragHandler
         targetNormalizedPosition = normalizedPosition;
     }
 
-    private IEnumerator SnapToClosestElement()
+    private IEnumerator SnapToClosestElement(bool checkSwipe)
     {
         isSnapping = true;
 
         // Определяем количество элементов и их позиции
         int totalElements = content.childCount;
+        float currentPosY = scrollRect.normalizedPosition.y;
+        float dragDifference = currentPosY - startDragPosition.y;
 
-        // Рассчитываем ближайший элемент на основе текущей позиции ScrollRect
-        float closestDistance = Mathf.Infinity;
-        int closestIndex = 0;
-
-        for (int i = 0; i < totalElements; i++)
+        // Определяем, достаточно ли было свайпа для перелистывания
+        int closestIndex = previousIndex;
+        if (checkSwipe && Mathf.Abs(dragDifference) >= swipeThreshold / (totalElements - 1))
         {
-            // Нормализованная позиция каждого элемента
-            float elementNormalizedPosY = (float)i / (totalElements - 1);
-
-            // Вычисляем расстояние между текущей нормализованной позицией ScrollRect и элементом
-            float distance = Mathf.Abs(targetNormalizedPosition.y - elementNormalizedPosY);
-
-            // Находим ближайший элемент
-            if (distance < closestDistance)
+            if (dragDifference > 0 && previousIndex < totalElements - 1)
             {
-                closestDistance = distance;
-                closestIndex = i;
+                closestIndex = previousIndex + 1;  // Перелистываем на следующую страницу
             }
+            else if (dragDifference < 0 && previousIndex > 0)
+            {
+                closestIndex = previousIndex - 1;  // Перелистываем на предыдущую страницу
+            }
+        }
+        else
+        {
+            // Найти ближайшую страницу при обычной прокрутке
+            closestIndex = Mathf.RoundToInt(currentPosY * (totalElements - 1));
         }
 
         // Рассчитываем нормализованную позицию ScrollRect для привязки к ближайшему элементу
         Vector2 targetPosition = new Vector2(targetNormalizedPosition.x, (float)closestIndex / (totalElements - 1));
 
-        // Плавный переход с использованием Lerp или SmoothDamp
+        // Плавный переход с использованием Lerp
         while (Vector2.Distance(scrollRect.normalizedPosition, targetPosition) > 0.001f)
         {
             scrollRect.normalizedPosition = Vector2.Lerp(scrollRect.normalizedPosition, targetPosition, snapSpeed * Time.deltaTime);
@@ -104,30 +113,28 @@ public class SnapToElement : MonoBehaviour, IBeginDragHandler, IEndDragHandler
     }
 
     // Метод для управления панелями наложения
-    private void SetOverlayVisibility(int activeIndex)
+    private void SetOverlayVisibility(int activeIndex, bool isFirstStart = false)
     {
         for (int i = 0; i < overlays.Length; i++)
         {
             if (i == activeIndex)
             {
-                // Если панель была удалена, создаем ее заново
+                if (!isFirstStart)  // Если это не первый запуск, убираем панель для активной страницы
+                {
+                    if (overlays[i] == null)
+                    {
+                        overlays[i] = Instantiate(overlayPrefab, content.GetChild(i));
+                    }
+                    StartCoroutine(FadeOutOverlay(overlays[i])); // Для текущего элемента панель исчезает
+                }
+            }
+            else
+            {
                 if (overlays[i] == null)
                 {
                     overlays[i] = Instantiate(overlayPrefab, content.GetChild(i));
                 }
-                StartCoroutine(FadeOutOverlay(overlays[i])); // Для текущего элемента панель исчезает
-            }
-            else
-            {
-                if (overlays[i] != null) // Если панель существует, она будет затемнена
-                {
-                    StartCoroutine(FadeInOverlay(overlays[i]));
-                }
-                else // Если панель была удалена, создаем заново и затемняем
-                {
-                    overlays[i] = Instantiate(overlayPrefab, content.GetChild(i));
-                    StartCoroutine(FadeInOverlay(overlays[i]));
-                }
+                StartCoroutine(FadeInOverlay(overlays[i]));  // Для остальных панелей задаем затемнение
             }
         }
     }

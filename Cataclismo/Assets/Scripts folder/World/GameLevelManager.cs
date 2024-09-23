@@ -16,7 +16,7 @@ public class GameLevelManager : MonoBehaviour
     public Transform canvas;
 
     void Start()
-    {
+    { 
         // Получаем текущий уровень из PlayerPrefs
         int currentLevel = PlayerPrefs.GetInt("CurrentLevel", 0);
             enemyTransform.GetComponent<ActiveEnemy>().enemy = enemies[currentLevel % enemies.Length];
