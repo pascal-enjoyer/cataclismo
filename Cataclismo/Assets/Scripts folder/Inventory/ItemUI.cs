@@ -15,6 +15,8 @@ public class ItemUI : MonoBehaviour
     public bool isTaked = false;
     public bool isResult = false;
 
+    
+
     public enum ItemUIStage
     {
         none,

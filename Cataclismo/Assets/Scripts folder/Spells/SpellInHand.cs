@@ -17,7 +17,8 @@ public class SpellInHand : MonoBehaviour
     {
         enemy = playerInfo.currentEnemy.GetComponent<ActiveEnemy>();
         sumAttackDamage = spell.spellDamage + playerInfo.itemAttackBonus;
-        if (playerInfo.currentElementalStormBoost != null && playerInfo.currentElementalStormBoost != gameObject && spell.isShield == false)
+        if (playerInfo.currentElementalStormBoost != null && playerInfo.currentElementalStormBoost != gameObject && !transform.GetComponent<SoftGround>() 
+            && !transform.GetComponent<SwampFog>() && !transform.GetComponent<SteamExplosion>())
         {
             sumAttackDamage *= playerInfo.currentElementalStormBoost.GetComponent<SpellInHand>().spell.elementalStormBoost;
             playerInfo.currentElementalStormBoost.GetComponent<ElementalStorm>().DestroyElementalStorm();

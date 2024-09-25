@@ -15,7 +15,7 @@ public class GameManager : MonoBehaviour
 
     void Awake()
     {
-        Application.targetFrameRate = 60;
+        Application.targetFrameRate = Mathf.Max(60, Screen.currentResolution.refreshRate);
         if (Instance == null)
         {   
             inventory = transform.GetComponent<Inventory>();

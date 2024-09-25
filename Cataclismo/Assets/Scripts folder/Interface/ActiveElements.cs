@@ -136,75 +136,36 @@ public class ActiveElements : MonoBehaviour
         {
             if (tempSpell != null)
             {
-                if (tempSpell.GetComponent<SpellInHand>().spell == spell)
+                if (tempSpell.GetComponent<SpellInHand>().spell == spell || (tempSpell.GetComponent<SpellInHand>().spell.isShield && spell.isShield))
                 {
-                    if (spell.isReplaceable)
+                    if (spell.isReplaceable )
                     {
                         Destroy(tempSpell);
                     }
                 }
             }
         }
-            Transform positionToSpawn = spell.isUIObject ? transform.parent : player;
+
+        Transform positionToSpawn = spell.isUIObject ? transform.parent : player;
         usedSpell = Instantiate(spellPrefab, positionToSpawn);
         usedSpell.GetComponent<SpellInHand>().playerInfo = playerInfo;
         currentSpells.Add(usedSpell);
-        // сделать систему с щитами и бустами
-
-
-        /*        usedSpell = Instantiate(spellPrefab, player);
-
-                if (spell.spellType == SpellType.unique)
-                {
-                    if (playerInfo.currentElementalStormBoost == null)
-                    {
-                        usedSpell = Instantiate(spellPrefab, transform.parent);
-                        usedSpell.GetComponent<SpellInHand>().playerInfo = playerInfo;
-                        playerInfo.currentElementalStormBoost = usedSpell;
-
-                    }
-                }
-                else
-                {
-                    Debug.Log($"Ѕыло использовано {spell.spellName} закинание, тип атаки заклинани€ {spell.spellType},\nурон заклинани€ {spell.spellDamage}.");
-
-                    usedSpell = Instantiate(spellPrefab, player);
-                    usedSpell.GetComponent<SpellInHand>().playerInfo = playerInfo;
-                    if (spell.isShield)
-                    {
-                        Destroy(playerInfo.currentShield);
-                        playerInfo.currentShield = usedSpell;
-                    }
-                    if (usedSpell.GetComponent<SoftGround>() != null)
-                    {
-                        if (playerInfo.currentSoftGround != null)
-                        {
-                            playerInfo.currentSoftGround.GetComponent<SoftGround>().BuffEnemyAttackSpeedBack();
-                            Destroy(playerInfo.currentSoftGround);
-                            playerInfo.currentSoftGround = usedSpell;
-                        }
-                        else
-                        {
-                            playerInfo.currentSoftGround = usedSpell;
-                        }
-                    }
-
-                    if (usedSpell.GetComponent<SwampFog>() != null)
-                    {
-                        if (playerInfo.currentSwampFog != null)
-                        {
-                            playerInfo.currentSwampFog.GetComponent<SwampFog>().DestroyFog();
-
-                            playerInfo.currentSwampFog = usedSpell;
-                        }
-                        else
-                        {
-                            playerInfo.currentSwampFog = usedSpell;
-                        }
-
-                        usedSpell.GetComponent<SwampFog>().StartFog();
-                    }
-                }*/
+        if (spell.isShield)
+        {
+            playerInfo.currentShield = usedSpell;
+        }
+        else if (spell.spellType == SpellType.unique)
+        {
+            playerInfo.currentElementalStormBoost = usedSpell;
+        }
+        else if (usedSpell.GetComponent<SoftGround>() != null)
+        {
+            playerInfo.currentSoftGround = usedSpell;
+        }     
+        else if (usedSpell.GetComponent<SwampFog>() != null)
+        {
+            playerInfo.currentSwampFog = usedSpell;
+        }
 
     }
 
