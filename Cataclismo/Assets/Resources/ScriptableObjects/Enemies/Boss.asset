@@ -19,3 +19,8 @@ MonoBehaviour:
   maxAtackSpeed: 100
   currentDamage: 10
   maxDamage: 100
+  spellTypesResist:
+  - spellType: 0
+    ResistPercentage: 100
+  - spellType: 2
+    ResistPercentage: 50

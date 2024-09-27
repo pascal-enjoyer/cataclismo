@@ -27,6 +27,21 @@ public class SpellInHand : MonoBehaviour
         {
             transform.GetComponent<SoftGround>().StartSpell();
         }
+        if (enemy.ResistToSpells.ContainsKey(spell.spellType))
+        {
+            int tempResistPercentage = enemy.ResistToSpells[spell.spellType];
+            if (tempResistPercentage > 100)
+            {
+                tempResistPercentage = 100;
+
+            }
+            else if (tempResistPercentage < 0)
+            {
+                tempResistPercentage = 0; 
+            }
+            sumAttackDamage *= (100 -  tempResistPercentage);
+      
+        }
     }
 
     public void BoostSpell(float multiplier)

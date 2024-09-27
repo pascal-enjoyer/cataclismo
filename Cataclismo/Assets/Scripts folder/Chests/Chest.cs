@@ -10,10 +10,9 @@ public class Chest : ScriptableObject
     public string chestName;
     public string chestDescription;
     public int chestCost;
-
+    public Sprite chestBackground;
 
     public List<RarityProbability> rarityProbabilitiesList;
-    public Dictionary<float, ItemRarity> itemRarityVariants;
 
 }
 

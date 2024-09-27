@@ -25,6 +25,7 @@ public class ActiveEnemy : MonoBehaviour
     public bool isAttackLineRefresh = false;
 
     public bool isSwampFogged = false;
+    public Dictionary<SpellType, int> ResistToSpells;
 
     [SerializeField] public UnityEvent OnEnemyTakedDamage;
     [SerializeField] public UnityEvent OnEnemyDied;
@@ -38,6 +39,11 @@ public class ActiveEnemy : MonoBehaviour
         maxDamage = enemy.maxDamage;
         currentAttackSpeed = enemy.currentAtackSpeed;
         maxAttackSpeed = enemy.maxAtackSpeed;
+        ResistToSpells = new Dictionary<SpellType, int>();
+        foreach (SpellsResist spellsResist in enemy.spellTypesResist)
+        {
+            ResistToSpells.Add(spellsResist.spellType, spellsResist.ResistPercentage);
+        }
     }
 
     public void RefreshEnemyStats()

@@ -16,5 +16,14 @@ public class Enemy : ScriptableObject
     public float currentDamage;
     public float maxDamage;
 
+    public List<SpellsResist> spellTypesResist;
 
+
+}
+
+[System.Serializable]
+public class SpellsResist
+{
+    public SpellType spellType;
+    public int ResistPercentage;
 }

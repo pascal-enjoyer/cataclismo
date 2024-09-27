@@ -18,6 +18,7 @@ public class ChestInShop : MonoBehaviour
     public Text chestCostText;
     public Text chestDescriptionText;
     public Button buyChestButton;
+    public Image chestBackground;
 
     public List<TemplateItem> currentChestLootVariants;
     public List<TemplateItem> allVariants;
@@ -67,6 +68,7 @@ public class ChestInShop : MonoBehaviour
         chestNameText.text = chest.chestName;
         chestCostText.text = chest.chestCost.ToString();
         chestDescriptionText.text = chest.chestDescription;
+        chestBackground.sprite = chest.chestBackground;
 
         allVariants = GameManager.inventory.templates;
         itemRarityVariants = new Dictionary<float, ItemRarity>();

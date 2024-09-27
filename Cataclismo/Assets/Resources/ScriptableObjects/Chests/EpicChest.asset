@@ -19,6 +19,7 @@ MonoBehaviour:
     \u0440\u0435\u0434\u043A\u0438\u0439 \u0438 \u044D\u043F\u0438\u0447\u0435\u0441\u043A\u0438\u0439
     \u043B\u0443\u0442!"
   chestCost: 100
+  chestBackground: {fileID: 21300000, guid: 54c092bb88de5bd4ca3f425530c94690, type: 3}
   rarityProbabilitiesList:
   - probability: 80
     rarity: 1

@@ -20,6 +20,8 @@ public class SnapToElement : MonoBehaviour, IBeginDragHandler, IEndDragHandler
     private int previousIndex = -1;  // Переменная для хранения предыдущего выбранного индекса
     private Vector2 startDragPosition;
 
+    private const string PageIndexKey = "SavedPageIndex";  // Ключ для сохранения индекса страницы
+
     void Start()
     {
         // Привязываем событие изменения позиции ScrollRect
@@ -28,13 +30,15 @@ public class SnapToElement : MonoBehaviour, IBeginDragHandler, IEndDragHandler
         // Массив для хранения созданных панелей (null, если панель удалена)
         overlays = new GameObject[content.childCount];
 
-        scrollRect.normalizedPosition = new Vector2(0, 0);  // Начальная позиция
+        // Загружаем сохранённый индекс страницы
+        int savedIndex = PlayerPrefs.GetInt(PageIndexKey, 0);  // По умолчанию 0 (первая страница)
+        scrollRect.normalizedPosition = new Vector2(0, (float)savedIndex / (content.childCount - 1));  // Устанавливаем сохранённую позицию
 
-        // При старте затеняем панели для всех элементов, кроме активного
-        SetOverlayVisibility(0, true);  // true - пропускаем затухание для активной страницы
+        // Затеняем панели для всех элементов, кроме активного
+        SetOverlayVisibility(savedIndex, true);  // true - пропускаем затухание для активной страницы
 
-        // Устанавливаем плавное приведение к первой позиции после старта без вызова затухания для активной страницы
-        previousIndex = 0;  // Устанавливаем первый элемент как активный
+        // Устанавливаем плавное приведение к сохранённой позиции после старта
+        previousIndex = savedIndex;  // Устанавливаем сохранённый элемент как активный
         StartCoroutine(SnapToClosestElement(false));  // false - пропуск проверки перелистывания
     }
 
@@ -109,6 +113,10 @@ public class SnapToElement : MonoBehaviour, IBeginDragHandler, IEndDragHandler
         {
             SetOverlayVisibility(closestIndex);
             previousIndex = closestIndex;  // Сохраняем текущий индекс как предыдущий
+
+            // Сохраняем новый индекс страницы в PlayerPrefs
+            PlayerPrefs.SetInt(PageIndexKey, closestIndex);
+            PlayerPrefs.Save();
         }
     }
 
