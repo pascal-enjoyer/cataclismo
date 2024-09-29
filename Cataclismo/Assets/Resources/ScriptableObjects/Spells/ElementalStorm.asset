@@ -26,6 +26,6 @@ MonoBehaviour:
   spellDamage: 0
   duration: 0
   slowingDownPercentage: 0
-  elementalStormBoost: 1.25
+  elementalStormBoost: 25
   isReplaceable: 1
   isUIObject: 1

@@ -11,6 +11,8 @@ public class ActiveEnemy : MonoBehaviour
     public GameObject EnemyBarsPrefab;
     public Transform canvas;
 
+    private GameObject currentEnemybars;
+
     [SerializeField] private float currentHealth;
     [SerializeField] private float maxHealth;
 
@@ -33,21 +35,10 @@ public class ActiveEnemy : MonoBehaviour
     [SerializeField] public UnityEvent OnEnemyDied;
      
     [SerializeField] public bool isDead;
+
     public void Start()
     {
-        currentHealth = enemy.currentHealth;
-        maxHealth = enemy.maxHealth;
-        currentDamage = enemy.currentDamage;
-        maxDamage = enemy.maxDamage;
-        currentAttackSpeed = enemy.currentAtackSpeed;
-        maxAttackSpeed = enemy.maxAtackSpeed;
-        ResistToSpells = new Dictionary<SpellType, int>();
-        foreach (SpellsResist spellsResist in enemy.spellTypesResist)
-        {
-            ResistToSpells.Add(spellsResist.spellType, spellsResist.ResistPercentage);
-        }
-        GameObject tempenemyBars = Instantiate(EnemyBarsPrefab, canvas);
-        tempenemyBars.GetComponent<EnemyBars>().SetupEnemy(this);
+        RefreshEnemyStats();
     }
 
     public void RefreshEnemyStats()
@@ -56,10 +47,23 @@ public class ActiveEnemy : MonoBehaviour
         maxHealth = enemy.maxHealth;
         currentDamage = enemy.currentDamage;
         maxDamage = enemy.maxDamage;
+
+        currentAttackSpeed = enemy.currentAtackSpeed;
+        maxAttackSpeed = enemy.maxAtackSpeed;
+
+        ResistToSpells = new Dictionary<SpellType, int>();
+        foreach (SpellsResist spellsResist in enemy.spellTypesResist)
+        {
+            ResistToSpells.Add(spellsResist.spellType, spellsResist.ResistPercentage);
+        }
+        if (currentEnemybars != null)
+            Destroy(currentEnemybars);
+        currentEnemybars = Instantiate(EnemyBarsPrefab, canvas);
+        currentEnemybars.GetComponent<EnemyBars>().SetupEnemy(this);
     }
-    public void takeDamage(float damage)
+    public void takeDamage(int damage)
     {
-        float tempDmg = damage;
+        int tempDmg = damage;
         if (currentHealth - damage <= 0)
         {
             currentHealth = 0;

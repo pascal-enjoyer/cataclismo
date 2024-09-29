@@ -8,7 +8,7 @@ public class SpellInHand : MonoBehaviour
 {
     public Spell spell;
     public PlayerInfo playerInfo;
-    public float sumAttackDamage;
+    public int sumAttackDamage;
     public float boostMultiplier;
     public ActiveEnemy enemy;
 
@@ -20,7 +20,7 @@ public class SpellInHand : MonoBehaviour
         if (playerInfo.currentElementalStormBoost != null && playerInfo.currentElementalStormBoost != gameObject && !transform.GetComponent<SoftGround>() 
             && !transform.GetComponent<SwampFog>() && !transform.GetComponent<SteamExplosion>())
         {
-            sumAttackDamage *= playerInfo.currentElementalStormBoost.GetComponent<SpellInHand>().spell.elementalStormBoost;
+            sumAttackDamage = (int)(sumAttackDamage * playerInfo.currentElementalStormBoost.GetComponent<SpellInHand>().spell.elementalStormBoost)/100;
             playerInfo.currentElementalStormBoost.GetComponent<ElementalStorm>().DestroyElementalStorm();
         }
         if (transform.GetComponent<SoftGround>() != null)
@@ -39,12 +39,12 @@ public class SpellInHand : MonoBehaviour
             {
                 tempResistPercentage = 0; 
             }
-            sumAttackDamage *= ((100 -  tempResistPercentage)/100f);
+            sumAttackDamage = (sumAttackDamage * ((100 -  tempResistPercentage)))/100;
       
         }
     }
 
-    public void BoostSpell(float multiplier)
+    public void BoostSpell(int multiplier)
     {
         boostMultiplier *= multiplier;
     }

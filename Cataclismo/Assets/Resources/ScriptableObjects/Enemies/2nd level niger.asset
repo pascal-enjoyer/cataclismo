@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d082b8733876caa4ca53799d865e78a9, type: 3}
   m_Name: 2nd level niger
   m_EditorClassIdentifier: 
-  enemyName: niger
+  enemyName: "\u041E\u0431\u0440\u044B\u0433\u0430\u043D"
   currentHealth: 2000
   maxHealth: 2000
   currentAtackSpeed: 4

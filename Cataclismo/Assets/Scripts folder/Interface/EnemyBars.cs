@@ -20,12 +20,13 @@ public class EnemyBars : MonoBehaviour
     {
         this.enemy = enemy;
         enemyName.text = enemy.enemy.enemyName;
+        enemyHealthAmount.text = enemy.GetCurrentHealth().ToString();
         transform.position = Camera.main.WorldToScreenPoint(enemy.transform.position + new Vector3(0, enemy.transform.localScale.y * 2));
         enemy.OnEnemyTakedDamage.AddListener(RefreshHealthLine);
     }
     private void Update()
     {
-        if (enemy && !enemy.isDead)
+        if (enemy && !enemy.isDead && enemy.playerInfo.GetCurrentHealth() > 0)
         {
             if (!enemy.isAttackLineRefresh)
             {

@@ -15,8 +15,8 @@ public class PlayerInfo : MonoBehaviour
     [SerializeField] private float currentHealth;
 
     public UnityEvent OnPlayerGetDamage;
-    public float itemHealthBonus;
-    public float itemAttackBonus;
+    public int itemHealthBonus;
+    public int itemAttackBonus;
     
 
     public GameObject currentShield;

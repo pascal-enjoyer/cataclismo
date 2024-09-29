@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d082b8733876caa4ca53799d865e78a9, type: 3}
   m_Name: Boss
   m_EditorClassIdentifier: 
-  enemyName: Boss
+  enemyName: "\u041B\u0435\u0448\u0438\u0439"
   currentHealth: 1000
   maxHealth: 1000
   currentAtackSpeed: 5
