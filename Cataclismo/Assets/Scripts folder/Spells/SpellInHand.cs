@@ -39,7 +39,7 @@ public class SpellInHand : MonoBehaviour
             {
                 tempResistPercentage = 0; 
             }
-            sumAttackDamage *= (100 -  tempResistPercentage);
+            sumAttackDamage *= ((100 -  tempResistPercentage)/100f);
       
         }
     }

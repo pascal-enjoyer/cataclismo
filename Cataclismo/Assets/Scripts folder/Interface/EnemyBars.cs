@@ -7,46 +7,44 @@ using UnityEngine.UI;
 public class EnemyBars : MonoBehaviour
 {
     [SerializeField] private ActiveEnemy enemy;
-    [SerializeField] private Transform healthLine;
-    [SerializeField] private Transform attackBar;
+    [SerializeField] private Image healthLine;
+                    public Image attackLine;
+    public Text enemyName;
+    public Text enemyHealthAmount;
     [SerializeField] private float attackTime;
 
     [SerializeField] private float updateSpeedSeconds = 0.5f; // Скорость обновления полоски здоровья
-
     private Coroutine updateCoroutine;
 
-    private void Start()
+    public void SetupEnemy(ActiveEnemy enemy)
     {
+        this.enemy = enemy;
+        enemyName.text = enemy.enemy.enemyName;
+        transform.position = Camera.main.WorldToScreenPoint(enemy.transform.position + new Vector3(0, enemy.transform.localScale.y * 2));
         enemy.OnEnemyTakedDamage.AddListener(RefreshHealthLine);
     }
     private void Update()
     {
-        if (!enemy.isDead)
+        if (enemy && !enemy.isDead)
         {
-            transform.position = Camera.main.WorldToScreenPoint(enemy.transform.position + new Vector3(0, enemy.transform.localScale.y * 2));
-            if (enemy != null)
+            if (!enemy.isAttackLineRefresh)
             {
-                Image img = attackBar.GetComponent<Image>();
-                if (img != null)
-                {
-                    if (enemy.isAttackLineRefresh)
-                    {
-                        attackTime = 0;
-                        enemy.isAttackLineRefresh = false;
-                    }
-                    else
-                        attackTime += Time.deltaTime * enemy.currentAttackSpeedMultiplier;
+                attackTime += Time.deltaTime * enemy.currentAttackSpeedMultiplier;
+            }
+            else
+            {
+                attackTime = 0;
+                enemy.isAttackLineRefresh = false;
+            }
 
-                    img.fillAmount = attackTime / enemy.currentAttackSpeed;
-                    if (img.fillAmount >= 1)
-                    {
-                        img.fillAmount = 0;
-                        attackTime = 0;
-                        //тут атака
-                        enemy.attackPlayer();
-                    }
-                }
+            attackLine.fillAmount = attackTime / enemy.currentAttackSpeed;
 
+            if (attackLine.fillAmount >= 1)
+            {
+                attackLine.fillAmount = 0;
+                attackTime = 0;
+                //тут атака
+                enemy.attackPlayer();
             }
         }
     }
@@ -55,8 +53,8 @@ public class EnemyBars : MonoBehaviour
 
     public void RefreshHealthLine()
     {
-        Image img = healthLine.GetComponent<Image>();
-        if (img != null && enemy != null)
+        
+        if (healthLine != null && enemy != null)
         {
 
             if (updateCoroutine != null)
@@ -69,17 +67,18 @@ public class EnemyBars : MonoBehaviour
 
     private IEnumerator UpdateHealthBar()
     {
-        Image img = healthLine.GetComponent<Image>();
-        float preChangePercent = img.fillAmount;
+        
+        float preChangePercent = healthLine.fillAmount;
         float targetFillAmount = enemy.GetCurrentHealth() / enemy.GetMaxHealth();
         float elapsed = 0f;
+        enemyHealthAmount.text = enemy.GetCurrentHealth().ToString();
 
         while (elapsed < updateSpeedSeconds)
         {
             elapsed += Time.deltaTime;
-            img.fillAmount = Mathf.Lerp(preChangePercent, targetFillAmount, elapsed / updateSpeedSeconds);
+            healthLine.fillAmount = Mathf.Lerp(preChangePercent, targetFillAmount, elapsed / updateSpeedSeconds);
             yield return null;
         }
-        img.fillAmount = targetFillAmount;
+        healthLine.fillAmount = targetFillAmount;
     }
 }

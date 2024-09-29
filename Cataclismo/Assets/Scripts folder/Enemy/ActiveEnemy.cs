@@ -8,6 +8,8 @@ public class ActiveEnemy : MonoBehaviour
     public Enemy enemy;
     public PlayerInfo playerInfo;
     public GameObject EnemyGameobject;
+    public GameObject EnemyBarsPrefab;
+    public Transform canvas;
 
     [SerializeField] private float currentHealth;
     [SerializeField] private float maxHealth;
@@ -44,6 +46,8 @@ public class ActiveEnemy : MonoBehaviour
         {
             ResistToSpells.Add(spellsResist.spellType, spellsResist.ResistPercentage);
         }
+        GameObject tempenemyBars = Instantiate(EnemyBarsPrefab, canvas);
+        tempenemyBars.GetComponent<EnemyBars>().SetupEnemy(this);
     }
 
     public void RefreshEnemyStats()
