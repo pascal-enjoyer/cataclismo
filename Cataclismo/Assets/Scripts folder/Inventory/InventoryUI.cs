@@ -62,6 +62,7 @@ public class InventoryUI : MonoBehaviour
                         itemUi.Setup(item);
                         itemUi.InventoryUI = this;
                         eqSlot.equipedItem = eqSlotObject;
+                        itemUi.OnItemUIClicked.AddListener(OnInventoryItemClicked);
                     }
                 }
             }
@@ -72,6 +73,8 @@ public class InventoryUI : MonoBehaviour
                 itemUI.inventoryParent = transform;
                 itemUI.Setup(item);
                 itemUI.InventoryUI = this;
+
+                itemUI.OnItemUIClicked.AddListener(OnInventoryItemClicked);
             }
 
         }
@@ -106,6 +109,11 @@ public class InventoryUI : MonoBehaviour
         GameObject curBSmith = Instantiate(blacksmith, transform);
         curBSmith.GetComponent<MergeInventory>().inventoryUI = this;
 
+    }
+
+    public void OnInventoryItemClicked(ItemUI item)
+    {
+        Debug.Log(item.item.ItemName);
     }
     
 }

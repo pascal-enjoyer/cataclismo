@@ -10,20 +10,17 @@ public class ItemUI : MonoBehaviour
     public InventoryItem item;
     public Transform inventoryParent;
     public Image itemRarityBackground;
+
     public InventoryUI InventoryUI;
+
+    public UnityEvent<ItemUI> OnItemUIClicked;
+    /*
     public bool isInMerge = false;
     public bool isTaked = false;
-    public bool isResult = false;
+    public bool isResult = false;*/
 
     
 
-    public enum ItemUIStage
-    {
-        none,
-        IsInMerge,
-        IsTaked,
-        Result
-    };
 
     public void Setup(InventoryItem tempItem)
     {
@@ -37,12 +34,14 @@ public class ItemUI : MonoBehaviour
     
     public void OnButtonClick()
     {
+        OnItemUIClicked.Invoke(this);
+        /*
         if (isInMerge)
         {
             if (isResult)
             {
                 
-                ItemInfoWindow infoWindow = InventoryUI.itemInfoWindowPrefab.GetComponent<ItemInfoWindow>();
+*//*                ItemInfoWindow infoWindow = InventoryUI.itemInfoWindowPrefab.GetComponent<ItemInfoWindow>();
                 if (infoWindow != null)
                 {
                     GameObject gameObject = Instantiate(InventoryUI.itemInfoWindowPrefab, inventoryParent);
@@ -52,7 +51,7 @@ public class ItemUI : MonoBehaviour
                     itemInfoWindow.FillWindow(item);
                     itemInfoWindow.inventoryUI = InventoryUI;
 
-                }
+                }*//*
             }
             else if (!isTaked)
             {
@@ -87,7 +86,7 @@ public class ItemUI : MonoBehaviour
                 itemInfoWindow.inventoryUI = InventoryUI;
 
             }
-        }
+        }*/
     }
 
 }

@@ -1,3 +1,4 @@
+using JetBrains.Annotations;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -7,6 +8,8 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.Rendering;
 using UnityEngine.UI;   
+
+
 
 public class MergeInventory : MonoBehaviour
 {
@@ -27,6 +30,8 @@ public class MergeInventory : MonoBehaviour
     public List<InventoryItem> inventoryItems;
 
     public List<InventoryItem> mergeItems;
+    public List<ItemUI> SelectedItems;
+
     public Dictionary<InventoryItem, List<InventoryItem>> mergeResults; //до того как соберутся 3 элемента в один список,
     public InventoryItem mergeResult;                              //потом этот список по получившемуся айтему в другой список
 
@@ -44,7 +49,7 @@ public class MergeInventory : MonoBehaviour
         mergeButton.GetComponent<Button>().onClick.AddListener(OnMergeButtonClicked);
         
         OnMergeItemsChanged.AddListener(RefreshMergeSlots);
-        
+
     }
 
     public void RefreshInventoryUI()
@@ -60,17 +65,28 @@ public class MergeInventory : MonoBehaviour
             
             if (item.itemRarity != ItemRarity.Legendary)
             {
+
                     GameObject newItem = Instantiate(itemUIPrefab, contentPanel);
                     ItemUI itemUI = newItem.GetComponent<ItemUI>();
                     itemUI.inventoryParent = transform;
                     itemUI.Setup(item);
-                    itemUI.isInMerge = true;
-                    itemUI.isTaked = false;
+                itemUI.InventoryUI = inventoryUI; 
+                itemUI.OnItemUIClicked.RemoveAllListeners();
+                itemUI.OnItemUIClicked.AddListener(OnMergeItemClicked);
+
             }
         }
         // Обновите размер Content, чтобы подстроиться под количество элементов
         LayoutRebuilder.ForceRebuildLayoutImmediate(contentPanel.GetComponent<RectTransform>());
+        Debug.Log("inventoryRefreshded");
     }
+
+    //чел добавил 3 элемента
+    //добавляет следующий и эти три не должны отображаться
+    //обновляется полностью кроме них инвепнтарь
+    //результат уходит в список
+
+    
 
     public void BlockElementsByRarity()
     {
@@ -95,93 +111,84 @@ public class MergeInventory : MonoBehaviour
             Destroy(child.gameObject);
         }
 
-        if (mergeResultSlot.childCount >0)
+        if (mergeResultSlot.childCount > 0)
         {
             Destroy(mergeResultSlot.GetChild(0).gameObject);
         }
+
         if (mergeResult != null)
         {
             GameObject newItem = Instantiate(itemUIPrefab, mergeResultSlot);
             ItemUI itemUI = newItem.GetComponent<ItemUI>();
             itemUI.inventoryParent = transform;
             itemUI.Setup(mergeResult);
-            itemUI.isInMerge = true;
-            itemUI.isTaked = false;
-            itemUI.isResult = true;
             itemUI.InventoryUI = inventoryUI;
+
         }
         foreach (InventoryItem item in mergeItems)
         {
+            
             GameObject newItem = Instantiate(itemUIPrefab, mergeSlotsContentPanel);
             ItemUI itemUI = newItem.GetComponent<ItemUI>();
             itemUI.inventoryParent = transform;
             itemUI.Setup(item);
-            itemUI.isInMerge = true;
-            itemUI.isTaked = true;
+            itemUI.InventoryUI = inventoryUI;
+            itemUI.OnItemUIClicked.RemoveAllListeners();
+            itemUI.OnItemUIClicked.AddListener(OnMergeItemClicked); // где то два раза привязка
         }
         
+        foreach(ItemUI item in SelectedItems)
+        {
+            if (!mergeItems.Contains(item.item))
+            {
+                UnSelectItem(item);
+            }
+        }
 
         LayoutRebuilder.ForceRebuildLayoutImmediate(mergeSlotsContentPanel.GetComponent<RectTransform>());
     }
 
 
-    public void MoveItemToMergeSlots(InventoryItem item)
+    public void MoveItemToMergeSlots(ItemUI item)
     {
+        if (mergeItems.Count < 3 && !mergeItems.Contains(item.item))
+        {
+            mergeItems.Add(item.item);
+            if (mergeItems.Count == 3)
+            {
+                GenerateMergeResult(mergeItems);
+            }
 
-        if (mergeItems.Count < 3)
-        {
-            mergeItems.Add(item);
-        }
-        if (mergeItems.Count == 3)
-        {
-            GenerateMergeResult(mergeItems);
-        }
+            if (mergeItems.Count == 1)
+            {
+                BlockElementsByRarity();
+            }
+            SelectItem(item);
+            OnMergeItemsChanged.Invoke();
 
-        if (mergeItems.Count == 1)
-        {
-            BlockElementsByRarity();
         }
-        OnMergeItemsChanged.Invoke();
+        
 
     }
-
-    public void SoftRefresh()
+    public void ExecuteItemFromMergeSlots(ItemUI item)
     {
-        foreach (Transform child in contentPanel)
+        if (mergeItems.Remove(item.item))
         {
-            if (child.GetComponent<ItemUI>() != null) 
+            UnSelectItem(item);
+
+            OnMergeItemsChanged.Invoke();
+
+            // Если больше нет элементов, обновляем весь инвентарь
+            if (mergeItems.Count == 0)
             {
-                
+                RefreshInventoryUI();
+            }
+            else if (mergeItems.Count == 2)
+            {
+                mergeResult = null;
+                RefreshMergeSlots();
             }
         }
-    }
-    
-    public void ExecuteItemFromMergeSlots(InventoryItem item)
-    {
-        foreach (Transform itemUI in contentPanel)
-        {
-            if (itemUI.GetComponent<ItemUI>().item == item)
-            {
-                ItemUI temp = itemUI.GetComponent<ItemUI>();
-                
-                temp.itemIcon.color = Color.white;
-                temp.itemRarityBackground.color = Color.white;
-                temp.itemName.color = Color.white;
-                break;
-            }
-        }
-        mergeItems.Remove(item);
-
-        if (mergeItems.Count == 0)
-        {
-            RefreshInventoryUI();
-        }
-        if (mergeItems.Count == 2)
-        {
-            mergeResult = null;
-            RefreshMergeSlots();
-        }
-        OnMergeItemsChanged.Invoke();
     }
 
 
@@ -306,92 +313,44 @@ public class MergeInventory : MonoBehaviour
                 ItemUI itemUI = newItem.GetComponent<ItemUI>();
                 itemUI.inventoryParent = transform;
                 itemUI.Setup(inventoryItem);
-                itemUI.isInMerge = true;
-                itemUI.isTaked = false;
-                itemUI.isResult = true;
                 itemUI.InventoryUI = inventoryUI;
                 mergeResult = inventoryItem;
             }
         }
 
+        
+    }
+
+
+    public void OnMergeItemClicked(ItemUI item)
+    {
+        if (!mergeItems.Contains(item.item))
+        {
+
+            MoveItemToMergeSlots(item);
+            Debug.Log("da");
+        }
+        else
+        {
+            Debug.Log("net");
+            ExecuteItemFromMergeSlots(item);
+        }
+    }
+
+    public void UnSelectItem(ItemUI item)
+    {
+        SelectedItems.Remove(item);
+        item.itemIcon.color = Color.white;
+        item.itemRarityBackground.color = Color.white;
+        item.itemName.color = Color.white;
+
+    }
+
+    public void SelectItem(ItemUI item)
+    {
+        SelectedItems.Add(item);
+        item.itemIcon.color = Color.gray;
+        item.itemRarityBackground.color = Color.gray;
+        item.itemName.color = Color.gray;
     }
 }
-
-/*
-using System;
-using System.Collections.Generic;
-using System.Linq;
-
-class Program
-{
-    static void Main()
-    {
-        // Пример ввода предметов
-        string[] items = { "Кольцо", "Перчатка", "Кольцо" };
-
-        // Вызываем метод для расчета вероятностей
-        Dictionary<string, double> probabilities = CalculateCraftProbability(items);
-
-        // Выбираем предмет в зависимости от вероятности
-        string craftedItem = GetCraftedItem(probabilities);
-
-        // Выводим результат
-        Console.WriteLine($"Скрафтился предмет: {craftedItem}");
-    }
-
-    static Dictionary<string, double> CalculateCraftProbability(string[] items)
-    {
-        if (items.Length != 3)
-        {
-            throw new ArgumentException("Должно быть ровно 3 элемента для крафта.");
-        }
-
-        // Подсчитываем количество каждого типа предмета
-        Dictionary<string, int> itemCounts = new Dictionary<string, int>();
-
-        foreach (var item in items)
-        {
-            if (itemCounts.ContainsKey(item))
-            {
-                itemCounts[item]++;
-            }
-            else
-            {
-                itemCounts[item] = 1;
-            }
-        }
-
-        // Рассчитываем вероятности
-        Dictionary<string, double> probabilities = new Dictionary<string, double>();
-
-        foreach (var kvp in itemCounts)
-        {
-            probabilities[kvp.Key] = kvp.Value / 3.0;
-        }
-
-        return probabilities;
-    }
-
-    static string GetCraftedItem(Dictionary<string, double> probabilities)
-    {
-        // Генератор случайных чисел
-        Random random = new Random();
-        double randValue = random.NextDouble(); // случайное число от 0.0 до 1.0
-
-        double cumulative = 0.0;
-
-        foreach (var kvp in probabilities)
-        {
-            cumulative += kvp.Value;
-
-            if (randValue < cumulative)
-            {
-                return kvp.Key;
-            }
-        }
-
-        // На случай, если что-то пойдет не так (что маловероятно)
-        return probabilities.Keys.First();
-    }
-}
-*/

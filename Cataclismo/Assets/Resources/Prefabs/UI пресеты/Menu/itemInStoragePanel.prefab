@@ -247,10 +247,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemIcon: {fileID: 4634624747879089377}
   itemName: {fileID: 7144697502784047047}
-  itemInfoWindowPrefab: {fileID: 7810217136659023425, guid: 900e497f9e6a10441983b9ab5e5ea7d1,
-    type: 3}
   inventoryParent: {fileID: 0}
   itemRarityBackground: {fileID: 5671533284607943923}
+  InventoryUI: {fileID: 0}
+  OnItemUIClicked:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &6818797657137647665
 MonoBehaviour:
   m_ObjectHideFlags: 0
