@@ -7,6 +7,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.Rendering;
+using UnityEngine.Serialization;
 using UnityEngine.UI;   
 
 
@@ -37,7 +38,7 @@ public class MergeInventory : MonoBehaviour
     //public Transform mergeResultSlot;
 
     [SerializeField] private List<InventoryItem> inventoryItems;
-    [SerializeField] private List<ItemUI> allItemUIItems;
+
     [SerializeField] private List<ItemUI> selectedUIItems;
 
     //public List<InventoryItem> mergeItems;
@@ -61,11 +62,10 @@ public class MergeInventory : MonoBehaviour
 
         tempMergeItems = new List<ItemUI>();
         mergeResults = new Dictionary<ItemUI, List<ItemUI>>();
-        allItemUIItems = new List<ItemUI>();
         inventoryItems = inventory.items;
 
-        SpawnAllItemsUI();
-
+        RefreshMergeInventoryUI();
+        OnMergeItemsChanged.AddListener(RefreshMergeSlotsUI);
 
         /*
         RefreshInventoryUI();
@@ -76,6 +76,11 @@ public class MergeInventory : MonoBehaviour
     }
 
     public void SpawnAllItemsUI()
+    {
+
+    }
+
+    public void RefreshMergeInventoryUI()
     {
         foreach (InventoryItem item in inventoryItems)
         {
@@ -88,7 +93,6 @@ public class MergeInventory : MonoBehaviour
                 ItemUI itemUI = newItem.GetComponent<ItemUI>();
                 itemUI.Setup(item);
 
-                allItemUIItems.Add(itemUI);
 
                 itemUI.OnItemUIClicked.RemoveAllListeners();
                 itemUI.OnItemUIClicked.AddListener(OnMergeInventoryItemClicked);
@@ -96,21 +100,38 @@ public class MergeInventory : MonoBehaviour
         }
 
         LayoutRebuilder.ForceRebuildLayoutImmediate(inventoryContentPanel.GetComponent<RectTransform>());
-    }
-
-    public void RefreshMergeInventoryUI()
-    {
-        foreach (var item in inventoryItems) 
-        {
-            
-        }
-
-        Debug.Log($"Merge inventory refreshed");
+        
+        Debug.Log("Merge inventory refreshed");
     }
 
 
     public void RefreshMergeSlotsUI()
     {
+        // Очищаем предыдущие элементы из панели слияния
+        foreach (Transform child in mergeContentPanel)
+        {
+            Destroy(child.gameObject);
+        }
+
+        // Добавляем текущие предметы из tempMergeItems в панель
+        foreach (ItemUI itemUI in tempMergeItems)
+        {
+            Instantiate(itemUI, mergeContentPanel);
+            itemUI.OnItemUIClicked.RemoveAllListeners();
+            itemUI.OnItemUIClicked.AddListener(OnMergeItemClicked);
+            /*            GameObject newItem = Instantiate(itemUIPrefab, mergeContentPanel);
+                        ItemUI newItemUI = newItem.GetComponent<ItemUI>();
+
+                        // Настраиваем UI для предмета
+                        newItemUI.Setup(itemUI);
+
+                        // Добавляем обработчик для клика на элемент
+                        newItemUI.OnItemUIClicked.RemoveAllListeners();
+                        newItemUI.OnItemUIClicked.AddListener(OnMergeItemClicked);*/
+        }
+
+        // Обновляем расположение элементов в панели
+        LayoutRebuilder.ForceRebuildLayoutImmediate(mergeContentPanel.GetComponent<RectTransform>());
 
         Debug.Log($"Merge slots refreshed");
     }
@@ -124,6 +145,8 @@ public class MergeInventory : MonoBehaviour
     public void MoveItemToMerge(ItemUI item)
     {
         tempMergeItems.Add(item);
+
+        SelectItem(item);
         OnMergeItemsChanged.Invoke();
         Debug.Log($"Item {item.item.ItemName} moved in merge");
     }
@@ -131,6 +154,8 @@ public class MergeInventory : MonoBehaviour
     public void RemoveItemFromMerge(ItemUI item)
     {
         tempMergeItems.Remove(item);
+
+        UnSelectItem(item);
         OnMergeItemsChanged.Invoke();
         Debug.Log($"Item {item.item.ItemName} removed from merge");
     }
@@ -154,15 +179,27 @@ public class MergeInventory : MonoBehaviour
 
     public void OnMergeInventoryItemClicked(ItemUI item)
     {
-        MoveItemToMerge(item);
+        if (!selectedUIItems.Contains(item))
+        {
+            MoveItemToMerge(item);
+        }
+        else 
+            RemoveItemFromMerge(item);
+
         Debug.Log($"Merge inventory item clicked");
     }
 
 
     public void OnMergeItemClicked(ItemUI item)
     {
-        RemoveItemFromMerge(item);
-
+        if (selectedUIItems.Contains(item))
+        {
+            RemoveItemFromMerge(item);
+        }
+        else
+        {
+            Debug.Log("No item error");
+        }
         Debug.Log($"Merge item item clicked");
     }
 
@@ -174,22 +211,34 @@ public class MergeInventory : MonoBehaviour
 
     public void UnSelectItem(ItemUI item)
     {
-        item.itemIcon.color = Color.white;
-        item.itemRarityBackground.color = Color.white;
-        item.itemName.color = Color.white;
-
+        selectedUIItems.Remove(item);
+        SetUnselectedColor(item);
         Debug.Log($"Item {item.item.ItemName} unselected");
     }
 
     public void SelectItem(ItemUI item)
     {
-        item.itemIcon.color = Color.gray;
-        item.itemRarityBackground.color = Color.gray;
-        item.itemName.color = Color.gray;
+        selectedUIItems.Add(item);
+
+        SetSelectedColor(item);
         Debug.Log($"Item {item.item.ItemName} selected");
     }
 
+    public void SetSelectedColor(ItemUI item)
+    {
 
+        item.itemIcon.color = Color.gray;
+        item.itemRarityBackground.color = Color.gray;
+        item.itemName.color = Color.gray;
+    }
+
+    public void SetUnselectedColor(ItemUI item)
+    {
+
+        item.itemIcon.color = Color.white;
+        item.itemRarityBackground.color = Color.white;
+        item.itemName.color = Color.white;
+    }
 
     /*
 
