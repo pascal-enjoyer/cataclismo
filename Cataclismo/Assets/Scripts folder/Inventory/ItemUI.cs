@@ -5,13 +5,12 @@ using UnityEngine.UI;
 
 public class ItemUI : MonoBehaviour
 {
+    ItemUI itemUI;
     public Image itemIcon;
     public Text itemName;
     public InventoryItem item;
-    public Transform inventoryParent;
     public Image itemRarityBackground;
 
-    public InventoryUI InventoryUI;
 
     public UnityEvent<ItemUI> OnItemUIClicked;
     /*
@@ -19,11 +18,12 @@ public class ItemUI : MonoBehaviour
     public bool isTaked = false;
     public bool isResult = false;*/
 
-    
+
 
 
     public void Setup(InventoryItem tempItem)
     {
+        itemUI = this;
         transform.GetComponent<Button>().onClick.AddListener(OnButtonClick);
         item = tempItem;
 
@@ -31,7 +31,20 @@ public class ItemUI : MonoBehaviour
         itemName.text = "Lv." + item.itemLevel.ToString();
         itemRarityBackground.sprite = item.rarityBackgroundSprite;
     }
-    
+
+
+    public void Setup(ItemUI item)
+    {
+        itemUI = item;
+        transform.GetComponent<Button>().onClick.AddListener(OnButtonClick);
+
+        itemIcon.sprite = itemUI.item.ItemIcon;
+        itemName.text = "Lv." + itemUI.item.itemLevel.ToString();
+        itemRarityBackground.sprite = itemUI.item.rarityBackgroundSprite;
+    }
+
+
+
     public void OnButtonClick()
     {
         OnItemUIClicked.Invoke(this);
