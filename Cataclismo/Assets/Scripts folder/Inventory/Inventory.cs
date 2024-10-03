@@ -15,7 +15,6 @@ public class InventoryItem
         this.itemLevel = itemLevel;
     }
 
-
     public TemplateItem item;
     public int bonusValue; // Значение бонуса
     public ItemRarity itemRarity;

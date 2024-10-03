@@ -237,8 +237,8 @@ MonoBehaviour:
   mergeLayoutGroup: {fileID: 1604724720214317693}
   mergeResultsContentPanel: {fileID: 3197453761747862164}
   mergeResultsLayoutGroup: {fileID: 1877782933911729084}
-  mergeButton: {fileID: 1604724719632909250}
-  allItemUIItems: []
+  mergeButton: {fileID: 1604724719632909249}
+  selectedUIItems: []
   tempMergeItems: []
   OnMergeItemsChanged:
     m_PersistentCalls:
@@ -1331,8 +1331,8 @@ MonoBehaviour:
     m_Top: 0
     m_Bottom: 0
   m_ChildAlignment: 0
-  m_StartCorner: 0
-  m_StartAxis: 0
+  m_StartCorner: 2
+  m_StartAxis: 1
   m_CellSize: {x: 210, y: 210}
   m_Spacing: {x: 10, y: 0}
   m_Constraint: 1

@@ -37,7 +37,7 @@ public class ItemUI : MonoBehaviour
     {
         itemUI = item;
         transform.GetComponent<Button>().onClick.AddListener(OnButtonClick);
-
+        this.item = itemUI.item;
         itemIcon.sprite = itemUI.item.ItemIcon;
         itemName.text = "Lv." + itemUI.item.itemLevel.ToString();
         itemRarityBackground.sprite = itemUI.item.rarityBackgroundSprite;
