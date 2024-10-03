@@ -14,7 +14,6 @@ using UnityEngine.Events;
 using UnityEngine.Rendering;
 using UnityEngine.Serialization;
 using UnityEngine.UI;
-using static UnityEditor.Progress;
 
 //при нажатии как определить его MergeInventoryItemUI
 
@@ -34,10 +33,6 @@ public class MergeInventoryItemUI
         this.itemUIState = itemUIState;
         this.mergeResult = mergeResult;
     }
-
-
-
-
 }
 
 public class MergeInventory : MonoBehaviour
@@ -128,7 +123,6 @@ public class MergeInventory : MonoBehaviour
                         SpawnItem(mergeInventoryItem.Key, inventoryContentPanel, OnInventoryItemClicked, true);
                         break;
                 }
-
             }
             if (mergeInventoryItem.Value.itemUIState == ItemUIState.isResult)
             {

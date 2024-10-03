@@ -172,19 +172,26 @@ public class SnapToElement : MonoBehaviour, IBeginDragHandler, IEndDragHandler
     // Плавное появление панели
     private IEnumerator FadeInOverlay(GameObject overlay)
     {
-        float elapsedTime = 0f;
-        Image overlayImage = overlay.GetComponent<Image>();
-        Color color = overlayImage.color;
-
-        while (elapsedTime < fadeDuration)
+        if (overlay != null)
         {
-            elapsedTime += Time.deltaTime;
-            color.a = Mathf.Lerp(0f, 1f, elapsedTime / fadeDuration);  // Прозрачность от 0 до 1
-            overlayImage.color = color;
-            yield return null;
-        }
+            float elapsedTime = 0f;
+            Image overlayImage = overlay.GetComponent<Image>();
+            Color color = overlayImage.color;
 
-        color.a = 1f;
-        overlayImage.color = color;  // Обновляем прозрачность до конца
+            while (elapsedTime < fadeDuration)
+            {
+                elapsedTime += Time.deltaTime;
+                color.a = Mathf.Lerp(0f, 1f, elapsedTime / fadeDuration);  // Прозрачность от 0 до 1
+                if (overlayImage != null)
+                {
+                    overlayImage.color = color;
+                }
+                yield return null;
+            }
+
+            color.a = 1f;
+            if (overlayImage != null)
+                overlayImage.color = color;  // Обновляем прозрачность до конца
+        }
     }
 }
