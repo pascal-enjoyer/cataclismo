@@ -39,6 +39,7 @@ public class InventoryUI : MonoBehaviour
 
     public void RefreshInventoryUI()
     {
+        
         // Очистите старые элементы
         foreach (Transform child in inventoryContentPanel)
         {
@@ -51,7 +52,6 @@ public class InventoryUI : MonoBehaviour
                 Destroy(eqSlot.equipedItem);
             }    
         }
-
         // Добавьте новые элементы
         foreach (InventoryItem item in inventory.items)
         {

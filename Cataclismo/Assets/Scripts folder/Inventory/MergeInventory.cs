@@ -254,10 +254,13 @@ public class MergeInventory : MonoBehaviour
         {
             foreach (InventoryItem item in mergeResult.Value)
             {
-                inventory.RemoveItem(item);
+                inventory.RemoveItemWithoutSave(item);
             }
-            inventory.AddItem(mergeResult.Key);
+            inventory.AddItemWithoutSave(mergeResult.Key);
         }
+
+        inventory.SortByRarityFromHighest();
+        
         Setup();
     }
 

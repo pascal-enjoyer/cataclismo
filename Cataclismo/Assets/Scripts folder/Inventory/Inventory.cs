@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.Rendering.UI;
 
 public class InventoryItem
 {
@@ -119,8 +120,7 @@ public class Inventory : MonoBehaviour
         ChooseItemBackGroundImage(item);
         items.Add(item);
         SortByRarityFromHighest();
-        SaveInventory();
-        OnItemAdded.Invoke();
+        SaveAndRefreshInventory();
     }
 
     public void AddItem(InventoryItem item)
@@ -128,14 +128,30 @@ public class Inventory : MonoBehaviour
         ChooseItemBackGroundImage(item);
         items.Add(item);
         SortByRarityFromHighest();
-        SaveInventory();
-
-        OnItemAdded.Invoke();
+        SaveAndRefreshInventory();
     }
 
     public void RemoveItem(InventoryItem item)
     {
         items.Remove(item);
+        SaveAndRefreshInventory();
+    }
+
+    public void AddItemWithoutSave(InventoryItem item)
+    {
+        ChooseItemBackGroundImage(item);
+        items.Add(item);
+
+    }
+
+    public void RemoveItemWithoutSave(InventoryItem item)
+    {
+        items.Remove(item);
+    }
+
+    public void SaveAndRefreshInventory()
+    {
+
         SaveInventory();
 
         OnItemAdded.Invoke();
@@ -225,6 +241,7 @@ public class Inventory : MonoBehaviour
 
     public void ChooseItemBackGroundImage(InventoryItem item)
     {
+        if (item.rarityBackgroundSprite == null)
         switch (item.itemRarity)
         {
             case ItemRarity.Common:
