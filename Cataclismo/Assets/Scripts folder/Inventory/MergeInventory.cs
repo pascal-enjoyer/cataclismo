@@ -59,7 +59,6 @@ public class MergeInventory : MonoBehaviour
     public Transform mergeButton;
 
 
-    [SerializeField] private List<InventoryItem> inventoryItems;
     [SerializeField] private List<InventoryItem> tempMergeItems;
 
     [SerializeField] private ItemRarity? itemRarityBlock;
@@ -76,25 +75,26 @@ public class MergeInventory : MonoBehaviour
     public void Start()
     {
         inventory = GameManager.inventory;
-        inventoryItems = inventory.items;
-        mergeResults = new Dictionary<InventoryItem, List<InventoryItem>>();
-        tempMergeItems = new List<InventoryItem>();
-        mergeInventoryItems = new Dictionary<InventoryItem, MergeInventoryItemUI>();
 
+        mergeButton.GetComponent<Button>().onClick.AddListener(OnMergeButtonClicked);
         Setup();
     }
 
 
     public void Setup()
     {
-        foreach (InventoryItem item in inventoryItems)
+        mergeResults = new Dictionary<InventoryItem, List<InventoryItem>>();
+        tempMergeItems = new List<InventoryItem>();
+        mergeInventoryItems = new Dictionary<InventoryItem, MergeInventoryItemUI>();
+        mergeInventoryItems.Clear();
+        ClearBlackSmithContentPanels();
+        foreach (InventoryItem item in inventory.items)
         {
             if (item.itemRarity != ItemRarity.Legendary)
             {
                     SpawnItem(item, inventoryContentPanel, OnInventoryItemClicked);
                     MergeInventoryItemUI mergeInventoryItemUI = new MergeInventoryItemUI(ItemUIState.isInInventory);
                     mergeInventoryItems.Add(item, mergeInventoryItemUI);
-                
             }
         }
 
@@ -209,17 +209,6 @@ public class MergeInventory : MonoBehaviour
         }
     }
 
-    /*
-            if (mergeInventoryItems[itemUI.item].itemUIState == ItemUIState.isInMerge)
-            {
-                foreach (InventoryItem item in mergeResults[mergeResult])
-                {
-                    mergeInventoryItems[item].mergeResult = null;
-                }
-tempMergeItems.Remove(itemUI.item);
-mergeInventoryItems[itemUI.item].itemUIState = ItemUIState.isInInventory;
-            }*/
-
     public void OnInventoryItemClicked(ItemUI itemUI)
     {
         if (mergeInventoryItems[itemUI.item].itemUIState == ItemUIState.isInInventory)
@@ -242,12 +231,35 @@ mergeInventoryItems[itemUI.item].itemUIState = ItemUIState.isInInventory;
 
     public void OnResultItemClicked(ItemUI itemUI)
     {
-        
 
+        foreach (InventoryItem item in mergeResults[itemUI.item]) 
+        {
+            if (mergeInventoryItems[item].itemUIState == ItemUIState.isInMerge)
+            {
+                tempMergeItems.Remove(item);
+            }
+            mergeInventoryItems[item].itemUIState = ItemUIState.isInInventory;
+            mergeInventoryItems[item].mergeResult = null;
+        }
+        
+        mergeResults.Remove(itemUI.item);
+        mergeInventoryItems.Remove(itemUI.item);
         FullBlacksmithRefresh();
     }
 
 
+    public void OnMergeButtonClicked()
+    {
+        foreach (KeyValuePair<InventoryItem, List<InventoryItem>> mergeResult in mergeResults)
+        {
+            foreach (InventoryItem item in mergeResult.Value)
+            {
+                inventory.RemoveItem(item);
+            }
+            inventory.AddItem(mergeResult.Key);
+        }
+        Setup();
+    }
 
     public void SpawnItem(InventoryItem inventoryItem, Transform contentPanel, UnityAction<ItemUI> OnItemClickedFunction, bool isSelected = false)
     {

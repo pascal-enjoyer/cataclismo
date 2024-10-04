@@ -22,22 +22,18 @@ public class ItemInfoWindow : MonoBehaviour
 
     public Transform equipButton;
 
-    public InventoryUI inventoryUI;
+    public InventoryUI? inventoryUI;
         
 
 
 
-    public void FillWindow(InventoryItem tempItem)
+    public void FillWindow(InventoryItem tempItem, InventoryUI inventoryUI = null)
     {
+        this.inventoryUI = inventoryUI;
         item = tempItem;
         itemName.text = item.ItemName;
         itemDescription.text = item.ItemDescription;
-        itemIcon.sprite = item.ItemIcon;/*
-        if (itemUI != null && itemUI.isResult)
-        {
-            upgradeButton.gameObject.SetActive(false);
-            equipButton.gameObject.SetActive(false);
-        }*/
+        itemIcon.sprite = item.ItemIcon;
         equipButtonText.text = item.isEquiped ? "Take off" : "Equip";
         itemBonus.text = item.BonusType.ToString() + " + " + item.bonusValue.ToString();
         itemLevel.text = "Item level " + item.itemLevel.ToString();
@@ -54,12 +50,7 @@ public class ItemInfoWindow : MonoBehaviour
     {
         itemName.text = item.ItemName;
         itemDescription.text = item.ItemDescription;
-        itemIcon.sprite = item.ItemIcon; /*
-        if (itemUI != null && itemUI.isResult)
-        {
-            upgradeButton.gameObject.SetActive(false);
-            equipButton.gameObject.SetActive(false);
-        }*/
+        itemIcon.sprite = item.ItemIcon;
         equipButtonText.text = item.isEquiped ? "Take off" : "Equip";
         itemBonus.text = item.BonusType.ToString() + " + " + item.bonusValue.ToString();
         itemLevel.text = "Item level " + item.itemLevel.ToString();

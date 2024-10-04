@@ -6,10 +6,20 @@ using UnityEngine.UIElements;
 public class InventoryUI : MonoBehaviour
 {
     public Inventory inventory;
-    public GameObject itemUIPrefab; // Префаб ячейки предмета
+
+
+    [Header("Equip slots")]
+    public Transform braceletOnHandSlot;
+    public Transform ringOnHandSlot;
+    public Transform gloveOnHandSlot;
+
     public Transform canvas;
-    public GameObject itemInfoWindowPrefab;
-    public Transform contentPanel; // Панель для добавления элементов
+
+    public GameObject itemUIPrefab; // Префаб ячейки предмета
+
+    public GameObject itemInfoWindowPrefab; //префаб инфы о предмете
+
+    public Transform inventoryContentPanel; // Панель для добавления элементов
     public GridLayoutGroup gridLayoutGroup; // Компонент Grid Layout Group
 
     public GameObject blacksmith;
@@ -17,11 +27,6 @@ public class InventoryUI : MonoBehaviour
     public List<EquipSlot> equipSlots;
 
     
-
-    public Transform braceletOnHandSlot;
-    public Transform ringOnHandSlot;
-    public Transform gloveOnHandSlot;
-
 
     void Start()
     {
@@ -35,7 +40,7 @@ public class InventoryUI : MonoBehaviour
     public void RefreshInventoryUI()
     {
         // Очистите старые элементы
-        foreach (Transform child in contentPanel)
+        foreach (Transform child in inventoryContentPanel)
         {
             Destroy(child.gameObject);
         }
@@ -66,7 +71,7 @@ public class InventoryUI : MonoBehaviour
             }
             else
             {
-                GameObject newItem = Instantiate(itemUIPrefab, contentPanel);
+                GameObject newItem = Instantiate(itemUIPrefab, inventoryContentPanel);
                 ItemUI itemUI = newItem.GetComponent<ItemUI>();
                 itemUI.Setup(item);
 
@@ -74,7 +79,7 @@ public class InventoryUI : MonoBehaviour
             }
 
         }
-        LayoutRebuilder.ForceRebuildLayoutImmediate(contentPanel.GetComponent<RectTransform>());
+        LayoutRebuilder.ForceRebuildLayoutImmediate(inventoryContentPanel.GetComponent<RectTransform>());
 
     }
 
@@ -108,6 +113,8 @@ public class InventoryUI : MonoBehaviour
 
     public void OnInventoryItemClicked(ItemUI item)
     {
+        ItemInfoWindow newWindow = Instantiate(itemInfoWindowPrefab, canvas).GetComponent<ItemInfoWindow>();
+        newWindow.FillWindow(item.item, this);
         Debug.Log(item.item.ItemName);
     }
     

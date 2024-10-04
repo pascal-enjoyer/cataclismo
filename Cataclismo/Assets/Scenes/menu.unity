@@ -517,7 +517,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: -0.000061035156}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &73168661
@@ -918,6 +918,58 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 174816864}
   m_CullTransparentMesh: 1
+--- !u!1 &208855929
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 208855931}
+  - component: {fileID: 208855930}
+  m_Layer: 5
+  m_Name: ringSlot
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &208855930
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 208855929}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c85b3aea29b95f944a683e2604aa23b6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ItemType: 0
+  OnHandSlot: {fileID: 1374746672}
+  equipedItem: {fileID: 0}
+--- !u!224 &208855931
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 208855929}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 772542201}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.18, y: 0.18}
+  m_AnchorMax: {x: 0.82, y: 0.82}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &259434039
 GameObject:
   m_ObjectHideFlags: 0
@@ -1862,22 +1914,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inventory: {fileID: 1273867654}
+  braceletOnHandSlot: {fileID: 344028767}
+  ringOnHandSlot: {fileID: 1374746672}
+  gloveOnHandSlot: {fileID: 1324348694}
+  canvas: {fileID: 1676955235}
   itemUIPrefab: {fileID: 5925493797804029429, guid: a639ffa222dd900459c36ad5c1a91f9a,
     type: 3}
-  canvas: {fileID: 397412039}
   itemInfoWindowPrefab: {fileID: 7810217136659023425, guid: 900e497f9e6a10441983b9ab5e5ea7d1,
     type: 3}
-  contentPanel: {fileID: 1016027557}
+  inventoryContentPanel: {fileID: 1016027557}
   gridLayoutGroup: {fileID: 1016027558}
   blacksmith: {fileID: 1604724718358369537, guid: 6acefa65f9fe5fe4db35487bbf77db20,
     type: 3}
   equipSlots:
-  - {fileID: 772542202}
-  - {fileID: 1905493403}
-  - {fileID: 1728915477}
-  braceletOnHandSlot: {fileID: 344028767}
-  ringOnHandSlot: {fileID: 1374746672}
-  gloveOnHandSlot: {fileID: 1324348694}
+  - {fileID: 208855930}
+  - {fileID: 748934259}
+  - {fileID: 1089827033}
 --- !u!1 &397412038
 GameObject:
   m_ObjectHideFlags: 0
@@ -3417,6 +3469,58 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 734298413}
   m_CullTransparentMesh: 1
+--- !u!1 &748934257
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 748934258}
+  - component: {fileID: 748934259}
+  m_Layer: 5
+  m_Name: braceletSlot
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &748934258
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 748934257}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1905493402}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.18, y: 0.18}
+  m_AnchorMax: {x: 0.82, y: 0.82}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &748934259
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 748934257}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c85b3aea29b95f944a683e2604aa23b6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ItemType: 1
+  OnHandSlot: {fileID: 344028767}
+  equipedItem: {fileID: 0}
 --- !u!1 &772542200
 GameObject:
   m_ObjectHideFlags: 0
@@ -3426,7 +3530,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 772542201}
-  - component: {fileID: 772542202}
   m_Layer: 5
   m_Name: Ring Slot
   m_TagString: Untagged
@@ -3448,6 +3551,7 @@ RectTransform:
   m_Children:
   - {fileID: 542111571}
   - {fileID: 1404147175}
+  - {fileID: 208855931}
   m_Father: {fileID: 851521735}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3456,21 +3560,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &772542202
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 772542200}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c85b3aea29b95f944a683e2604aa23b6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ItemType: 0
-  OnHandSlot: {fileID: 1374746672}
-  equipedItem: {fileID: 0}
 --- !u!1 &781413543
 GameObject:
   m_ObjectHideFlags: 0
@@ -4772,6 +4861,58 @@ MonoBehaviour:
   spellInfoPrefab: {fileID: 3093722829987783032, guid: 40fd927051ffac648a1828f0988b3afe,
     type: 3}
   contentPanel: {fileID: 1413455849}
+--- !u!1 &1089827031
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1089827032}
+  - component: {fileID: 1089827033}
+  m_Layer: 5
+  m_Name: gloveSlot
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1089827032
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1089827031}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1728915476}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.18, y: 0.18}
+  m_AnchorMax: {x: 0.82, y: 0.82}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1089827033
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1089827031}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c85b3aea29b95f944a683e2604aa23b6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ItemType: 2
+  OnHandSlot: {fileID: 1324348694}
+  equipedItem: {fileID: 0}
 --- !u!1 &1169549568
 GameObject:
   m_ObjectHideFlags: 0
@@ -5019,7 +5160,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 2880}
+  m_AnchoredPosition: {x: 0, y: 2639.607}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1180250745
@@ -6475,7 +6616,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: -0.000061035156}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &1413455850
@@ -7971,7 +8112,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1728915476}
-  - component: {fileID: 1728915477}
   m_Layer: 5
   m_Name: Glove Slot
   m_TagString: Untagged
@@ -7993,6 +8133,7 @@ RectTransform:
   m_Children:
   - {fileID: 2080747785}
   - {fileID: 608992537}
+  - {fileID: 1089827032}
   m_Father: {fileID: 851521735}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -8001,21 +8142,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1728915477
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1728915475}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c85b3aea29b95f944a683e2604aa23b6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ItemType: 2
-  OnHandSlot: {fileID: 1324348694}
-  equipedItem: {fileID: 0}
 --- !u!1 &1737355934
 GameObject:
   m_ObjectHideFlags: 0
@@ -8785,7 +8911,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1905493402}
-  - component: {fileID: 1905493403}
   m_Layer: 5
   m_Name: Bracelet Slot
   m_TagString: Untagged
@@ -8807,6 +8932,7 @@ RectTransform:
   m_Children:
   - {fileID: 1929034976}
   - {fileID: 846624084}
+  - {fileID: 748934258}
   m_Father: {fileID: 851521735}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -8815,21 +8941,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1905493403
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1905493401}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c85b3aea29b95f944a683e2604aa23b6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ItemType: 1
-  OnHandSlot: {fileID: 344028767}
-  equipedItem: {fileID: 0}
 --- !u!1 &1920433813
 GameObject:
   m_ObjectHideFlags: 0
