@@ -17,17 +17,21 @@ public class LootManager : MonoBehaviour
     public int bonusValueMin = 50;
     public int bonusValueMax = 100;
 
+    public List<InventoryItem> lastDroppedLoot;
 
 
     public void Start()
     {
+        lastDroppedLoot = new List<InventoryItem>();
         inventory = GetComponent<Inventory>();
         possibleLoot = inventory.templates;
     }
     public void DropLoot()
     {
+        lastDroppedLoot.Clear();
         InventoryItem newLoot = GenerateRandomLoot();
         inventory.AddItem(newLoot);
+        lastDroppedLoot.Add(newLoot);
         inventory.SaveInventory();
     }
 

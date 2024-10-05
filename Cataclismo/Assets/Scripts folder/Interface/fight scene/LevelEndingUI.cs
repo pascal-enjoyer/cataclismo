@@ -14,6 +14,14 @@ public class LevelEndingUI : MonoBehaviour
     public GameObject winText;
     public Transform backToMenuButton;
     public Transform retryButton;
+    public List<InventoryItem> droppedLoot;
+    public Transform droppedLootContentPanel;
+    public GameObject ItemUIPrefab;
+
+
+    public Text droppedMoney;
+    public Text droppedExperience;
+    public Transform placeForEndingText;
 
     public bool isFightWon;
     private void Start()
@@ -34,14 +42,22 @@ public class LevelEndingUI : MonoBehaviour
     public void SetupWin()
     {
 
-        Instantiate(winText, transform);
+        droppedLoot = GameManager.lootManager.lastDroppedLoot;
+        
+        Instantiate(winText, placeForEndingText);
         Instantiate(winBackground, backgroundslot);
+
+        foreach (InventoryItem item in droppedLoot)
+        {
+           GameObject newItem = Instantiate(ItemUIPrefab, droppedLootContentPanel);
+           newItem.GetComponent<ItemUI>().Setup(item);
+        }
     }
 
     public void SetupLoose()
     {
 
-        Instantiate(defeatText, transform);
+        Instantiate(defeatText, placeForEndingText);
         Instantiate(defeatScreenBackground, backgroundslot);
     }
 

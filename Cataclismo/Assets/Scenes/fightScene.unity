@@ -982,6 +982,8 @@ MonoBehaviour:
     type: 3}
   gameLevelManager: {fileID: 1988983920}
   levelEndindSpawned: {fileID: 0}
+  ItemUIPrefab: {fileID: 5925493797804029429, guid: a639ffa222dd900459c36ad5c1a91f9a,
+    type: 3}
 --- !u!114 &964889210
 MonoBehaviour:
   m_ObjectHideFlags: 0

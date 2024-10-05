@@ -61,9 +61,7 @@ public class PlayerEconomic : MonoBehaviour
     public void GetExpFromLevel(int level)
     {
         GainExperience(new System.Random().Next(50, 500) * level);
-        coins += new System.Random().Next(50, 100) * level;
 
-        OnPlayerEconomicChanged.Invoke();
     }
 
     public void SavePlayerEconomy()
@@ -100,6 +98,11 @@ public class PlayerEconomic : MonoBehaviour
         LoadPlayerEconomy();
     }
 
+    public void GetMoneyFromLevel(int level)
+    {
+        GainMoney(new System.Random().Next(100, 200) * level);
+    }
+ 
     public void GainMoney(int count)
     {
         coins += count;

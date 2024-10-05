@@ -28,8 +28,8 @@ public class GameLevelManager : MonoBehaviour
             enemyGO = Instantiate(enemyPrefabs[currentLevel % enemyPrefabs.Length], enemyTransform);
         enemyTransform.GetComponent<ActiveEnemy>().OnEnemyDied.AddListener(CompleteCurrentLevel);
         enemyTransform.GetComponent <ActiveEnemy>().EnemyGameobject = enemyGO;
-        enemyTransform.GetComponent<ActiveEnemy>().OnEnemyDied.AddListener(canvas.GetComponent<FightCanvasManager>().WinLevelSpawn);
-        playerInfo.OnPlayerDied.AddListener(canvas.GetComponent<FightCanvasManager>().LoseLevelSpawn);
+        enemyTransform.GetComponent<ActiveEnemy>().OnEnemyDied.AddListener(canvas.GetComponent<LevelEndingUISpawner>().WinLevelSpawn);
+        playerInfo.OnPlayerDied.AddListener(canvas.GetComponent<LevelEndingUISpawner>().LoseLevelSpawn);
     }
 
 
