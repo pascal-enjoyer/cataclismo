@@ -15,6 +15,10 @@ public class GameLevelManager : MonoBehaviour
     public PlayerInfo playerInfo;
     public Transform canvas;
 
+    public int experience;
+    public int money;
+    public int diamonds;
+
     void Start()
     { 
         // Получаем текущий уровень из PlayerPrefs
@@ -43,7 +47,9 @@ public class GameLevelManager : MonoBehaviour
         {
             GameManager.lootManager.DropLoot();
             GameManager.Instance.CompleteLevel(currentLevel);
-            GameManager.playerEconomic.GetExpFromLevel(currentLevel+1);
+            experience = GameManager.playerEconomic.GetExpFromLevel(currentLevel+1);
+            money = GameManager.playerEconomic.GetMoneyFromLevel(currentLevel + 1);
+            diamonds = GameManager.playerEconomic.GetDiamondsFromLevel(currentLevel + 1);
         }
 
     }

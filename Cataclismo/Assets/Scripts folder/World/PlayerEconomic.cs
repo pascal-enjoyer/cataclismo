@@ -22,6 +22,8 @@ public class PlayerEconomic : MonoBehaviour
     private const string CoinsKey = "Coins";
     private const string DiamondsKey = "Diamonds";
 
+    
+
     private void Start()
     {
         OnPlayerEconomicChanged.AddListener(SavePlayerEconomy);
@@ -58,10 +60,26 @@ public class PlayerEconomic : MonoBehaviour
     }
 
     //можно добавить зависимость от сложности уровня
-    public void GetExpFromLevel(int level)
+    public int GetExpFromLevel(int level)
     {
-        GainExperience(new System.Random().Next(50, 500) * level);
+        int exp = new System.Random().Next(50, 500) * level;
+        GainExperience(exp);
+        return exp;
 
+    }
+
+    public int GetMoneyFromLevel(int level)
+    {
+        int money = new System.Random().Next(100, 200) * level;
+        GainMoney(money);
+        return money;
+    }
+
+    public int GetDiamondsFromLevel(int level)
+    {
+        int diamonds = new System.Random().Next(50, 100) * level;
+        GainDiamonds(diamonds);
+        return diamonds;
     }
 
     public void SavePlayerEconomy()
@@ -98,10 +116,6 @@ public class PlayerEconomic : MonoBehaviour
         LoadPlayerEconomy();
     }
 
-    public void GetMoneyFromLevel(int level)
-    {
-        GainMoney(new System.Random().Next(100, 200) * level);
-    }
  
     public void GainMoney(int count)
     {

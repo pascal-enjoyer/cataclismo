@@ -21,6 +21,7 @@ public class LevelEndingUI : MonoBehaviour
 
     public Text droppedMoney;
     public Text droppedExperience;
+
     public Transform placeForEndingText;
 
     public bool isFightWon;
@@ -43,7 +44,11 @@ public class LevelEndingUI : MonoBehaviour
     {
 
         droppedLoot = GameManager.lootManager.lastDroppedLoot;
-        
+        droppedExperience.text = gameLevelManager.experience.ToString();
+        droppedMoney.text = gameLevelManager.money.ToString();
+
+
+
         Instantiate(winText, placeForEndingText);
         Instantiate(winBackground, backgroundslot);
 
