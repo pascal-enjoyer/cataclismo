@@ -16,11 +16,16 @@ public class LevelEndingUI : MonoBehaviour
     public Transform retryButton;
     public List<InventoryItem> droppedLoot;
     public Transform droppedLootContentPanel;
+    public Transform droppedEconomicPanel;
+
+    [Header("Префабы")]
     public GameObject ItemUIPrefab;
 
+    public GameObject moneyDropPrefab;
+    public GameObject expDropPrefab;
+    public GameObject diamondDropPrefab;
 
-    public Text droppedMoney;
-    public Text droppedExperience;
+
 
     public Transform placeForEndingText;
 
@@ -44,9 +49,24 @@ public class LevelEndingUI : MonoBehaviour
     {
 
         droppedLoot = GameManager.lootManager.lastDroppedLoot;
-        droppedExperience.text = gameLevelManager.experience.ToString();
-        droppedMoney.text = gameLevelManager.money.ToString();
+        int droppedExperienceGLM = gameLevelManager.experience;
+        int droppedMoneyGLM = gameLevelManager.money;
+        int droppedDiamondsGLM = gameLevelManager.diamonds;
+        if (droppedMoneyGLM > 0) 
+        {
+            Instantiate(moneyDropPrefab, droppedEconomicPanel).GetComponent<afterFightEcomonicDrop>().placeForText.text = droppedMoneyGLM.ToString();
+        }
 
+        if (droppedExperienceGLM > 0)
+        {
+            Instantiate(expDropPrefab, droppedEconomicPanel).GetComponent<afterFightEcomonicDrop>().placeForText.text = droppedExperienceGLM.ToString();
+        }
+
+
+        if (droppedDiamondsGLM > 0)
+        {
+            Instantiate(diamondDropPrefab, droppedEconomicPanel).GetComponent<afterFightEcomonicDrop>().placeForText.text = droppedDiamondsGLM.ToString();
+        }
 
 
         Instantiate(winText, placeForEndingText);

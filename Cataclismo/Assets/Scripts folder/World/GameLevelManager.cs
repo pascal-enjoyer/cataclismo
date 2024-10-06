@@ -49,7 +49,8 @@ public class GameLevelManager : MonoBehaviour
             GameManager.Instance.CompleteLevel(currentLevel);
             experience = GameManager.playerEconomic.GetExpFromLevel(currentLevel+1);
             money = GameManager.playerEconomic.GetMoneyFromLevel(currentLevel + 1);
-            diamonds = GameManager.playerEconomic.GetDiamondsFromLevel(currentLevel + 1);
+            if ((currentLevel + 1) % 5 == 0)
+                diamonds = GameManager.playerEconomic.GetDiamondsFromLevel(currentLevel + 1);
         }
 
     }
