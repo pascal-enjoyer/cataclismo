@@ -1,0 +1,21 @@
+Backstory:
+Twigling Skitters are animated bundles of twigs and leaves, brought to life by stray forest magic. They scurry about, collecting shiny objects, mistaking the player’s magical aura for treasure. They’re timid and flee when heavily damaged.
+
+Dialogue Upon Encountering Player:
+“Shiny… mine! Give it!”
+
+Attacks:
+
+
+
+
+
+Twig Toss: Throws a small twig, dealing low physical damage.
+
+
+
+Leaf Flurry: Spins, scattering leaves that deal minimal damage and briefly obscure the player’s view.
+
+Visual Description for AI Art Prompt:
+Low-poly, knee-high twig bundle humanoid in T-pose, arms out, of brown-green facets. Glowing green eyes in knot head. Limp twig arms, no weapons. Four spindly legs. Jagged triangles form a fragile form. Palette: brown, green. Background: forest clearing, scattered twigs, fireflies.
+(108 characters)

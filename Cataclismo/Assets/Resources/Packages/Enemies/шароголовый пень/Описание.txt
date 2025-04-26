@@ -1,0 +1,24 @@
+Backstory:
+The Thornshade Creeper was once a benign climbing vine, nurtured by the forest’s natural magic. When the elemental surge from the castle battle swept through, it gained sentience and a hunger for magical energy. It now stalks the forest, ensnaring unwary travelers to drain their essence, believing it will ascend to godhood. Its roots whisper of an ancient forest spirit it seeks to awaken.
+
+Dialogue Upon Encountering Player:
+“You… your magic pulses like a beacon! Feed me, and I shall spare your husk!”
+
+Attacks:
+
+
+
+
+
+Thorn Lash: Whips a thorny vine at the player, dealing moderate physical damage and causing a bleeding effect that drains health over time.
+
+
+
+Root Snare: Buries roots into the ground, which erupt beneath the player, immobilizing them briefly and dealing low damage.
+
+
+
+Spore Burst: Releases a cloud of toxic spores, reducing the player’s accuracy and dealing low poison damage over time.
+
+Visual Description for AI Art Prompt:
+A low-poly, humanoid-shaped mass of twisted, dark green vines with jagged, crimson thorns protruding chaotically, standing in a T-pose with arms extended horizontally. The creature has no clear face, but glowing yellow-green orbs pulse where eyes would be, embedded in a knot of vines. The arms are long, vine-like tendrils hanging limply at 90-degree angles, with sharp thorns glinting but no weapons or objects held. The body is asymmetrical, with patches of moss and small, wilted flowers sprouting from its form. The legs are root-like, planted firmly into the ground, giving a sense of being anchored. The color palette is dark greens, browns, and muted reds, with a slightly glossy texture to suggest dampness. The low-poly aesthetic emphasizes sharp, angular shapes with minimal triangles to create a jagged, menacing silhouette. The background is a misty forest with faint glowing spores floating around.

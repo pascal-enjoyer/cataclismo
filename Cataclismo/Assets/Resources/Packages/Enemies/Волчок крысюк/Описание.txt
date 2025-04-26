@@ -1,0 +1,24 @@
+Backstory:
+The Sapblood Hound was a loyal beast of the forest, hunting alongside ancient rangers. The elemental surge infused it with corrupted sap, turning its blood into a toxic, amber-like fluid. Now feral, it roams the woods, driven by an insatiable hunger for flesh, believing it can regain its lost bond with its master.
+
+Dialogue Upon Encountering Player:
+“Fresh meat… your blood will sate me! Come closer!”
+
+Attacks:
+
+
+
+
+
+Sap Spit: Spits a glob of corrosive sap, dealing moderate poison damage and reducing the player’s armor temporarily.
+
+
+
+Rending Bite: Lunges and bites, dealing high physical damage and causing a brief stun.
+
+
+
+Amber Howl: Howls, summoning smaller saplings that attack the player for low damage before retreating.
+
+Visual Description for AI Art Prompt:
+A low-poly, wolf-like creature with a gaunt, angular frame made of dark gray and brown facets, resembling petrified wood. Its eyes glow a toxic amber, and viscous, glowing orange sap drips from its jagged, triangular jaws. The body is covered in patches of cracked bark, with thorny vines wrapping around its legs. The tail is a whip-like vine with a glowing tip. No weapons or objects are held, as the hound relies on its natural form. The low-poly aesthetic uses sharp, minimal triangles to create a skeletal, predatory look, with a color palette of dark grays, browns, and glowing oranges. The background is a dense forest with glowing sap puddles and twisted roots.

@@ -1,0 +1,45 @@
+Backstory:
+Tiny plant-like humanoids sprouted from swamp muck, Muckling Sprigs wander in clusters, seeking magical traces. They’re frail, scattering when struck, posing little threat.
+
+Dialogue Upon Encountering Player:
+“Rustle! Magic… yummy…!”
+
+Attacks:
+
+
+
+
+
+Sludge Flick: Tosses muck, low damage, slows slightly.
+
+
+
+Nibble: Bites, minimal damage.
+
+Visual Description for AI Art Prompt:
+A low-poly, foot-tall plant humanoid in T-pose, arms outstretched, with green-brown faceted leaves forming a delicate, petal-like body. Glowing yellow eyes peer from a bulbous, bud-like head, framed by tiny, curling vines. No weapons, limp vine arms drip with sticky sap, trailing faint wisps of pollen. Sharp, minimal triangles shape a frail, whimsical silhouette with a soft, organic texture, as if freshly sprouted from the mire. Small, pulsating spores dot its surface, emitting a faint, sickly glow. The sprig’s form is adorned with patches of slimy moss and minute, glistening dew drops, evoking a sense of fragile, fleeting life that teeters on the edge of decay, yet carries an oddly endearing, almost pitiful charm.
+(798 characters)
+
+
+
+История:
+Крошечные растительные гуманоиды, проросшие из болотной грязи, Маклинг Сприг бродят группами, ища следы магии. Они хрупкие, разбегаются при ударе, представляя малую угрозу.
+
+Диалог при встрече с игроком:
+“Шелест! Магия… вкуснятина…!”
+
+Атаки:
+
+
+
+
+
+Грязевой Бросок: Кидает грязь, низкий урон, слегка замедляет.
+
+
+
+Укус: Кусает, минимальный урон.
+
+Визуальное описание для AI Art Prompt:
+Лоу-поли, футовой высоты растительный гуманоид в Т-позе, руки разведены, с зелено-коричневыми гранеными листьями, формирующими нежное, лепестковое тело. Светящиеся желтые глаза выглядывают из луковичной, бутонной головы, обрамленной крошечными, вьющимися лианами. Без оружия, вялые руки-лианы источают липкий сок, испуская слабые струйки пыльцы. Острые, минимальные треугольники формируют хрупкий, причудливый силуэт с мягкой, органичной текстурой, словно только что проросший из трясины. Мелкие, пульсирующие споры усеивают поверхность, испуская тусклое, болезненное свечение. Форма украшена пятнами слизистого мха и крошечными, блестящими каплями росы, вызывая чувство хрупкой, мимолетной жизни, балансирующей на грани распада, но несущей странное, почти жалостливое очарование.
+(799 characters)

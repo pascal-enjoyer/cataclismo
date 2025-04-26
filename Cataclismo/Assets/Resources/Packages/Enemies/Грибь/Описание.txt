@@ -1,0 +1,21 @@
+Backstory:
+Sporeling Sprouts are small, animated fungi born from the forest’s damp soil, awakened by the elemental surge. They lack true intelligence, driven only by instinct to spread their spores. They’re more of a nuisance than a threat, clustering in groups to overwhelm travelers.
+
+Dialogue Upon Encountering Player:
+“Squeak… Spores… spread…!”
+
+Attacks:
+
+
+
+
+
+Spore Puff: Releases a small cloud of spores, dealing low poison damage and slightly reducing visibility.
+
+
+
+Nibble: Bites with tiny, fungal teeth, dealing minimal physical damage.
+
+Visual Description for AI Art Prompt:
+Low-poly, foot-tall mushroom humanoid in T-pose, arms out, with a rounded, brown-green faceted cap. Two glowing yellow eyes on a stubby stalk body. Tiny, triangular arms limp, no weapons. Green spores trail. Simple, blocky triangles form a cute silhouette. Palette: brown, green, yellow. Background: misty forest, glowing mushrooms.
+(113 characters)

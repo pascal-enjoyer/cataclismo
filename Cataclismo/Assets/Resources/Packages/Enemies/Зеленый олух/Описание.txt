@@ -1,0 +1,45 @@
+Backstory:
+Small, insect-like humanoids born from swamp sludge, Sludgepod Skitters scurry in packs, chasing magical auras. They’re timid, fleeing when injured, barely a nuisance.
+
+Dialogue Upon Encountering Player:
+“Chitter! Magic… ours…!”
+
+Attacks:
+
+
+
+
+
+Slime Toss: Flings slime, low damage.
+
+
+
+Pinch: Pinches, minimal damage.
+
+Visual Description for AI Art Prompt:
+A low-poly, knee-high insect humanoid in T-pose, arms outstretched, with green-black faceted chitin forming a scrawny, segmented body. Glowing orange eyes glow in a bulbous, angular head with twitching, needle-like mandibles. No weapons, limp claw arms drip with sticky, toxic sap. Sharp, minimal triangles shape a frail, skittering silhouette with a slick, organic texture that glistens faintly. Faint, pulsating veins of purple ichor trace its form, emitting a dim, sickly glow. Patches of slimy algae and tiny spores cling to its surface, quivering with weak, unnatural life, evoking a sense of scurrying, parasitic existence that’s both pitifully fragile and unsettlingly alien, as if birthed from the swamp’s most corrupted depths.
+(799 characters)
+
+
+
+История:
+Маленькие насекомоподобные гуманоиды, рожденные из болотной грязи, Сладжпод Скиртеры бегают стаями, преследуя магические ауры. Они пугливы, убегают при ранении, едва создавая помехи.
+
+Диалог при встрече с игроком:
+“Щелканье! Магия… наша…!”
+
+Атаки:
+
+
+
+
+
+Слизистый Бросок: Кидает слизь, низкий урон.
+
+
+
+Щипок: Щипает, минимальный урон.
+
+Визуальное описание для AI Art Prompt:
+Лоу-поли, по колено насекомый гуманоид в Т-позе, руки разведены, с зелено-черным граненым хитином, формирующим тощее, сегментированное тело. Светящиеся оранжевые глаза сияют в луковичной, угловатой голове с дергающимися, игольчатыми челюстями. Без оружия, вялые клешни источают липкий, токсичный сок. Острые, минимальные треугольники формируют хрупкий, бегающий силуэт с гладкой, органичной текстурой, слегка блестящей. Тусклые, пульсирующие вены пурпурного ихора проходят по форме, испуская слабое, болезненное свечение. Пятна слизистых водорослей и крошечные споры липнут к поверхности, дрожа от слабой, неестественной жизни, вызывая чувство суетливой, паразитической жизни, одновременно жалко хрупкой и тревожно чуждой, словно рожденной из самых порченных глубин болота.
+(799 characters)

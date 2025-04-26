@@ -1,0 +1,24 @@
+Backstory:
+The Mossbound Wraith is the remnant of a long-dead druid, bound to the forest by a failed ritual. The elemental surge reanimated its decayed form, fusing it with moss and bark. Driven by fragmented memories of betrayal, it seeks to punish all who wield magic, believing they stole its power.
+
+Dialogue Upon Encountering Player:
+“Magic… thief! You stole my life! Return it, or perish!”
+
+Attacks:
+
+
+
+
+
+Moss Grasp: Summons mossy tendrils from the ground to grab the player, dealing low damage and slowing their movement speed.
+
+
+
+Spectral Scream: Emits a chilling wail, dealing moderate magical damage and reducing the player’s spellcasting speed.
+
+
+
+Bark Shard: Hurls sharp fragments of enchanted bark, dealing high physical damage in a straight line.
+
+Visual Description for AI Art Prompt:
+A low-poly, humanoid figure cloaked in a tattered, flowing robe made of dark green and brown moss, with angular, faceted surfaces that give a jagged, broken appearance. The face is a featureless void, with two glowing emerald eyes floating within. Patches of cracked, gray bark cover the arms and chest, with glowing blue runes etched into them. The hands are claw-like, trailing wisps of green mist. The lower body fades into a ghostly trail of moss and leaves, giving the impression of floating. The low-poly design uses sharp, triangular shapes to emphasize decay and etherealness, with a muted palette of greens, grays, and faint blues. The background is a foggy forest with twisted trees and glowing mushrooms.

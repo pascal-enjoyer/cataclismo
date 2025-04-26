@@ -1,0 +1,53 @@
+Backstory:
+A towering clay statue animated by swamp spirits, the Clayborn Effigy believes it’s a divine sentinel. It drowns intruders in mud to sanctify the mire, its form pulsing with ancient, corrupted runes.
+
+Dialogue Upon Encountering Player:
+“Bow to the mire’s will! Be entombed in sacred clay!”
+
+Attacks:
+
+
+
+
+
+Mud Eruption: Summons a mud geyser, high damage, blinds briefly.
+
+
+
+Clay Shards: Launches jagged clay, moderate piercing damage.
+
+
+
+Silt Mist: Creates muddy fog, low damage, slows player.
+
+Visual Description for AI Art Prompt:
+A low-poly, humanoid clay statue in T-pose, arms outstretched, with cracked brown faceted surfaces etched with glowing emerald runes that pulse erratically. Its hollow, angular face holds blazing green eyes, crowned by jagged stone antlers dripping with slimy moss. No weapons, limp arms are coated in slick muck, trailing faint wisps of toxic vapor. Cracked clay plates armor its torso, adorned with pulsating, vine-like growths that emit a sickly glow. Sharp, minimal triangles shape a rigid, divine silhouette with a rough, earthen texture, as if freshly molded from the swamp’s depths. The effigy’s surface is pitted with small, embedded pebbles and algae, its form radiating an ancient, corrupted majesty that evokes both reverence and dread.
+(797 characters)
+
+
+
+История:
+Огромная глиняная статуя, оживленная болотными духами, Клейборн Эффиджи считает себя божественным стражем. Она топит нарушителей в грязи, чтобы освятить трясину, ее форма пульсирует древними, порченными рунами.
+
+Диалог при встрече с игроком:
+“Преклонись перед волей трясины! Погребись в священной глине!”
+
+Атаки:
+
+
+
+
+
+Грязевой Взрыв: Призывает грязевой гейзер, высокий урон, кратковременно ослепляет.
+
+
+
+Глиняные Осколки: Запускает зазубренную глину, средний пробивающий урон.
+
+
+
+Иловая Мгла: Создает грязевой туман, низкий урон, замедляет игрока.
+
+Визуальное описание для AI Art Prompt:
+Лоу-поли, гуманоидная глиняная статуя в Т-позе, руки разведены, с треснутыми коричневыми гранями, испещренными светящимися изумрудными рунами, пульсирующими неровно. Пустое, угловатое лицо хранит пылающие зеленые глаза, увенчанные зазубренными каменными рогами, с которых капает слизистый мох. Без оружия, вялые руки покрыты липкой грязью, испуская тонкие струйки токсичного пара. Треснувшие глиняные пластины бронируют торс, украшенные пульсирующими, похожими на лианы наростами, испускающими болезненное свечение. Острые, минимальные треугольники формируют жесткий, божественный силуэт с грубой, земляной текстурой, словно только что вылепленный из глубин болота. Поверхность усеяна мелкими вкраплениями гальки и водорослей, форма излучает древнее, порченное величие, вызывающее одновременно благоговение и ужас.
+(798 characters)

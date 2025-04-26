@@ -1,0 +1,28 @@
+Backstory:
+The Fetid Monarch is a colossal amalgamation of swamp decay, born when the elemental surge fused a rotting tree with the corpses of ancient swamp beasts. It believes it is the swamp’s eternal sovereign, destined to drown the world in its toxic embrace. Its presence poisons the air, and it seeks to absorb the player’s magic to fuel its apocalyptic vision.
+
+Dialogue Upon Encountering Player:
+“Bow, mortal! Your magic will feed my reign over this rotting world!”
+
+Attacks:
+
+
+
+
+
+Toxic Deluge: Spews a torrent of black sludge in a wide arc, dealing high poison damage and creating hazardous pools on the ground.
+
+
+
+Vine Lash: Whips with massive, venomous vines, dealing moderate physical damage and inflicting a debuff that reduces healing effects.
+
+
+
+Miasma Shroud: Envelops itself in a cloud of toxic gas, reducing damage taken and dealing low poison damage to nearby players.
+
+
+
+Corpse Summon: Raises decayed swamp creatures from the ground, which attack the player for low damage before collapsing.
+
+Visual Description for AI Art Prompt:
+A towering, low-poly monstrosity resembling a decayed tree fused with grotesque, humanoid features, built from dark brown and black facets with jagged, triangular surfaces. The head is a hollowed-out stump with glowing red eyes and a gaping maw dripping black sludge. Massive, vine-like arms end in claw-like branches coated in toxic green moss. The lower body is a mass of writhing roots and skeletal remains, partially submerged in a pool of sludge. Glowing purple veins pulse across its form, suggesting corrupted magic. The low-poly design emphasizes sharp, angular shapes with minimal triangles to create a massive, nightmarish silhouette. The color palette is dark browns, blacks, greens, and purples, with a wet, reflective texture. The background is a toxic swamp with glowing fungi and a thick, poisonous fog.

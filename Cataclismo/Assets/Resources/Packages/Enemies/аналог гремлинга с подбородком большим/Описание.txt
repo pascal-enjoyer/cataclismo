@@ -1,0 +1,24 @@
+Backstory:
+The Sludgeborn Brute was a forgotten statue of a warrior, sunken in the swamp’s depths. The elemental surge animated it with corrupted mud and algae, giving it a crude sentience. It wanders the mire, seeking to crush anything that disturbs its eternal rest, believing it guards a lost temple.
+
+Dialogue Upon Encountering Player:
+“You wake me from slumber? Feel the swamp’s vengeance!”
+
+Attacks:
+
+
+
+
+
+Mud Slam: Slams its fists into the ground, sending a wave of sticky mud that deals moderate damage and slows the player.
+
+
+
+Algae Grasp: Hurls a glob of animated algae that wraps around the player, dealing low damage and reducing attack speed.
+
+
+
+Boulder Toss: Rips a chunk of hardened mud from its body and throws it, dealing high physical damage.
+
+Visual Description for AI Art Prompt:
+A low-poly, hulking humanoid figure made of dripping, dark brown and green mud, with angular, blocky surfaces that suggest a crumbling statue. The head is featureless except for two glowing orange eyes embedded in the muck. Patches of glowing green algae cling to its arms and chest, pulsing faintly. The limbs are thick and uneven, with jagged, triangular cracks revealing a core of hardened clay. The low-poly design uses flat, heavy triangles to create a bulky, imposing silhouette, with a color palette of dark browns, greens, and oranges. The background is a swamp with bubbling mud pools and twisted vines.

@@ -35,7 +35,7 @@ public class EarthBlade : MonoBehaviour
 
         private void ResetAll()
         {
-             _earthBlade.velocity = Vector3.zero;
+             _earthBlade.linearVelocity = Vector3.zero;
             _earthBlade.transform.localPosition = _startingPos;
             timer = 0;
         }

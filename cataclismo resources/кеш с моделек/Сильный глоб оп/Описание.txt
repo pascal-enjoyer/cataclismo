@@ -1,0 +1,61 @@
+Backstory:
+A titanic mud giant born from the swamp’s core, the Mirespawn Colossus believes it’s the mire’s eternal guardian. It crushes intruders to absorb their magic, aiming to drown the world in its toxic embrace.
+
+Dialogue Upon Encountering Player:
+“The swamp’s heart rejects you! Perish in my muddy grasp!”
+
+Attacks:
+
+
+
+
+
+Silt Deluge: Unleashes a mud tidal wave, high damage, slows.
+
+
+
+Clay Golems: Spawns mud minions, moderate damage.
+
+
+
+Toxic Slam: Slams ground, high damage, stuns.
+
+
+
+Mire Fog: Emits poison fog, low damage, reduces healing.
+
+Visual Description for AI Art Prompt:
+A low-poly, colossal humanoid mud titan in T-pose, arms outstretched, with jagged brown-black faceted surfaces like hardened silt. Glowing violet eyes blaze in a sunken, angular face, crowned by cracked stone horns pulsing with faint runes. No weapons, limp arms drip viscous, toxic muck, trailing green vapor wisps. Pulsing emerald veins snake across its massive, pitted frame, embedded with slimy algae and small pebbles. Sharp, minimal triangles shape a monstrous, towering silhouette with a rough, earthen texture that feels ancient and corrupted. The colossus’s surface is scarred with deep fissures, oozing faint, sickly light, evoking a sense of unstoppable, primal power and dread, as if the swamp itself has risen to claim all life.
+(799 characters)
+
+
+
+История:
+Титанический глиняный гигант, рожденный из ядра болота, Майрспаун Колосс считает себя вечным стражем трясины. Он сокрушает нарушителей, чтобы поглотить их магию, стремясь утопить мир в своих токсичных объятиях.
+
+Диалог при встрече с игроком:
+“Сердце болота отвергает тебя! Погибни в моей грязевой хватке!”
+
+Атаки:
+
+
+
+
+
+Иловый Потоп: Выпускает грязевую волну, высокий урон, замедляет.
+
+
+
+Глиняные Големы: Создает грязевых миньонов, средний урон.
+
+
+
+Токсичный Удар: Бьет по земле, высокий урон, оглушает.
+
+
+
+Болотный Туман: Испускает ядовитый туман, низкий урон, снижает исцеление.
+
+Визуальное описание для AI Art Prompt:
+Лоу-поли, колоссальный гуманоидный глиняный титан в Т-позе, руки разведены, с зазубренными коричнево-черными гранями, словно затвердевший ил. Пылающие фиолетовые глаза сияют в утопленном, угловатом лице, увенчанном треснувшими каменными рогами, пульсирующими тусклыми рунами. Без оружия, вялые руки источают вязкую, токсичную грязь, испуская зеленые пары. Пульсирующие изумрудные вены вьются по массивному, изъеденному телу, усеянному слизистыми водорослями и мелкой галькой. Острые, минимальные треугольники формируют чудовищный, возвышающийся силуэт с грубой, земляной текстурой, древней и порченной. Поверхность испещрена глубокими трещинами, сочащимися тусклым, болезненным светом, вызывая чувство неудержимой, первобытной мощи и ужаса, словно само болото восстало, чтобы поглотить жизнь.
+(799 characters)

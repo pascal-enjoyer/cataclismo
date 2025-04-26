@@ -41,7 +41,7 @@ namespace FireballMovement
 
         private void ResetAll()
         {
-            _fireball.velocity = Vector3.zero;
+            _fireball.linearVelocity = Vector3.zero;
             _fireball.transform.localPosition = _startingPos;
             timer = 0;
         }

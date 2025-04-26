@@ -1,0 +1,53 @@
+Backstory:
+A spectral knight fused with swamp silt by the elemental surge, the Siltwraith Crusader guards a lost altar. It deems intruders profane, wielding earthen magic to bury them in mud to cleanse the mire’s corruption.
+
+Dialogue Upon Encountering Player:
+“Heretic! Your presence defiles the mire! Sink into silt!”
+
+Attacks:
+
+
+
+
+
+Silt Vortex: Summons a muddy whirlwind, high damage, slows movement.
+
+
+
+Clay Cage: Traps player in hardening clay, immobilizing, moderate damage.
+
+
+
+Mire Tremor: Slams ground, high damage, disorients.
+
+Visual Description for AI Art Prompt:
+A low-poly humanoid wraith in T-pose, arms outstretched, sculpted from dripping brown-gray silt with jagged, faceted surfaces like cracked, wet clay. Glowing indigo eyes blaze in a hollow, skeletal face, framed by shattered stone pauldrons etched with faint, pulsing runes. A tattered, moss-crusted cloak clings to its gaunt frame, no weapons, limp arms trail wisps of black mist. Cracked clay plates armor its chest, emitting an eerie, flickering glow. Sharp, minimal triangles form a spectral, emaciated silhouette with a slick, muddy texture that glistens faintly, as if perpetually damp. The wraith’s form is adorned with slimy algae strands, and its jagged edges pulse with a sickly, unnatural energy, evoking a haunting, otherworldly presence.
+(798 characters)
+
+
+
+История:
+Призрачный рыцарь, сплавленный с болотным илом элементным всплеском, Силтрейт Крусейдер охраняет утраченный алтарь. Он считает нарушителей осквернителями, используя земляную магию, чтобы погребать их в грязи, очищая порчу трясины.
+
+Диалог при встрече с игроком:
+“Еретик! Твое присутствие оскверняет трясину! Погрузись в ил!”
+
+Атаки:
+
+
+
+
+
+Иловый Вихрь: Призывает грязевой вихрь, высокий урон, замедляет движение.
+
+
+
+Глиняная Клетка: Ловит игрока в твердеющую глину, обездвиживает, средний урон.
+
+
+
+Болотная Дрожь: Ударяет по земле, высокий урон, дезориентирует.
+
+Визуальное описание для AI Art Prompt:
+Лоу-поли гуманоидный призрак в Т-позе, руки разведены, вылеплен из капающего коричнево-серого ила с зазубренными гранями, словно треснувшая мокрая глина. Пылающие индиго глаза сияют в пустом, костлявом лице, обрамленном разбитыми каменными наплечниками с тусклыми, пульсирующими рунами. Потрепанный, покрытый мхом плащ липнет к тощему телу, без оружия, вялые руки источают черный туман. Треснувшие глиняные пластины бронируют грудь, испуская жуткое, мерцающее свечение. Острые, минимальные треугольники формируют призрачный, истощенный силуэт с липкой, грязной текстурой, слегка блестящей, будто всегда влажной. Форма украшена слизистыми нитями водорослей, а зазубренные края пульсируют нездоровой энергией, вызывая жуткое, потустороннее присутствие.
+(799 characters)

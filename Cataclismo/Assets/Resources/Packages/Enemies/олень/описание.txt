@@ -1,0 +1,24 @@
+Backstory:
+The Emberwisp Stag was a majestic forest guardian, its antlers glowing with the light of fireflies. The elemental surge corrupted its light into a malevolent force, turning its once-protective nature into a territorial rage. It now hunts anything that disrupts the forest’s silence, believing it defends a sacred grove that no longer exists.
+
+Dialogue Upon Encountering Player:
+“Intruder! Your footsteps defile the grove! Burn in my light!”
+
+Attacks:
+
+
+
+
+
+Wisp Barrage: Fires a volley of glowing, fiery wisps from its antlers, dealing moderate fire damage in a spread pattern.
+
+
+
+Charge of Fury: Lowers its head and charges, knocking the player back and dealing high physical damage.
+
+
+
+Blinding Glow: Emits a dazzling light from its antlers, temporarily blinding the player and reducing their hit chance.
+
+Visual Description for AI Art Prompt:
+A low-poly stag standing tall, with a sleek, angular body made of dark brown and gray facets, resembling charred wood. Its antlers are large, branching, and jagged, glowing with orange and yellow wisps that flicker like embers, forming a crown-like structure. The eyes are hollow, with a faint red glow deep within. Small, glowing particles float around its body, suggesting magical corruption. The legs are thin and sharp, with hoof-like points that dig into the ground. The low-poly design uses flat, triangular surfaces to create a crystalline, almost ghostly appearance, with a minimal color palette of dark browns, grays, and glowing oranges. The background is a dark forest clearing with faint firefly-like lights scattered in the air.

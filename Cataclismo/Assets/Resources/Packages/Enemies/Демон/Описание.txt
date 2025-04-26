@@ -1,0 +1,45 @@
+Backstory:
+Delicate, flower-like humanoids sprouted from swamp muck, Mirebloom Sprouts seek magical energy to grow. They’re fragile, wilting under attack, posing minimal threat.
+
+Dialogue Upon Encountering Player:
+“Rustle! Magic… feeds us…!”
+
+Attacks:
+
+
+
+
+
+Petal Toss: Throws toxic petals, low damage.
+
+
+
+Vine Flick: Whips vine, minimal damage.
+
+Visual Description for AI Art Prompt:
+A low-poly, waist-high flower humanoid in T-pose, arms outstretched, with green-purple faceted petals forming a delicate, wilting body. Glowing pink eyes shimmer in a bud-like, angular head, framed by curling, thorned vines. No weapons, limp vine arms drip with sticky, toxic sap, trailing faint pollen wisps. Sharp, minimal triangles shape a frail, ethereal silhouette with a soft, organic texture that feels freshly bloomed. Small, pulsating spores and slimy moss patches cling to its surface, emitting a dim, sickly glow. The sprout’s form is adorned with minute, glistening dew drops and faint, pulsating veins of green ichor, evoking a sense of fleeting, corrupted beauty that teeters on decay, both pitiful and strangely captivating.
+(799 characters)
+
+
+
+История:
+Хрупкие, цветкоподобные гуманоиды, проросшие из болотной грязи, Майрблум Спрауты ищут магическую энергию для роста. Они хрупкие, увядают под атакой, представляя минимальную угрозу.
+
+Диалог при встрече с игроком:
+“Шелест! Магия… питает нас…!”
+
+Атаки:
+
+
+
+
+
+Бросок Лепестков: Кидает токсичные лепестки, низкий урон.
+
+
+
+Удар Лианой: Хлещет лианой, минимальный урон.
+
+Визуальное описание для AI Art Prompt:
+Лоу-поли, по пояс цветочный гуманоид в Т-позе, руки разведены, с зелено-фиолетовыми гранеными лепестками, формирующими хрупкое, увядающее тело. Светящиеся розовые глаза мерцают в бутонной, угловатой голове, обрамленной вьющимися, колючими лианами. Без оружия, вялые руки-лианы источают липкий, токсичный сок, испуская слабые струйки пыльцы. Острые, минимальные треугольники формируют хрупкий, эфирный силуэт с мягкой, органичной текстурой, словно только что расцветший. Мелкие, пульсирующие споры и пятна слизистого мха липнут к поверхности, испуская тусклый, болезненный свет. Форма украшена крошечными, блестящими каплями росы и тусклыми, пульсирующими венами зеленого ихора, вызывая чувство мимолетной, порченной красоты, балансирующей на грани распада, одновременно жалкой и странно завораживающей.
+(799 characters)

@@ -1,0 +1,45 @@
+Backstory:
+Worm-like creatures of hardened mud, Sludgescale Wurms burrow in swamp muck, nibbling magical residue. They’re slow and fragile, posing little danger.
+
+Dialogue Upon Encountering Player:
+“Squirm! Magic… mine…!”
+
+Attacks:
+
+
+
+
+
+Mud Spit: Spits muck, low damage.
+
+
+
+Wriggle Ram: Rams player, minimal damage.
+
+Visual Description for AI Art Prompt:
+A low-poly, foot-long mud worm wriggling in a coiled, sluggish stance, with brown-gray faceted scales like cracked, dried clay. Glowing blue eyes gleam in a bulbous, angular head with tiny, jagged mandibles dripping sticky ooze. No weapons, its segmented body pulses with faint, sickly veins of green ichor. Sharp, minimal triangles shape a plump, repulsive silhouette with a rough, earthen texture that feels caked in mire. Small, spiky ridges protrude from its sides, quivering faintly. Patches of slimy algae and embedded pebbles cling to its surface, emitting a dim, toxic glow, evoking a sense of sluggish, parasitic life that’s both pitifully weak and unsettlingly grotesque, as if molded from the swamp’s most corrupted sediment.
+(799 characters)
+
+
+
+История:
+Червеподобные существа из затвердевшей грязи, Сладжскейл Вурмы роются в болотной грязи, поедая магические остатки. Они медленные и хрупкие, представляя малую опасность.
+
+Диалог при встрече с игроком:
+“Извивание! Магия… моя…!”
+
+Атаки:
+
+
+
+
+
+Грязевой Плевок: Плюет грязью, низкий урон.
+
+
+
+Извивающийся Таран: Таран игрока, минимальный урон.
+
+Визуальное описание для AI Art Prompt:
+Лоу-поли, футовый грязевой червь, извивающийся в свернутой, вялой позе, с коричнево-серыми гранеными чешуями, словно треснувшая, высохшая глина. Светящиеся синие глаза блестят в луковичной, угловатой голове с крошечными, зазубренными челюстями, источающими липкую жижу. Без оружия, сегментированное тело пульсирует тусклыми, болезненными венами зеленого ихора. Острые, минимальные треугольники формируют пухлый, отталкивающий силуэт с грубой, земляной текстурой, словно покрытой коркой грязи. Мелкие, колючие гребни торчат по бокам, слабо дрожа. Пятна слизистых водорослей и вросшая галька липнут к поверхности, испуская тусклый, токсичный свет, вызывая чувство вялой, паразитической жизни, одновременно жалко слабой и тревожно гротескной, словно вылепленной из самых порченных осадков болота.
+(799 characters)
