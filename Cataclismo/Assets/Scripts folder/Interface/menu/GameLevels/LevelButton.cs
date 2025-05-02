@@ -9,6 +9,5 @@ public class LevelButton : MonoBehaviour
     public void Setup(string levelNumber)
     {
         this.levelNumber.text = levelNumber;
-
     }
 }

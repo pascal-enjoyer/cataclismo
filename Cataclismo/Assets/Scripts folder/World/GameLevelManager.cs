@@ -7,32 +7,31 @@ public class GameLevelManager : MonoBehaviour
     //добавить сложность уровн€ от которой зависит лут
 
 
-    public Sprite[] levelBackgrounds; // ћассив изображений фонов дл€ каждого уровн€
-    public GameObject[] enemyPrefabs; // ћассив префабов врагов дл€ каждого уровн€
-    public Enemy[] enemies;
+    LevelData currentLevelData;
+
     public SpriteRenderer backgroundRenderer; // —прайт рендерер дл€ фона
     public Transform enemyTransform; // “очка спавна врага
     public PlayerInfo playerInfo;
     public Transform canvas;
 
-    public int experience;
-    public int money;
-    public int diamonds;
-
     void Start()
-    { 
+    {
+        ActiveEnemy currentEnemy = enemyTransform.GetComponent<ActiveEnemy>();
         // ѕолучаем текущий уровень из PlayerPrefs
-        int currentLevel = PlayerPrefs.GetInt("CurrentLevel", 0);
-        enemyTransform.GetComponent<ActiveEnemy>().enemy = enemies[currentLevel % enemies.Length];
-        enemyTransform.GetComponent<ActiveEnemy>().RefreshEnemyStats();
-        // ”станавливаем фон дл€ текущего уровн€
-        backgroundRenderer.sprite = levelBackgrounds[currentLevel % levelBackgrounds.Length];
-        // —павним врага дл€ текущего уровн€
+        currentLevelData = GameManager.levelInfoController.GetSelectedLevelData();
         GameObject enemyGO;
-        enemyGO = Instantiate(enemyPrefabs[currentLevel % enemyPrefabs.Length], enemyTransform);
-        enemyTransform.GetComponent<ActiveEnemy>().OnEnemyDied.AddListener(CompleteCurrentLevel);
-        enemyTransform.GetComponent <ActiveEnemy>().EnemyGameobject = enemyGO;
-        enemyTransform.GetComponent<ActiveEnemy>().OnEnemyDied.AddListener(canvas.GetComponent<LevelEndingUISpawner>().WinLevelSpawn);
+        enemyGO = Instantiate(currentLevelData.enemyPrefabs[0], enemyTransform);
+
+
+        currentEnemy.enemy = enemyGO.GetComponent<Enemy>().EnemyData;
+        currentEnemy.RefreshEnemyStats();
+        // ”станавливаем фон дл€ текущего уровн€
+        backgroundRenderer.sprite = currentLevelData.levelBackground;
+        // —павним врага дл€ текущего уровн€
+
+        currentEnemy.OnEnemyDied.AddListener(CompleteCurrentLevel);
+        currentEnemy.EnemyGameobject = enemyGO;
+        currentEnemy.OnEnemyDied.AddListener(canvas.GetComponent<LevelEndingUISpawner>().WinLevelSpawn);
         playerInfo.OnPlayerDied.AddListener(canvas.GetComponent<LevelEndingUISpawner>().LoseLevelSpawn);
     }
 
@@ -46,7 +45,7 @@ public class GameLevelManager : MonoBehaviour
         if (GameManager.Instance != null)
         {
             GameManager.lootManager.DropLoot();
-            GameManager.Instance.CompleteLevel(currentLevel);
+            GameManager.Instance.CompleteLevel(currentLevel); //переделать на дроп с currentLevelData, заполнить levelData
             experience = GameManager.playerEconomic.GetExpFromLevel(currentLevel+1);
             money = GameManager.playerEconomic.GetMoneyFromLevel(currentLevel + 1);
             if ((currentLevel + 1) % 5 == 0)

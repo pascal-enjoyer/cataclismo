@@ -5,7 +5,7 @@ using UnityEngine.Events;
 
 public class ActiveEnemy : MonoBehaviour
 {
-    public Enemy enemy;
+    public EnemyData enemy;
     public PlayerInfo playerInfo;
     public GameObject EnemyGameobject;
     public GameObject EnemyBarsPrefab;
@@ -43,12 +43,12 @@ public class ActiveEnemy : MonoBehaviour
 
     public void RefreshEnemyStats()
     {
-        currentHealth = enemy.currentHealth;
+        currentHealth = //enemy.currentHealth;
         maxHealth = enemy.maxHealth;
-        currentDamage = enemy.currentDamage;
+        currentDamage = //enemy.currentDamage;
         maxDamage = enemy.maxDamage;
 
-        currentAttackSpeed = enemy.currentAtackSpeed;
+        currentAttackSpeed = //enemy.currentAtackSpeed;
         maxAttackSpeed = enemy.maxAtackSpeed;
 
         ResistToSpells = new Dictionary<SpellType, int>();
@@ -114,7 +114,7 @@ public class ActiveEnemy : MonoBehaviour
         return maxHealth;
     }
 
-    public Enemy GetEnemy()
+    public EnemyData GetEnemy()
     {
         return enemy;
     }

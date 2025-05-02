@@ -12,6 +12,8 @@ public class GameManager : MonoBehaviour
 
     public static PlayerEconomic playerEconomic;
 
+    public static LevelInfoController levelInfoController;
+
     private int levelsCompleted;
 
     void Awake()
