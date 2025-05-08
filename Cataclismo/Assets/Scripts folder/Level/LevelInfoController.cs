@@ -23,7 +23,7 @@ public class LevelInfoController : MonoBehaviour
         levelsByNumbers = new Dictionary<int, LevelData>();
         foreach (LevelData level in levels)
         {
-            levelsByNumbers.Add(level.levelNumber, level);
+            levelsByNumbers.Add(level.levelIndex, level);
         }
     }
 

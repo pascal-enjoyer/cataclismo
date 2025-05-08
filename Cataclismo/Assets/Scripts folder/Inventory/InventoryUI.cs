@@ -30,7 +30,7 @@ public class InventoryUI : MonoBehaviour
 
     void Start()
     {
-        inventory = GameManager.inventory;
+        inventory = GameManager.Instance.inventory;
         inventory.OnItemAdded.AddListener(RefreshInventoryUI);
 
         RefreshInventoryUI();

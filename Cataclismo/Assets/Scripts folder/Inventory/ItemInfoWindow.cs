@@ -38,7 +38,7 @@ public class ItemInfoWindow : MonoBehaviour
         itemBonus.text = item.BonusType.ToString() + " + " + item.bonusValue.ToString();
         itemLevel.text = "Item level " + item.itemLevel.ToString();
         upgradePrice.text = (item.itemLevelUpgradeCost + item.addedCostOfUpgradePerLevel * item.itemLevel).ToString() + " coins";
-        if (GameManager.playerEconomic.coins < (item.itemLevelUpgradeCost + item.addedCostOfUpgradePerLevel * item.itemLevel) || item.itemLevel >= item.maxItemLevel)
+        if (GameManager.Instance.playerEconomic.coins < (item.itemLevelUpgradeCost + item.addedCostOfUpgradePerLevel * item.itemLevel) || item.itemLevel >= item.maxItemLevel)
         {
             upgradeButton.GetComponent<Button>().interactable = false;
             upgradeButton.GetComponent<Image>().color = Color.gray;
@@ -55,7 +55,7 @@ public class ItemInfoWindow : MonoBehaviour
         itemBonus.text = item.BonusType.ToString() + " + " + item.bonusValue.ToString();
         itemLevel.text = "Item level " + item.itemLevel.ToString();
         upgradePrice.text = (item.itemLevelUpgradeCost + item.addedCostOfUpgradePerLevel * item.itemLevel).ToString() + " coins";
-        if (GameManager.playerEconomic.coins < (item.itemLevelUpgradeCost + item.addedCostOfUpgradePerLevel * item.itemLevel) || item.itemLevel >= item.maxItemLevel)
+        if (GameManager.Instance.playerEconomic.coins < (item.itemLevelUpgradeCost + item.addedCostOfUpgradePerLevel * item.itemLevel) || item.itemLevel >= item.maxItemLevel)
         {
             upgradeButton.GetComponent<Button>().interactable = false;
             upgradeButton.GetComponent<Image>().color = Color.gray;
@@ -85,12 +85,12 @@ public class ItemInfoWindow : MonoBehaviour
 
     public void OnUpgradeButtonClicked()
     {// тут какая то хуйня
-        if (GameManager.playerEconomic.coins >= item.itemLevelUpgradeCost + item.addedCostOfUpgradePerLevel * item.itemLevel - 1 && (item.itemLevel < item.maxItemLevel))
+        if (GameManager.Instance.playerEconomic.coins >= item.itemLevelUpgradeCost + item.addedCostOfUpgradePerLevel * item.itemLevel - 1 && (item.itemLevel < item.maxItemLevel))
         {
-            GameManager.playerEconomic.coins -= item.itemLevelUpgradeCost + item.addedCostOfUpgradePerLevel * item.itemLevel;
-            GameManager.playerEconomic.OnPlayerEconomicLoaded.Invoke();
-            GameManager.playerEconomic.OnPlayerEconomicChanged.Invoke();
-            GameManager.inventory.UpgradeItemLevel(item);
+            GameManager.Instance.playerEconomic.coins -= item.itemLevelUpgradeCost + item.addedCostOfUpgradePerLevel * item.itemLevel;
+            GameManager.Instance.playerEconomic.OnPlayerEconomicLoaded.Invoke();
+            GameManager.Instance.playerEconomic.OnPlayerEconomicChanged.Invoke();
+            GameManager.Instance.inventory.UpgradeItemLevel(item);
             inventoryUI.RefreshInventoryUI();
             RefreshUI();
         }

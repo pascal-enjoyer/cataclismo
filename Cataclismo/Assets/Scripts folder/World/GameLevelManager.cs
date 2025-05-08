@@ -18,7 +18,7 @@ public class GameLevelManager : MonoBehaviour
     {
         ActiveEnemy currentEnemy = enemyTransform.GetComponent<ActiveEnemy>();
         // Получаем текущий уровень из PlayerPrefs
-        currentLevelData = GameManager.levelInfoController.GetSelectedLevelData();
+        currentLevelData = GameManager.Instance.levelInfoController.GetSelectedLevelData();
         GameObject enemyGO;
         enemyGO = Instantiate(currentLevelData.enemyPrefabs[0], enemyTransform);
 
@@ -40,16 +40,12 @@ public class GameLevelManager : MonoBehaviour
     public void CompleteCurrentLevel()
     {
         // Получаем текущий уровень из PlayerPrefs
-        int currentLevel = PlayerPrefs.GetInt("CurrentLevel", 0);
+        int currentLevel = currentLevelData.levelIndex;
         // Отмечаем уровень как пройденный
         if (GameManager.Instance != null)
         {
-            GameManager.lootManager.DropLoot();
+            GameManager.Instance.lootManager.DropLoot();
             GameManager.Instance.CompleteLevel(currentLevel); //переделать на дроп с currentLevelData, заполнить levelData
-            experience = GameManager.playerEconomic.GetExpFromLevel(currentLevel+1);
-            money = GameManager.playerEconomic.GetMoneyFromLevel(currentLevel + 1);
-            if ((currentLevel + 1) % 5 == 0)
-                diamonds = GameManager.playerEconomic.GetDiamondsFromLevel(currentLevel + 1);
         }
 
     }

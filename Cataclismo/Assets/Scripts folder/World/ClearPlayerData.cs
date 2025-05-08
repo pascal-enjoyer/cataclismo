@@ -21,13 +21,13 @@ public class ClearPlayerData : MonoBehaviour
 
     public void InfinityMoney(int amount)
     {
-        GameManager.playerEconomic.GainMoney(amount);
-        GameManager.playerEconomic.GainDiamonds(amount);
+        GameManager.Instance.playerEconomic.GainMoney(amount);
+        GameManager.Instance.playerEconomic.GainDiamonds(amount);
     }
 
     public void InfinityExp(int amount )
     {
 
-        GameManager.playerEconomic.GainExperience(amount);
+        GameManager.Instance.playerEconomic.GainExperience(amount);
     }
 }

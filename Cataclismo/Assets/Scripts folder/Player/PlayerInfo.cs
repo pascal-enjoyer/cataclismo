@@ -30,7 +30,7 @@ public class PlayerInfo : MonoBehaviour
     {
         maxHealth = player.maxHealth;
         currentHealth = maxHealth;
-        inventory = GameManager.inventory;
+        inventory = GameManager.Instance.inventory;
         if (inventory != null)
             AddItemBonus();
         

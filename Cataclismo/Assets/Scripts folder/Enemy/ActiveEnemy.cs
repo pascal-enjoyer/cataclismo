@@ -43,12 +43,12 @@ public class ActiveEnemy : MonoBehaviour
 
     public void RefreshEnemyStats()
     {
-        currentHealth = //enemy.currentHealth;
+        currentHealth = enemy.currentHealth;
         maxHealth = enemy.maxHealth;
-        currentDamage = //enemy.currentDamage;
+        currentDamage = enemy.currentDamage;
         maxDamage = enemy.maxDamage;
 
-        currentAttackSpeed = //enemy.currentAtackSpeed;
+        currentAttackSpeed = enemy.currentAtackSpeed;
         maxAttackSpeed = enemy.maxAtackSpeed;
 
         ResistToSpells = new Dictionary<SpellType, int>();

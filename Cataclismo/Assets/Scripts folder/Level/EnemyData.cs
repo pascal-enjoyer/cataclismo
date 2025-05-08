@@ -7,15 +7,13 @@ public class EnemyData : ScriptableObject
 {
     public string enemyName;
 
-    public float maxHealth;
+    public float health;
 
-    public float maxAtackSpeed;
+    public float attackSpeed;
 
-    public float maxDamage;
+    public float damage;
 
     public List<SpellsResist> spellTypesResist;
-
-
 }
 
 [System.Serializable]

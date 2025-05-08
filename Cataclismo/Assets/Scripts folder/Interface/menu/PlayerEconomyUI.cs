@@ -14,7 +14,7 @@ public class PlayerEconomyUI : MonoBehaviour
 
     public void Start()
     {
-        playerEconomic = GameManager.playerEconomic;
+        playerEconomic = GameManager.Instance.playerEconomic;
         playerEconomic.OnPlayerEconomicChanged.AddListener(RefreshUI);
         playerEconomic.OnPlayerEconomicLoaded.AddListener(RefreshUI);
         RefreshUI();

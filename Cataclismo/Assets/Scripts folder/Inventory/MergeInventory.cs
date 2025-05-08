@@ -74,7 +74,7 @@ public class MergeInventory : MonoBehaviour
 
     public void Start()
     {
-        inventory = GameManager.inventory;
+        inventory = GameManager.Instance.inventory;
 
         mergeButton.GetComponent<Button>().onClick.AddListener(OnMergeButtonClicked);
         Setup();
@@ -380,7 +380,7 @@ public class MergeInventory : MonoBehaviour
 
             TemplateItem templateItem = null;
 
-            foreach (TemplateItem item in GameManager.lootManager.possibleLoot)
+            foreach (TemplateItem item in GameManager.Instance.lootManager.possibleLoot)
             {
                 if (item.bonusType == bonusTypeResult && item.itemType == itemTypeResult)
                 {

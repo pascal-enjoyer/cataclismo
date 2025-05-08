@@ -70,7 +70,7 @@ public class ChestInShop : MonoBehaviour
         chestDescriptionText.text = chest.chestDescription;
         chestBackground.sprite = chest.chestBackground;
 
-        allVariants = GameManager.inventory.templates;
+        allVariants = GameManager.Instance.inventory.templates;
         itemRarityVariants = new Dictionary<float, ItemRarity>();
         rarityProbabilitiesList = chest.rarityProbabilitiesList;
 
@@ -87,9 +87,9 @@ public class ChestInShop : MonoBehaviour
     }
     public void OpenChest()
     {
-        if (GameManager.playerEconomic.diamonds - chest.chestCost >= 0)
+        if (GameManager.Instance.playerEconomic.diamonds - chest.chestCost >= 0)
         {
-            GameManager.playerEconomic.GainDiamonds(-chest.chestCost);
+            GameManager.Instance.playerEconomic.GainDiamonds(-chest.chestCost);
             if (currentChestLootVariants == null || currentChestLootVariants.Count == 0)
             {
                 Debug.LogWarning("Нет доступных вариантов лута в этом сундуке.");
@@ -105,7 +105,7 @@ public class ChestInShop : MonoBehaviour
 
             // Добавляем предмет в инвентарь игрока с выбранной редкостью
             droppedItem = new InventoryItem(randomItem, LootManager.GenerateBonusValueByRarity(itemRarity), itemRarity);
-            GameManager.inventory.AddItem(droppedItem);
+            GameManager.Instance.inventory.AddItem(droppedItem);
 
             OnItemDropped.Invoke(droppedItem);
             Debug.Log($"Вы открыли сундук и получили: {randomItem.itemName} с редкостью {itemRarity}");

@@ -5049,6 +5049,7 @@ GameObject:
   - component: {fileID: 1273867654}
   - component: {fileID: 1273867655}
   - component: {fileID: 1273867656}
+  - component: {fileID: 1273867657}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -5068,6 +5069,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 108855228a232b04fb206915c6ea6482, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  inventory: {fileID: 1273867654}
+  lootManager: {fileID: 1273867655}
+  playerEconomic: {fileID: 1273867656}
+  levelInfoController: {fileID: 1273867657}
 --- !u!4 &1273867653
 Transform:
   m_ObjectHideFlags: 0
@@ -5156,6 +5161,22 @@ MonoBehaviour:
   OnPlayerLevelChanged:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &1273867657
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1273867651}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9e0a65a8aa7ec3747aa967f8e01d6095, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  levels:
+  - {fileID: 11400000, guid: b08ef43cd1c4c4e44a3c2b8d646283b8, type: 2}
+  defaultLevel: {fileID: 11400000, guid: b08ef43cd1c4c4e44a3c2b8d646283b8, type: 2}
+  isDebugging: 1
 --- !u!1 &1284687721
 GameObject:
   m_ObjectHideFlags: 0

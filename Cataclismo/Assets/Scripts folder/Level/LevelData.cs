@@ -7,7 +7,7 @@ public class LevelData : ScriptableObject
 {
 
 
-    public int levelNumber;
+    public int levelIndex; // при выборе на карте игры передается имменно индекс (0, 1, 2 ... n)
     public List<GameObject> enemyPrefabs;
     public Sprite levelBackground;
 

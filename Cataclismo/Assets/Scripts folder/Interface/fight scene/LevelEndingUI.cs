@@ -48,10 +48,11 @@ public class LevelEndingUI : MonoBehaviour
     public void SetupWin()
     {
 
-        droppedLoot = GameManager.lootManager.lastDroppedLoot;
-        int droppedExperienceGLM = gameLevelManager.experience;
-        int droppedMoneyGLM = gameLevelManager.money;
-        int droppedDiamondsGLM = gameLevelManager.diamonds;
+        droppedLoot = GameManager.Instance.lootManager.lastDroppedLoot;
+        LevelData levelData = GameManager.Instance.levelInfoController.GetSelectedLevelData();
+        int droppedExperienceGLM = levelData.exp;
+        int droppedMoneyGLM = levelData.money;
+        int droppedDiamondsGLM = levelData.diamonds;
         if (droppedMoneyGLM > 0) 
         {
             Instantiate(moneyDropPrefab, droppedEconomicPanel).GetComponent<afterFightEcomonicDrop>().placeForText.text = droppedMoneyGLM.ToString();

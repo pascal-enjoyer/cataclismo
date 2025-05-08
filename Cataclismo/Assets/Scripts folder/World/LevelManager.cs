@@ -62,8 +62,8 @@ public class LevelManager : MonoBehaviour
     {
         // Сохраняем текущий уровень в PlayerPrefs
         PlayerPrefs.SetInt("CurrentLevel", levelIndex);
-
-        GameManager.levelInfoController.SelectLevel(levelIndex);
+        Debug.Log(levelIndex);
+        GameManager.Instance.levelInfoController.SelectLevel(levelIndex);
 
         PlayerPrefs.Save();
 

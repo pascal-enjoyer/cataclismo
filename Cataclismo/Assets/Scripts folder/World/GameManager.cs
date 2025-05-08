@@ -6,13 +6,13 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
 
-    public static Inventory inventory;
+    public Inventory inventory;
 
-    public static LootManager lootManager;
+    public LootManager lootManager;
 
-    public static PlayerEconomic playerEconomic;
+    public PlayerEconomic playerEconomic;
 
-    public static LevelInfoController levelInfoController;
+    public LevelInfoController levelInfoController;
 
     private int levelsCompleted;
 
